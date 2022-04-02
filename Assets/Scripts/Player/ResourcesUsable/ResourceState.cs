@@ -4,10 +4,9 @@
 
 namespace Player.ResourcesUsable {
 public enum ResourceState {
-    Idle,
     Spawning,
-    Appearing,
     Active,
-    Cooldown
+    Cooldown,
+    Finished
 }
 }
