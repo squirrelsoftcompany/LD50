@@ -18,6 +18,9 @@ public class UIEvents : MonoBehaviour
     [Header("Annotation")]
     public Text mAnnotationText;
 
+    [Header("Animation")]
+    public Animator mAnnotationDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,5 +49,10 @@ public class UIEvents : MonoBehaviour
     public void onValidate()
     {
         //GameManager.Inst.Validate();
+    }
+
+    public void popAnnotation()
+    {
+        mAnnotationDisplay.SetTrigger("Pop");
     }
 }

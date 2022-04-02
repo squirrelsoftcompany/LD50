@@ -423,6 +423,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1685617042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4705563002276400628, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4705563003949397094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1685617047
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685617042}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41525705ae0fbaf4490c3ccbf567f65f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4705563003949397094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430,10 +456,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4705563002144884328, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002144884333, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002276400629, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002276400629, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002276400629, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -913
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002276400629, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002563879437, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002563879438, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4705563002810285378, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
         type: 3}
       propertyPath: m_Name
       value: UIElements
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563002810285378, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4705563002810285379, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
         type: 3}
@@ -490,5 +561,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4705563002865616771, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563003680570782, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705563003726216199, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328799996169281079, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: mAnnotationDisplay
+      value: 
+      objectReference: {fileID: 1685617047}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812c5df0efaa6c34d8041ba9c39bd46d, type: 3}
