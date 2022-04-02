@@ -3,6 +3,7 @@
 // Created by jessi on 2022-04-02
 
 using System.Collections.Generic;
+using System.Linq;
 using Player;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,8 +32,10 @@ public class UIInventory : MonoBehaviour {
     }
 
     private void changeImageAndText(GameObject uiSlot, InventorySlot slot) {
-        uiSlot.GetComponentInChildren<Image>().sprite = slot.Characteristics.sprite;
-        uiSlot.GetComponentInChildren<Text>().text = slot.NumberAvailable + "/" + slot.NumberTotal;
+        uiSlot.GetComponentsInChildren<Image>()
+            .First(go => go.gameObject.transform.parent.gameObject != gameObject)
+            .sprite = slot.Characteristics.sprite;
+        uiSlot.GetComponentInChildren<Text>().text = $"{slot.NumberAvailable}/{slot.NumberTotal}";
     }
 
     private void showNewItem(object sender, InventorySlotEventArgs inventorySlotEventArgs) {
