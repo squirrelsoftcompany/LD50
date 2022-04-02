@@ -48,7 +48,8 @@ public class GenerateEditor : MonoBehaviour
 			}
 		}
 
-		AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + System.Guid.NewGuid() + ".asset");
+		String date = ("" + System.DateTime.Now).Replace('/', '-').Replace(' ', '_').Replace(':', '-');
+		AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + date + ".asset");
 		AssetDatabase.SaveAssets();
 	}
 
