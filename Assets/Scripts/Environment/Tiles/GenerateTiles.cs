@@ -5,13 +5,6 @@ public class GenerateTiles : MonoBehaviour
 	// The prefab to instanciated
 	public GameObject tilePrefab;
 
-	// WIP the color of the tiles
-	public Color treeColor;
-	public Color plainColor;
-	public Color houseColor;
-	public Color roadColor;
-	public Color lakeColor;
-
 	// The number of tiles
 	public int verticalCount;
 	public int horizontalCount;
@@ -25,22 +18,30 @@ public class GenerateTiles : MonoBehaviour
 	// The starting tiles index
 	private int startIndex = 0;
 
-	Color getRandomColor() {
+	Environment.Tile.TileType getRandomTileType()
+	{
 		float random = Random.Range(0.0f, 1.0f);
 
-		if (random < 0.66f) {
-			return treeColor;
-		} else if (random < 0.70f) {
-			return houseColor;
-		} else if (random < 0.75f) {
-			return lakeColor;
+		if (random < 0.66f)
+		{
+			return Environment.Tile.TileType.eForest;
 		}
-		return plainColor;
+		else if (random < 0.70f)
+		{
+			return Environment.Tile.TileType.eBuilding;
+		}
+		else if (random < 0.75f)
+		{
+			return Environment.Tile.TileType.eLake;
+		}
+		return Environment.Tile.TileType.ePlain;
 	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		Environment.World.Inst.InitWorld(new Vector2Int(horizontalCount, verticalCount));
+
 		// Get the root object and translate to 0,0
 		rootObjects = GameObject.Find("/Tile Generator");
 		rootObjects.transform.Translate(new Vector3(tileSize * horizontalCount / 2.0f, 0, tileSize * horizontalCount / 2.0f));
@@ -55,22 +56,12 @@ public class GenerateTiles : MonoBehaviour
 				instance.transform.position = new Vector3(x * tileSize, 0, z * tileSize);
 				instance.name = tilePrefab.name + "_" + x + "_" + z;
 
-				// WIP Get the mesh
-				GameObject tileGameObject = GameObject.Find("/Tile Generator/" + instance.name + "/Tile");
-				if (tileGameObject != null)
-				{
-					// Set the color of the mesh
-					Material material = tileGameObject.GetComponent<MeshRenderer>().material;
-					if (z == 15 || z == 16) {
-						material.color = roadColor;
-					} else {
-						material.color = getRandomColor();
-					}
-				}
-				else
-				{
-					Debug.LogWarning("Tile is null");
-				}
+				// WIP random tile type
+				Vector2Int position = new Vector2Int(x, z);
+				Environment.World.Inst[position].m_type = (z != 15 && z != 16)? getRandomTileType() : Environment.Tile.TileType.eRoad;
+				
+				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
+				instance.GetComponent<Environment.TileGraphic>().m_position = position;
 			}
 		}
 	}
@@ -92,11 +83,12 @@ public class GenerateTiles : MonoBehaviour
 				GameObject instance = GameObject.Find("/Tile Generator/" + tilePrefab.name + "_" + startIndex + "_" + z);
 				instance.transform.position = new Vector3((horizontalCount - 1) * tileSize, 0, z);
 
-				// WIP swap color
-				GameObject tileGameObject = GameObject.Find("/Tile Generator/" + tilePrefab.name + "_" + startIndex + "_" + z + "/Tile");
-				Material material = tileGameObject.GetComponent<MeshRenderer>().material;
+				// WIP random tile type
 				if (z != 15 && z != 16) {
-					material.color = getRandomColor();
+					Environment.World.Inst[new Vector2Int(horizontalCount - 1, z)].m_type = getRandomTileType();
+					Environment.World.Inst[new Vector2Int(horizontalCount - 1, z)].Intensity = 0;
+
+					instance.GetComponent<Environment.TileGraphic>().UpdateTile();
 				}
 			}
 			// Start index is incremented by one (cycling > horizontal count)
@@ -104,9 +96,10 @@ public class GenerateTiles : MonoBehaviour
 			if (startIndex >= horizontalCount) {
 				startIndex = 0;
 			}
+			Environment.World.Inst.m_physicalBeginning = startIndex;
 		} else {
 			// Translate all tiles
 			rootObjects.transform.Translate(new Vector3(-0.01f, 0, 0));
-		} 
+		}
 	}
 }
