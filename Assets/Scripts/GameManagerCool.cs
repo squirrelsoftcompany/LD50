@@ -9,7 +9,7 @@ public class GameManagerCool : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-        waitTime = (float)bpm / 60;
+        waitTime = 60f / bpm;
         StartCoroutine(beats());
     }
 
