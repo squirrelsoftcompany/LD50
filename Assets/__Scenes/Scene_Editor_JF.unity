@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 7528226629490284919, guid: 3ebcfd928523f4aa2b54a0ea633c01ab,
     type: 3}
-  verticalCount: 20
+  verticalCount: 10
   horizontalCount: 10
   tileSize: 1
 --- !u!1 &319530489

@@ -4,8 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ChunkTile", menuName = "ChunkTile")]
 
 public class ChunkTile : ScriptableObject {
-    private List<Environment.Tile.TileType> tiles;
+    [SerializeField]
+    public List<Environment.Tile.TileType> tiles;
+    [SerializeField]
     public int chunkHorizontalSize = 10;
+    [SerializeField]
     public int chunkVerticalSize = 10;
 
     // Init the chunk 

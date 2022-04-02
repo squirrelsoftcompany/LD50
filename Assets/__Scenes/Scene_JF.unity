@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 7528226629490284919, guid: 0d48be57e01004e8587e5a86682d8f79,
     type: 3}
-  chunk: {fileID: 11400000, guid: f42bf8f17b37a48e6b5d4836a6f78f3f, type: 2}
+  chunk: {fileID: 11400000, guid: 562dbd1af013d4e88a92376edd562c8b, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,20 +40,16 @@ public class GenerateEditor : MonoBehaviour
 	public void save() {
 		ChunkTile asset = ScriptableObject.CreateInstance<ChunkTile>();
 		asset.Init();
-		AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + System.Guid.NewGuid() + ".asset");
-		AssetDatabase.SaveAssets();
-		
 		for (int x = 0; x < horizontalCount; ++x) {
 			for (int y = 0; y < verticalCount; ++y) {
 				GameObject tile = GameObject.Find("/Editor Generator/" + tilePrefab.name + "_" + x + "_" + y);
 				EditorTileBehavior script = tile.GetComponent<EditorTileBehavior>();
-
 				asset.SetTile(script.type, x, y);
 			}
 		}
 
-		EditorUtility.FocusProjectWindow();
-		Selection.activeObject = asset;
+		AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + System.Guid.NewGuid() + ".asset");
+		AssetDatabase.SaveAssets();
 	}
 
 	// Update is called once per frame
