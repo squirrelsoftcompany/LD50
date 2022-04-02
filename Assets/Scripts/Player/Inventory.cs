@@ -8,16 +8,18 @@ using UnityEngine;
 
 namespace Player {
 public class Inventory : MonoBehaviour {
-    private List<InventorySlot> _items = new();
-    public event EventHandler<InventoryEventArgs> ItemAdded;
+    private readonly List<InventorySlot> _items = new();
+    public List<InventorySlot> Items => _items;
+
+    public event EventHandler<InventorySlotEventArgs> InventoryChanged;
     [SerializeField] private GameEvent showChoiceDialog;
 
     [SerializeField] private List<ResourceCharacteristics> allResourceTypes;
 
-    // Start is called before the first frame update
-    private void Start() {
+    private void Awake() {
         foreach (var resourceType in allResourceTypes) {
-            _items.Add(new InventorySlot(resourceType, 0, 0));
+            var item = new InventorySlot(resourceType, 0, 0);
+            _items.Add(item);
         }
     }
 
@@ -27,26 +29,30 @@ public class Inventory : MonoBehaviour {
      */
     public void addItem(ResourceCharacteristics characteristics, int number,
         bool returning = false) {
-        var inventorySlot = _items.First(slot => slot.Characteristics == characteristics);
+        var indexSlot = _items.FindIndex(slot => slot.Characteristics == characteristics);
+        var inventorySlot = _items[indexSlot];
         inventorySlot.NumberAvailable += number;
-        ItemAdded?.Invoke(this, new InventoryEventArgs(characteristics));
-        if (returning) return;
+        if (returning) {
+            InventoryChanged?.Invoke(this, new InventorySlotEventArgs(inventorySlot, indexSlot));
+            return;
+        }
+
         // newly added resources
         inventorySlot.NumberTotal += number;
+        InventoryChanged?.Invoke(this, new InventorySlotEventArgs(inventorySlot, indexSlot));
         showChoiceDialog.sentBool = false;
         showChoiceDialog.Raise();
     }
 
     public void testAddItem() {
         var resource = allResourceTypes.First();
-        var instantiate = Instantiate(resource.prefab, transform);
-        var inventoryItem = instantiate.GetComponent<Resource>();
-
-        addItem(inventoryItem.Characteristics, 3);
+        addItem(resource, 3);
     }
 
-    public void callToMap(ResourceCharacteristics resourceType, Transform position) {
-        var newResource = Instantiate(resourceType.prefab, transform);
+    public void callToMap(ResourceCharacteristics characteristics, Transform position) {
+        var newResource = Instantiate(characteristics.prefab, transform);
+        var indexSlot = _items.FindIndex(slot => slot.Characteristics == characteristics);
+        InventoryChanged?.Invoke(this, new InventorySlotEventArgs(_items[indexSlot], indexSlot));
         var resource = newResource.GetComponent<Resource>();
         resource.ReturnToInventory += onReturnToInventory;
     }
@@ -64,5 +70,15 @@ public class InventoryEventArgs : EventArgs {
 
     public ResourceCharacteristics item;
     public int number;
+}
+
+public class InventorySlotEventArgs : EventArgs {
+    public InventorySlotEventArgs(InventorySlot inventorySlot, int index) {
+        this.inventorySlot = inventorySlot;
+        this.index = index;
+    }
+
+    public readonly InventorySlot inventorySlot;
+    public readonly int index;
 }
 }

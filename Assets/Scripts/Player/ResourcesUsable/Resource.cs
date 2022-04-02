@@ -4,11 +4,12 @@
 
 using System;
 using System.Collections;
+using GameEventSystem;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace Player.ResourcesUsable {
-[RequireComponent(typeof(Outline))]
+[RequireComponent(typeof(Outline), typeof(GameEventListener))]
 public abstract class Resource : MonoBehaviour {
     protected ResourceState state = ResourceState.Spawning;
     [SerializeField] private ResourceCharacteristics characteristics;
@@ -30,6 +31,7 @@ public abstract class Resource : MonoBehaviour {
         WaitBeforeNextState = characteristics.spawnWait;
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
         _material = _meshRenderer.material;
+        _meshRenderer.material = transparent;
         _outline = GetComponent<Outline>();
     }
 

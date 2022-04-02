@@ -1,6 +1,8 @@
+using System;
 using ScriptableObjects;
 
 namespace Player {
+[Serializable]
 public class InventorySlot {
     public ResourceCharacteristics Characteristics { get; set; }
     public int NumberAvailable { get; set; }

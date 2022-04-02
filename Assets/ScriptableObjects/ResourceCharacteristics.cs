@@ -13,6 +13,7 @@ public class ResourceCharacteristics : ScriptableObject {
     public int cooldown = 3;
     public float rangeOfAction = 1f;
     public float efficiency = 1f;
+    public Sprite sprite;
     public GameObject prefab;
 }
 }
