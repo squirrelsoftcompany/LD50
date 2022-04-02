@@ -20,10 +20,13 @@ public class GenerateTiles : MonoBehaviour
 	{
 		for (int x = 0; x < horizontalCount; ++x) {
 			for (int z = 0; z < verticalCount; ++z) {
-				GameObject instance = Instantiate(tilePrefab, new Vector3(x * tileSize, 0, z * tileSize), Quaternion.identity) as GameObject;
+				GameObject tileObjects = GameObject.Find("/Tile Generator");
+
+				GameObject instance = Instantiate(tilePrefab, tileObjects.transform) as GameObject;
+				instance.transform.position = new Vector3(x * tileSize, 0, z * tileSize);
 				instance.name = tilePrefab.name + "_" + x + "_" + z;
 
-				GameObject tileGameObject = GameObject.Find("/" + instance.name + "/Tile");
+				GameObject tileGameObject = GameObject.Find("/Tile Generator/" + instance.name + "/Tile");
 				if (tileGameObject != null)
 				{
 					Material material = tileGameObject.GetComponent<MeshRenderer>().material;
