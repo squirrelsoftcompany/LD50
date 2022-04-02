@@ -1,16 +1,11 @@
 using UnityEngine;
+using UnityEditor;
+using System;
 
 public class GenerateEditor : MonoBehaviour
 {
 	// The prefab to instanciated
 	public GameObject tilePrefab;
-
-	// WIP the color of the tiles
-	public Color treeColor;
-	public Color plainColor;
-	public Color houseColor;
-	public Color roadColor;
-	public Color lakeColor;
 
 	// The number of tiles
 	public int verticalCount;
@@ -38,25 +33,27 @@ public class GenerateEditor : MonoBehaviour
 				instance.transform.position = new Vector3(x * tileSize, y * tileSize, 0);
 				instance.transform.rotation = Quaternion.Euler(90, 0, 0);
 				instance.name = tilePrefab.name + "_" + x + "_" + y;
-
-				// WIP Get the mesh
-				GameObject tileGameObject = GameObject.Find("/Editor Generator/" + instance.name + "/Tile");
-				if (tileGameObject != null)
-				{
-					// Set the color of the mesh
-					Material material = tileGameObject.GetComponent<MeshRenderer>().material;
-					if (y == 15 || y == 16) {
-						material.color = roadColor;
-					} else {
-						material.color = plainColor;
-					}
-				}
-				else
-				{
-					Debug.LogWarning("Tile is null");
-				}
 			}
 		}
+	}
+
+	public void save() {
+		ChunkTile asset = ScriptableObject.CreateInstance<ChunkTile>();
+		asset.Init();
+		AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + System.Guid.NewGuid() + ".asset");
+		AssetDatabase.SaveAssets();
+		
+		for (int x = 0; x < horizontalCount; ++x) {
+			for (int y = 0; y < verticalCount; ++y) {
+				GameObject tile = GameObject.Find("/Editor Generator/" + tilePrefab.name + "_" + x + "_" + y);
+				EditorTileBehavior script = tile.GetComponent<EditorTileBehavior>();
+
+				asset.SetTile(script.type, x, y);
+			}
+		}
+
+		EditorUtility.FocusProjectWindow();
+		Selection.activeObject = asset;
 	}
 
 	// Update is called once per frame

@@ -268,14 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d583aeea8b041258063f19457e2540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 7528226629490284919, guid: 0d48be57e01004e8587e5a86682d8f79,
+  tilePrefab: {fileID: 7528226629490284919, guid: 3ebcfd928523f4aa2b54a0ea633c01ab,
     type: 3}
-  treeColor: {r: 0, g: 0, b: 0, a: 1}
-  plainColor: {r: 0, g: 0.754717, b: 0.43143722, a: 1}
-  houseColor: {r: 0, g: 0, b: 0, a: 1}
-  roadColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
-  lakeColor: {r: 0, g: 0, b: 0, a: 0}
-  verticalCount: 10
+  verticalCount: 20
   horizontalCount: 10
   tileSize: 1
 --- !u!1 &319530489
@@ -670,7 +665,6 @@ GameObject:
   - component: {fileID: 1793280453}
   - component: {fileID: 1793280452}
   - component: {fileID: 1793280451}
-  - component: {fileID: 1793280454}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -743,9 +737,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1793280454}
-        m_TargetAssemblyTypeName: SaveButton, Assembly-CSharp
-        m_MethodName: Save
+      - m_Target: {fileID: 51237588}
+        m_TargetAssemblyTypeName: GenerateEditor, Assembly-CSharp
+        m_MethodName: save
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -793,15 +787,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793280449}
   m_CullTransparentMesh: 1
---- !u!114 &1793280454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793280449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b99b4ad10980042a6be4da372555ca43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
