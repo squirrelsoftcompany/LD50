@@ -21,6 +21,10 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    /**
+     * Set returning to true if it comes back to the inventory after being called to duty.
+     * Else it comes from the reward dialog (so put returning to false)
+     */
     public void addItem(ResourceCharacteristics characteristics, int number,
         bool returning = false) {
         var inventorySlot = _items.First(slot => slot.Characteristics == characteristics);
