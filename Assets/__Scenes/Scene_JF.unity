@@ -401,11 +401,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 7528226629490284919, guid: 0d48be57e01004e8587e5a86682d8f79,
     type: 3}
-  treeColor: {r: 0, g: 0.2830189, b: 0.06191288, a: 0}
-  plainColor: {r: 0.504717, g: 1, b: 0.6519815, a: 0}
-  houseColor: {r: 0.6037736, g: 0.12815951, b: 0.18960702, a: 0}
+  treeColor: {r: 0, g: 0.2830189, b: 0.06191288, a: 1}
+  plainColor: {r: 0.504717, g: 1, b: 0.6519815, a: 1}
+  houseColor: {r: 0.6037736, g: 0.12815951, b: 0.18960702, a: 1}
   roadColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  lakeColor: {r: 0, g: 0.54403925, b: 1, a: 0}
+  lakeColor: {r: 0, g: 0.54403925, b: 1, a: 1}
   verticalCount: 30
   horizontalCount: 32
   tileSize: 1
