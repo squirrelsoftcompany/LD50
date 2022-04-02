@@ -50,9 +50,11 @@ public class Inventory : MonoBehaviour {
     }
 
     public void callToMap(ResourceCharacteristics characteristics, Transform position) {
-        var newResource = Instantiate(characteristics.prefab, transform);
+        var newResource = Instantiate(characteristics.prefab, position);
         var indexSlot = _items.FindIndex(slot => slot.Characteristics == characteristics);
-        InventoryChanged?.Invoke(this, new InventorySlotEventArgs(_items[indexSlot], indexSlot));
+        var item = _items[indexSlot];
+        item.NumberAvailable--;
+        InventoryChanged?.Invoke(this, new InventorySlotEventArgs(item, indexSlot));
         var resource = newResource.GetComponent<Resource>();
         resource.ReturnToInventory += onReturnToInventory;
     }

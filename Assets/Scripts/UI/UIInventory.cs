@@ -11,9 +11,11 @@ using UnityEngine.UI;
 namespace UI {
 public class UIInventory : MonoBehaviour {
     private Inventory _inventory;
-    [SerializeField] private List<InventorySlot> slots;
     private List<GameObject> _uiSlots;
     [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private int startX = -200;
+    [SerializeField] private int intervalX = 100;
+    [SerializeField] private int y = 50;
 
     private void Awake() {
         _inventory = FindObjectOfType<Inventory>();
@@ -25,17 +27,23 @@ public class UIInventory : MonoBehaviour {
         for (var i = 0; i < _inventory.Items.Count; i++) {
             var inventorySlot = _inventory.Items[i];
             var ui = Instantiate(inventoryUI, transform);
-            ui.GetComponent<RectTransform>().anchoredPosition = new Vector2(-200 + i * 100, 50);
+            ui.GetComponent<RectTransform>().anchoredPosition =
+                new Vector2(startX + i * intervalX, y);
             changeImageAndText(ui, inventorySlot);
             _uiSlots.Add(ui);
         }
     }
 
     private void changeImageAndText(GameObject uiSlot, InventorySlot slot) {
-        uiSlot.GetComponentsInChildren<Image>()
-            .First(go => go.gameObject.transform.parent.gameObject != gameObject)
-            .sprite = slot.Characteristics.sprite;
+        var itemDrag = uiSlot.GetComponentInChildren<ItemDrag>();
+        itemDrag.gameObject.GetComponent<Image>().sprite = slot.Characteristics.sprite;
+        itemDrag.Characteristics = slot.Characteristics;
+        itemDrag.onSpawn += onSpawn;
         uiSlot.GetComponentInChildren<Text>().text = $"{slot.NumberAvailable}/{slot.NumberTotal}";
+    }
+
+    private void onSpawn(object sender, ItemDrag.SpawnEventArg e) {
+        _inventory.callToMap(e.characteristics, e.transform);
     }
 
     private void showNewItem(object sender, InventorySlotEventArgs inventorySlotEventArgs) {
