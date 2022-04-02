@@ -18,4 +18,4 @@ MonoBehaviour:
   cooldown: 3
   rangeOfAction: 1
   efficiency: 1
-  prefab: {fileID: 1527492426364270984, guid: 85cd8e90eb7e58744907cf8556bc6a2d, type: 3}
+  prefab: {fileID: 9051467832249679010, guid: b73e0f9640079eb418c873d9a1afa516, type: 3}
