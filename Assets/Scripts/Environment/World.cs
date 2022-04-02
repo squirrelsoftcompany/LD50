@@ -79,9 +79,12 @@ namespace Environment
     public class World : MonoBehaviour
     {
         #region Attributes
-        public Vector2Int m_maxWorld = new Vector2Int(50, 30);
-        public int m_physicalBeginning = 0;
+        [Header("Logs")]
         public bool m_verbose = false;
+        
+        [Header("Settings")]
+        private Vector2Int m_maxWorld = new Vector2Int(50, 30);
+        public int m_physicalBeginning = 0;
         private Tile[][] m_world;
         private static Tile nullTile;
         
@@ -117,6 +120,14 @@ namespace Environment
                 Debug.LogError("Class 'World' is a singleton !");
             }
             instance = this;
+        }
+
+        public void InitWorld(Vector2Int p_maxWorld)
+        {
+            m_maxWorld = p_maxWorld;
+            m_world = null;
+
+            // init world
             m_world = new Tile[m_maxWorld.x][];
             for (int x = 0; x < m_maxWorld.x; x++)
             {
@@ -127,26 +138,24 @@ namespace Environment
                 }
             }
 
-            m_world[5][5].Intensity = 3;
-
-            Display();
+            m_world[5][p_maxWorld.y / 2].Intensity = 3;
         }
 
-        public bool trigger = false;
         // Update is called once per frame
         void Update()
         {
-            if (trigger)
-            {
-                trigger = false;
 
-                Fire();
-                Display();
-            }
         }
         #endregion
 
         #region Fire !!!
+        [ContextMenu("DebugFire")]
+        public void DebugFire()
+        {
+            Fire();
+            Display();
+        }
+
         public void Fire()
         {
             // Update
