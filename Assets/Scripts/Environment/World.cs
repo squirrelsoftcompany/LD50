@@ -8,8 +8,17 @@ namespace Environment
     {
         #region Attributes
 
-        public int m_intensity;
-        public int m_nextIntensity;
+        private int m_intensity;
+        private int m_nextIntensity;
+
+        public int Intensity
+        {
+            get => m_intensity;
+            set { m_intensity = value; m_nextIntensity = value; }
+        }
+
+        public int NextIntensity => m_nextIntensity;
+
 
         public enum TileType
         {
@@ -105,8 +114,7 @@ namespace Environment
                 }
             }
 
-            m_world[5][5].m_intensity = 3;
-            m_world[5][5].m_nextIntensity = 3;
+            m_world[5][5].Intensity = 3;
 
             Display();
         }
@@ -143,15 +151,14 @@ namespace Environment
                 for (int y = 0; y < m_maxWorld.y; y++)
                 {
                     // we can't create humidity with fire only
-                    if (m_world[x][y].m_nextIntensity < 0 && m_world[x][y].m_intensity >= 0)
+                    if (m_world[x][y].NextIntensity < 0 && m_world[x][y].Intensity >= 0)
                     {
-                        m_world[x][y].m_intensity = 0;
-                        m_world[x][y].m_nextIntensity = 0;
+                        m_world[x][y].Intensity = 0;
                     }
                     // store nextIntensity in intensity
                     else
                     {
-                        m_world[x][y].m_intensity = Mathf.Clamp(m_world[x][y].m_nextIntensity, -4, 4);
+                        m_world[x][y].Intensity = Mathf.Clamp(m_world[x][y].NextIntensity, -4, 4);
                     }
                 }
             }
@@ -199,11 +206,11 @@ namespace Environment
                 string line = "";
                 for (int x = 0; x < m_maxWorld.x; x++)
                 {
-                    if (m_world[x][y].m_intensity > 0)
+                    if (m_world[x][y].Intensity > 0)
                     {
-                        line += "_" + m_world[x][y].m_intensity.ToString();
+                        line += "_" + m_world[x][y].Intensity.ToString();
                     }
-                    else if (m_world[x][y].m_intensity < 0)
+                    else if (m_world[x][y].Intensity < 0)
                     {
                         line += "_~";
                     }
