@@ -84,6 +84,10 @@ namespace Environment
         public bool m_verbose = false;
         private Tile[][] m_world;
         private static Tile nullTile;
+        
+        [Header("Events")]
+        public GameEventSystem.GameEvent m_intensificationDone;
+        
         // Singleton
         private static World instance = null;
         public static World Inst => instance;
@@ -171,6 +175,9 @@ namespace Environment
                     }
                 }
             }
+
+            // Notify
+            m_intensificationDone?.Raise();
         }
 
         private void FireOneTile(Vector2Int p_index)
