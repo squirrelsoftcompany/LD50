@@ -15,11 +15,20 @@ public class UIEvents : MonoBehaviour
     //Reward buttons TODO add buttons for every slot
     //public Button mSlot[];
 
+    //Quit buttons
+    public Button mQuitYes;
+    public Button mQuitNo;
+
+    //GAmeOver button
+    public Button mGameoverOK;
+
     [Header("Annotation")]
     public Text mAnnotationText;
 
-    [Header("Animation")]
+    [Header("Animations")]
     public Animator mAnnotationDisplay;
+    public Animator mQuitDisplay;
+    public Animator mGameOverDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +45,39 @@ public class UIEvents : MonoBehaviour
     {
         //GameManager.Inst.StartGame();
     }
-    public void onQuit()
+    public void onMenuQuit()
     {
-        //GameManager.Inst.BackToNextMenu();
+        mQuitDisplay.SetTrigger("Pop");
+    }
+
+    public void onGlobalQuit()
+    {
+        mQuitDisplay.SetTrigger("Pop");
+    }
+
+    public void onQuitYes()
+    {
+        // TODO: If we are on main menu, quit the game. Otherwise just back to the menu
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif // UNITY_EDITOR
+    }
+
+    public void onGameOver()
+    {
+        mGameOverDisplay.SetTrigger("Pop");
+    }
+
+    public void onGameOverOK()
+    {
+        mGameOverDisplay.SetTrigger("Depop");
+        //Change game state to menu
+    }
+
+    public void onQuitNo()
+    {
+        mQuitDisplay.SetTrigger("Depop");
     }
 
     public void onFulldisplay()
