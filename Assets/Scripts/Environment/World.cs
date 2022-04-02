@@ -84,6 +84,9 @@ namespace Environment
         public bool m_verbose = false;
         private Tile[][] m_world;
         private static Tile nullTile;
+        // Singleton
+        private static World instance = null;
+        public static World Inst => instance;
 
         public ref Tile this[Vector2Int p_index]
         {
@@ -104,6 +107,12 @@ namespace Environment
         // Start is called before the first frame update
         void Start()
         {
+            // init singleton
+            if (Inst)
+            {
+                Debug.LogError("Class 'World' is a singleton !");
+            }
+            instance = this;
             m_world = new Tile[m_maxWorld.x][];
             for (int x = 0; x < m_maxWorld.x; x++)
             {
