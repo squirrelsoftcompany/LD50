@@ -207,7 +207,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 64.201, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -348,7 +348,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
@@ -370,6 +370,52 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &570363885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 570363887}
+  - component: {fileID: 570363886}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &570363886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570363885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d91116e046e184c8872689f8cc969a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpm: 120
+  tickTack: {fileID: 11400000, guid: 606ef6c18dd1d4d40b12d7907b29c4e5, type: 2}
+--- !u!4 &570363887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570363885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &577244781
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,8 +426,9 @@ GameObject:
   m_Component:
   - component: {fileID: 577244782}
   - component: {fileID: 577244783}
+  - component: {fileID: 577244784}
   m_Layer: 0
-  m_Name: Bidule
+  m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,7 +447,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &577244783
 MonoBehaviour:
@@ -414,10 +461,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cf454e272e6094199128ee69024c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_verbose: 0
   m_maxWorld: {x: 20, y: 10}
   m_physicalBeginning: 0
-  m_verbose: 1
-  trigger: 0
+  m_intensificationDone: {fileID: 11400000, guid: b43b4ca9ae5702043b6ec810c471ee33,
+    type: 2}
+--- !u!114 &577244784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577244781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2ef1ffd03a864cbca588995683751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: TickTack -> Fire
+    gameEvent: {fileID: 11400000, guid: 606ef6c18dd1d4d40b12d7907b29c4e5, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 577244783}
+          m_TargetAssemblyTypeName: Environment.World, Assembly-CSharp
+          m_MethodName: DebugFire
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &631030949
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +548,7 @@ MonoBehaviour:
   roadColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   lakeColor: {r: 0, g: 0, b: 0, a: 0}
   verticalCount: 30
-  horizontalCount: 32
+  horizontalCount: 50
   tileSize: 1
 --- !u!4 &631030951
 Transform:
@@ -470,7 +563,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
@@ -519,5 +612,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
