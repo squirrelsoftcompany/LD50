@@ -4,9 +4,11 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Environment;
 using GameEventSystem;
+using JetBrains.Annotations;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -32,6 +34,10 @@ public abstract class Resource : MonoBehaviour {
     public int WaitBeforeNextState { get; private set; }
 
     public ResourceCharacteristics Characteristics => characteristics;
+
+    protected HashSet<Vector2Int> neighbours =>
+        World.Inst.neighbours(Tile.m_position, Characteristics.rangeOfAction);
+
 
     public TileGraphic Tile {
         get => _tileGraphic;
@@ -79,9 +85,10 @@ public abstract class Resource : MonoBehaviour {
     }
 
     private void Start() {
-        StartCoroutine(fadeIn());
+        StartCoroutine(spawnAnimation());
     }
 
+    [UsedImplicitly]
     public void tick() {
         // todo call this
         Debug.Log("tick!");
@@ -93,13 +100,11 @@ public abstract class Resource : MonoBehaviour {
         if (WaitBeforeNextState > 0) return;
         switch (State) {
             case ResourceState.Spawning:
-                Debug.Log("Now active");
                 state = ResourceState.Active;
                 WaitBeforeNextState = Characteristics.activeDuration;
                 StartCoroutine(showActive());
                 break;
             case ResourceState.Active:
-                Debug.Log("Now in cooldown");
                 if (characteristics.consumable) {
                     state = ResourceState.Finished;
                     WaitBeforeNextState = 0;
@@ -111,7 +116,6 @@ public abstract class Resource : MonoBehaviour {
                 showInCooldown();
                 break;
             case ResourceState.Cooldown:
-                Debug.Log("Now finished");
                 state = ResourceState.Finished;
                 if (!characteristics.consumable) {
                     ReturnToInventory?.Invoke(this, new InventoryEventArgs(Characteristics));
@@ -119,7 +123,6 @@ public abstract class Resource : MonoBehaviour {
 
                 break;
             case ResourceState.Finished:
-                Debug.Log("Still finished");
                 Destroy(gameObject);
                 // just wait to be destroyed, what a journey!
                 break;
@@ -128,7 +131,7 @@ public abstract class Resource : MonoBehaviour {
         }
     }
 
-    private void showInCooldown() {
+    protected void showInCooldown() {
         _meshRenderer.material = transparent;
         _outline.enabled = true;
         _outline.OutlineColor = cooldownColor;
@@ -143,7 +146,7 @@ public abstract class Resource : MonoBehaviour {
     }
 
 
-    private IEnumerator fadeIn() {
+    protected IEnumerator spawnAnimation() {
         _outline.OutlineWidth = 0f;
         var stepIncrease = outlineMaxWidth / (nbFramesPerSecond * characteristics.spawnWait);
         while (_outline.OutlineWidth < outlineMaxWidth) {
