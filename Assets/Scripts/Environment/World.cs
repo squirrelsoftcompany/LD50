@@ -159,13 +159,7 @@ namespace Environment
         #endregion
 
         #region Fire !!!
-        [ContextMenu("DebugFire")]
-        public void DebugFire()
-        {
-            Fire();
-            Display();
-        }
-
+        [ContextMenu("Fire !!!")]
         public void Fire()
         {
             // Update
@@ -210,6 +204,8 @@ namespace Environment
 
             // Notify
             m_intensificationDone?.Raise();
+
+            Display();
         }
 
         private void FireOneTile(Vector2Int p_index)
