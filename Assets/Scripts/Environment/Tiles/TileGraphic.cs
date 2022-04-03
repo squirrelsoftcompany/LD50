@@ -8,7 +8,7 @@ namespace Environment
     {
         public Vector2Int m_position;
         public GameObject m_firePivot;
-
+        
         [Header("Prefabs")]
         // The prefabs to instanciated
         public GameObject m_forestPrefab;
@@ -19,16 +19,15 @@ namespace Environment
 
 	    private GameObject m_graphicInstance = null;
 
-        public Tile tileData => World.Inst[m_position];
+        public ref Tile tileData => ref World.Inst[m_position];
 
         // Start is called before the first frame update
         void Start()
         {
             UpdateTile();
-            UpdateFire();
         }
 
-        public void UpdateFire()
+        public virtual void UpdateFire()
         {
             Tile data = tileData;
             if (data.Intensity <= 0)
@@ -37,7 +36,7 @@ namespace Environment
                 m_firePivot.transform.localScale = Vector3.one * data.Intensity / 4f;
         }
 
-        public void UpdateTile()
+        public virtual void UpdateTile()
         {
             Tile data = World.Inst[m_position];
 
@@ -61,6 +60,8 @@ namespace Environment
                     m_graphicInstance = Instantiate(m_lakePrefab, transform) as GameObject;
                     break;
             }
+
+            UpdateFire();
         }
     }
 }

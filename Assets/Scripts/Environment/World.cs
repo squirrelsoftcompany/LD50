@@ -336,6 +336,11 @@ namespace Environment
 
             return res;
         }
+
+        public bool IsOnFireFrontline(Vector2Int p_index)
+        {
+            return ToArrayIndex(p_index).x == m_arrayFireFrontLine;
+        }
     }
 
 }
