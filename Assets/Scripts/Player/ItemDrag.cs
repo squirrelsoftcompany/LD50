@@ -27,16 +27,16 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler {
         // touched something
         var tileGraphic = hit.transform.gameObject.GetComponent<TileGraphic>();
         if (tileGraphic != null) {
-            onSpawn?.Invoke(this, new SpawnEventArg(tileGraphic.transform, Characteristics));
+            onSpawn?.Invoke(this, new SpawnEventArg(tileGraphic, Characteristics));
         }
     }
 
     public class SpawnEventArg : EventArgs {
         public ResourceCharacteristics characteristics;
-        public Transform transform;
+        public TileGraphic tile;
 
-        public SpawnEventArg(Transform transform, ResourceCharacteristics characteristics) {
-            this.transform = transform;
+        public SpawnEventArg(TileGraphic tile, ResourceCharacteristics characteristics) {
+            this.tile = tile;
             this.characteristics = characteristics;
         }
     }

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Environment;
 using GameEventSystem;
 using Player.ResourcesUsable;
 using ScriptableObjects;
@@ -50,14 +50,15 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    public void callToMap(ResourceCharacteristics characteristics, Transform position) {
+    public void callToMap(ResourceCharacteristics characteristics, TileGraphic tile) {
         var indexSlot = _items.FindIndex(slot => slot.Characteristics == characteristics);
         var item = _items[indexSlot];
         if (item.NumberAvailable <= 0) return;
         item.NumberAvailable--;
-        var newResource = Instantiate(characteristics.prefab, position);
+        var newResource = Instantiate(characteristics.prefab, tile.transform);
         InventoryChanged?.Invoke(this, new InventorySlotEventArgs(item, indexSlot));
         var resource = newResource.GetComponent<Resource>();
+        resource.Tile = tile;
         resource.ReturnToInventory += onReturnToInventory;
     }
 

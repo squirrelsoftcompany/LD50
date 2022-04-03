@@ -46,7 +46,7 @@ public class UIInventory : MonoBehaviour {
     }
 
     private void onSpawn(object sender, ItemDrag.SpawnEventArg e) {
-        _inventory.callToMap(e.characteristics, e.transform);
+        _inventory.callToMap(e.characteristics, e.tile);
     }
 
     private void showNewItem(object sender, InventorySlotEventArgs inventorySlotEventArgs) {

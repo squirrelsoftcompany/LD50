@@ -5,6 +5,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Environment;
 using GameEventSystem;
 using ScriptableObjects;
 using UnityEngine;
@@ -21,8 +22,8 @@ public abstract class Resource : MonoBehaviour {
     [SerializeField] private Color spawningColor = Color.yellow;
     [SerializeField] private Color cooldownColor = Color.cyan;
 
-    [FormerlySerializedAs("nbFrames")] [SerializeField]
-    private int nbFramesPerSecond = 24;
+    [SerializeField] private int nbFramesPerSecond = 24;
+    private TileGraphic _tileGraphic;
 
     public ResourceState State => state;
 
@@ -31,6 +32,11 @@ public abstract class Resource : MonoBehaviour {
     public int WaitBeforeNextState { get; private set; }
 
     public ResourceCharacteristics Characteristics => characteristics;
+
+    public TileGraphic Tile {
+        get => _tileGraphic;
+        set => _tileGraphic = value;
+    }
 
     public event EventHandler<InventoryEventArgs> ReturnToInventory;
     private MeshRenderer _meshRenderer;
@@ -99,6 +105,7 @@ public abstract class Resource : MonoBehaviour {
                     WaitBeforeNextState = 0;
                     break;
                 }
+
                 state = ResourceState.Cooldown;
                 WaitBeforeNextState = Characteristics.cooldown;
                 showInCooldown();

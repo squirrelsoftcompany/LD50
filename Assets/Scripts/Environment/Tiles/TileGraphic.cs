@@ -19,6 +19,8 @@ namespace Environment
 
 	    private GameObject m_graphicInstance = null;
 
+        public Tile tileData => World.Inst[m_position];
+
         // Start is called before the first frame update
         void Start()
         {
@@ -28,7 +30,7 @@ namespace Environment
 
         public void UpdateFire()
         {
-            Tile data = World.Inst[m_position];
+            Tile data = tileData;
             if (data.Intensity <= 0)
                 m_firePivot.transform.localScale = Vector3.zero;
             else
