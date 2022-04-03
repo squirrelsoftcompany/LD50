@@ -59,6 +59,7 @@ public class GenerateTiles : MonoBehaviour
 				// WIP random tile type
 				Vector2Int position = new Vector2Int(x, z);
 				Environment.World.Inst[position].m_type = (z != 15 && z != 16)? getRandomTileType() : Environment.Tile.TileType.eRoad;
+				if (x == 0) Environment.World.Inst[position].m_type = Environment.Tile.TileType.eBuilding;
 				
 				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
 				instance.GetComponent<Environment.TileGraphic>().m_position = position;
@@ -84,12 +85,12 @@ public class GenerateTiles : MonoBehaviour
 				instance.transform.position = new Vector3((horizontalCount - 1) * tileSize, 0, z);
 
 				// WIP random tile type
-				if (z != 15 && z != 16) {
-					Environment.World.Inst[new Vector2Int(horizontalCount - 1, z)].m_type = getRandomTileType();
-					Environment.World.Inst[new Vector2Int(horizontalCount - 1, z)].Intensity = 0;
-
-					instance.GetComponent<Environment.TileGraphic>().UpdateTile();
+				Vector2Int index = new Vector2Int(startIndex, z);
+				if (z != 15 && z != 16 && startIndex != 0) {
+					Environment.World.Inst[index].m_type = getRandomTileType();
 				}
+				Environment.World.Inst[index].Intensity = 0;
+				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
 			}
 			// Start index is incremented by one (cycling > horizontal count)
 			startIndex++;
