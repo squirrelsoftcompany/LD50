@@ -87,8 +87,9 @@ namespace Environment
         
         [Header("Settings")]
         public int m_physicalBeginning = 0;
-        public int m_continuousFireFrontLine = 0;
-        public int m_absoluteFireFrontLine = 0;
+        public int m_fireFrontLine = 0;
+        private int m_continuousFireFrontLine = 0;
+        private int m_arrayFireFrontLine = 0;
         public static Tile nullTile;
         public float m_worldIsOnFire = 0; // Percent
         public static int maxFireIntensity = 4;
@@ -201,7 +202,9 @@ namespace Environment
             }
             m_worldIsOnFire = (float)fireIntensitySum / m_fireIntensityMax;
             // make m_fireFrontLine absolute
-            m_absoluteFireFrontLine = (m_continuousFireFrontLine > m_maxWorld.x) ? m_continuousFireFrontLine - m_physicalBeginning : m_continuousFireFrontLine;
+            m_fireFrontLine = m_continuousFireFrontLine - m_physicalBeginning;
+            //m_fireFrontLine = (m_continuousFireFrontLine >= m_maxWorld.x) ? m_continuousFireFrontLine - m_physicalBeginning : m_continuousFireFrontLine;
+            m_arrayFireFrontLine = (m_continuousFireFrontLine >= m_maxWorld.x) ? m_continuousFireFrontLine - m_maxWorld.x : m_continuousFireFrontLine;
 
             // Notify
             m_intensificationDone?.Raise();
@@ -249,7 +252,10 @@ namespace Environment
         {
             if (! m_verbose) return;
 
-            string display = string.Format("Tile {0}x{1}  WorldIsOnFire {2}  FrontLine {3}\n", m_maxWorld.x, m_maxWorld.y, m_worldIsOnFire, m_continuousFireFrontLine);
+            int frontLineIndexToUse = (m_logContinuous ? m_continuousFireFrontLine : m_arrayFireFrontLine) + 1;
+
+            string display = string.Format("Tile {0}x{1}  WorldIsOnFire {2}  FrontLine {3}({4})  StartIndex {5}\n",
+                m_maxWorld.x, m_maxWorld.y, m_worldIsOnFire, m_logContinuous? m_continuousFireFrontLine : m_arrayFireFrontLine, m_fireFrontLine, m_physicalBeginning);
             for (int y = 0; y < m_maxWorld.y; y++)
             {
                 string line = "";
@@ -257,10 +263,14 @@ namespace Environment
                 {
                     Vector2Int index = new Vector2Int(m_logContinuous ? x + m_physicalBeginning : x, y);
                     ref Tile tile = ref this[index];
-                    if (m_logContinuous)
-                        line += (x == m_continuousFireFrontLine + 1) ? '|' : '_';
+
+                    // separator
+                    if (index.x == m_physicalBeginning)
+                        line += (index.x == frontLineIndexToUse) ? '|' : '[';
                     else
-                        line += (x == m_absoluteFireFrontLine + 1) ? '|' : '_';
+                        line += (index.x == frontLineIndexToUse) ? ']' : '_';
+
+                    // value
                     if (tile.Intensity > 0)
                     {
                         line += tile.Intensity.ToString();
