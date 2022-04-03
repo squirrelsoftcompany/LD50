@@ -11,7 +11,6 @@ using GameEventSystem;
 using JetBrains.Annotations;
 using ScriptableObjects;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player.ResourcesUsable {
 [RequireComponent(typeof(Outline), typeof(GameEventListener))]
@@ -50,25 +49,25 @@ public abstract class Resource : MonoBehaviour {
     private Outline _outline;
     protected abstract void applyEffect();
 
-    private void Awake() {
+    protected virtual void Awake() {
         #region debug
 
 #if UNITY_EDITOR
         var gameEventListener = GetComponent<GameEventListener>();
         if (gameEventListener.eventAndResponses.Count == 0) {
-            throw new ArgumentException(
+            Debug.LogError(
                 "Don't forget to set the ticking event response and call Resource.tick()");
         }
 
         if (gameEventListener.eventAndResponses.Find(response =>
                 response.gameEvent.name == "TickTack") == null) {
-            throw new ArgumentException(
+            Debug.LogError(
                 "Don't forget to set the ticking event response and call Resource.tick()");
         }
 
         if (gameEventListener.eventAndResponses.First(response =>
                 response.gameEvent.name == "TickTack").response == null) {
-            throw new ArgumentException(
+            Debug.LogError(
                 "Don't forget to set the ticking event response and call Resource.tick()");
         }
 #endif
@@ -78,7 +77,6 @@ public abstract class Resource : MonoBehaviour {
         WaitBeforeNextState = characteristics.spawnWait;
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
         _material = _meshRenderer.material;
-        _meshRenderer.material = transparent;
         _outline = GetComponent<Outline>();
         _outline.OutlineColor = spawningColor;
         _oneFrameS = 1f / nbFramesPerSecond;
@@ -113,7 +111,7 @@ public abstract class Resource : MonoBehaviour {
 
                 state = ResourceState.Cooldown;
                 WaitBeforeNextState = Characteristics.cooldown;
-                showInCooldown();
+                StartCoroutine(showInCooldown());
                 break;
             case ResourceState.Cooldown:
                 state = ResourceState.Finished;
@@ -131,14 +129,20 @@ public abstract class Resource : MonoBehaviour {
         }
     }
 
-    protected void showInCooldown() {
+    protected virtual IEnumerator showInCooldown() {
         _meshRenderer.material = transparent;
         _outline.enabled = true;
         _outline.OutlineColor = cooldownColor;
-        StartCoroutine(fadeOut());
+        _outline.OutlineWidth = outlineMaxWidth;
+        var currentWidth = _outline.OutlineWidth;
+        var stepDecrease = currentWidth / (nbFramesPerSecond * characteristics.cooldown);
+        while (_outline.OutlineWidth > 0) {
+            _outline.OutlineWidth -= stepDecrease;
+            yield return new WaitForSeconds(_oneFrameS);
+        }
     }
 
-    protected IEnumerator showActive() {
+    protected virtual IEnumerator showActive() {
         _meshRenderer.material = _material;
         // _meshRenderer.enabled = true;
         _outline.enabled = false;
@@ -146,22 +150,12 @@ public abstract class Resource : MonoBehaviour {
     }
 
 
-    protected IEnumerator spawnAnimation() {
+    protected virtual IEnumerator spawnAnimation() {
+        _meshRenderer.material = transparent;
         _outline.OutlineWidth = 0f;
         var stepIncrease = outlineMaxWidth / (nbFramesPerSecond * characteristics.spawnWait);
         while (_outline.OutlineWidth < outlineMaxWidth) {
             _outline.OutlineWidth += stepIncrease;
-            yield return new WaitForSeconds(_oneFrameS);
-        }
-    }
-
-    protected IEnumerator fadeOut() {
-        _outline.OutlineWidth = outlineMaxWidth;
-        var currentWidth = _outline.OutlineWidth;
-
-        var stepDecrease = currentWidth / (nbFramesPerSecond * characteristics.cooldown);
-        while (_outline.OutlineWidth > 0) {
-            _outline.OutlineWidth -= stepDecrease;
             yield return new WaitForSeconds(_oneFrameS);
         }
     }
