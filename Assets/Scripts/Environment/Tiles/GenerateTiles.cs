@@ -88,7 +88,7 @@ public class GenerateTiles : MonoBehaviour {
 				// Get the instance and destroy instance
 				int index = (startIndex * verticalCount) + (z % verticalCount);
 				GameObject instance = graphicTileMap[index];
-				Vector2Int newPosition = new Vector2Int(horizontalCount - 1, z);
+				Vector2Int newPosition = new Vector2Int(startIndex, z);
 
 				// WIP random tile type
 				if (z != 15 && z != 16) {
@@ -99,6 +99,7 @@ public class GenerateTiles : MonoBehaviour {
 				instance.transform.position = new Vector3((horizontalCount - 1) * tileSize, 0, z * tileSize);
 				instance.GetComponent<Environment.TileGraphic>().m_position = newPosition;
 				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
+				instance.GetComponent<Environment.TileGraphic>().UpdateFire(); // we need to force an UpdateFire now otherwise fire will seem to cycle
 			}
 			// Start index is incremented by one (cycling > horizontal count)
 			startIndex++;
