@@ -13,7 +13,9 @@ public class FireFighter : Resource {
             var neighbor = World.Inst[vector2Int];
             if (neighbor.m_type == Environment.Tile.TileType.eNone) continue;
             neighbor.Intensity =
-                (int)Math.Clamp(neighbor.Intensity - Characteristics.efficiency, -4f, 4f);
+                (int)Math.Clamp(neighbor.Intensity - Characteristics.efficiency,
+                    -4f, 4f);
+            World.Inst[vector2Int].Intensity = neighbor.Intensity;
         }
 
         Debug.Log("applying effect " + Characteristics);
