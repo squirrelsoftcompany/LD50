@@ -45,8 +45,9 @@ public class Inventory : MonoBehaviour {
     }
 
     public void testAddItem() {
-        var resource = allResourceTypes.First();
-        addItem(resource, 3);
+        foreach (var type in allResourceTypes) {
+            addItem(type, 3);
+        }
     }
 
     public void callToMap(ResourceCharacteristics characteristics, Transform position) {
