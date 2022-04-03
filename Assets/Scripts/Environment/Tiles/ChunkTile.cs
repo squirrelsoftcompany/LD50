@@ -10,6 +10,8 @@ public class ChunkTile : ScriptableObject {
     public int chunkHorizontalSize = 10;
     [SerializeField]
     public int chunkVerticalSize = 10;
+    [SerializeField]
+	public float tileSize = 1.0f;
 
     // Init the chunk 
     public void Init(Environment.Tile.TileType defaultType = Environment.Tile.TileType.eNone) {

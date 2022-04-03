@@ -1,15 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerateTiles : MonoBehaviour
-{
-	// The prefab to instanciated
+// Generated tile map
+public class GenerateTiles : MonoBehaviour {
+	// The prefabs to instanciated
 	public GameObject tilePrefab;
 
-	// The number of tiles
+	// Vertical count
 	public int verticalCount;
+	// Horizontal count
 	public int horizontalCount;
 	// Tile size (square)
-	public int tileSize;
+	public float tileSize;
+	// Scrolling speed
+	public float scrollingSpeed = 0.01f;
 
 	// The root object of all tiles
 	private GameObject rootObjects = null;
@@ -17,6 +21,8 @@ public class GenerateTiles : MonoBehaviour
 	private float globalTranslate = 0.0f;
 	// The starting tiles index
 	private int startIndex = 0;
+	// Instance map
+	private List<GameObject> graphicTileMap;
 
 	Environment.Tile.TileType getRandomTileType()
 	{
@@ -38,9 +44,9 @@ public class GenerateTiles : MonoBehaviour
 	}
 
 	// Start is called before the first frame update
-	void Start()
-	{
+	void Start() {
 		Environment.World.Inst.InitWorld(new Vector2Int(horizontalCount, verticalCount));
+		graphicTileMap = new List<GameObject>();
 
 		// Get the root object and translate to 0,0
 		rootObjects = GameObject.Find("/Tile Generator");
@@ -59,7 +65,11 @@ public class GenerateTiles : MonoBehaviour
 				// WIP random tile type
 				Vector2Int position = new Vector2Int(x, z);
 				Environment.World.Inst[position].m_type = (z != 15 && z != 16)? getRandomTileType() : Environment.Tile.TileType.eRoad;
+<<<<<<< HEAD
 				if (x == 0) Environment.World.Inst[position].m_type = Environment.Tile.TileType.eBuilding;
+=======
+				graphicTileMap.Add(instance);
+>>>>>>> a427694 ([FCT] Update tile geneator in order to instanciate the good tile depending of the type)
 				
 				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
 				instance.GetComponent<Environment.TileGraphic>().m_position = position;
@@ -68,10 +78,9 @@ public class GenerateTiles : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
-	{
+	void Update() {
 		// Update the translation
-		globalTranslate -= 0.01f;
+		globalTranslate -= scrollingSpeed;
 		
 		// If one column of tile is outside
 		if (globalTranslate <= -tileSize) {	
@@ -80,18 +89,20 @@ public class GenerateTiles : MonoBehaviour
 
 			// For each tile in the column
 			for (int z = 0; z < verticalCount; ++z) {
-				// Get the instance of the tile
-				GameObject instance = GameObject.Find("/Tile Generator/" + tilePrefab.name + "_" + startIndex + "_" + z);
-				instance.transform.position = new Vector3((horizontalCount - 1) * tileSize, 0, z);
+				// Get the instance and destroy instance
+				int index = (startIndex * verticalCount) + (z % verticalCount);
+				GameObject instance = graphicTileMap[index];
+				Vector2Int newPosition = new Vector2Int(horizontalCount - 1, z);
 
 				// WIP random tile type
-				Vector2Int index = new Vector2Int(startIndex, z);
-				if (z != 15 && z != 16 && startIndex != 0) {
-					Environment.World.Inst[index].m_type = getRandomTileType();
+				if (z != 15 && z != 16) {
+					Environment.World.Inst[newPosition].m_type = getRandomTileType();
 				}
-				Environment.World.Inst[index].Intensity = 0;
+				Environment.World.Inst[newPosition].Intensity = 0;
+				
+				instance.transform.position = new Vector3((horizontalCount - 1) * tileSize, 0, z * tileSize);
+				instance.GetComponent<Environment.TileGraphic>().m_position = newPosition;
 				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
-				instance.GetComponent<Environment.TileGraphic>().UpdateFire();
 			}
 			// Start index is incremented by one (cycling > horizontal count)
 			startIndex++;
@@ -101,7 +112,7 @@ public class GenerateTiles : MonoBehaviour
 			Environment.World.Inst.m_physicalBeginning = startIndex;
 		} else {
 			// Translate all tiles
-			rootObjects.transform.Translate(new Vector3(-0.01f, 0, 0));
+			rootObjects.transform.Translate(new Vector3(-scrollingSpeed, 0, 0));
 		}
 	}
 }

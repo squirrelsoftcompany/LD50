@@ -1,24 +1,23 @@
+using System;
 using UnityEngine;
 using UnityEditor;
-using System;
 
-public class GenerateEditor : MonoBehaviour
-{
+// Generate the tile map for the editor
+public class GenerateEditor : MonoBehaviour {
 	// The prefab to instanciated
 	public GameObject tilePrefab;
-
-	// The number of tiles
+	// Vertical count
 	public int verticalCount;
+	// Horizontal count
 	public int horizontalCount;
 	// Tile size (square)
-	public int tileSize;
+	public float tileSize;
 
 	// The root object of all tiles
 	private GameObject rootObjects = null;
 
 	// Start is called before the first frame update
-	void Start()
-	{
+	void Start() {
 		// Get the root object and translate to 0,0
 		rootObjects = GameObject.Find("/Editor Generator");
 		rootObjects.transform.Translate(new Vector3(tileSize * horizontalCount / 2.0f, 0, tileSize * horizontalCount / 2.0f));
@@ -38,6 +37,7 @@ public class GenerateEditor : MonoBehaviour
 	}
 
 	public void save() {
+		// Create and set chunk
 		ChunkTile asset = ScriptableObject.CreateInstance<ChunkTile>();
 		asset.Init();
 		for (int x = 0; x < horizontalCount; ++x) {
@@ -48,14 +48,9 @@ public class GenerateEditor : MonoBehaviour
 			}
 		}
 
+		// Set the name using the current date
 		String date = ("" + System.DateTime.Now).Replace('/', '-').Replace(' ', '_').Replace(':', '-');
 		AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + date + ".asset");
 		AssetDatabase.SaveAssets();
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 }

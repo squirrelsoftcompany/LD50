@@ -9,25 +9,21 @@ namespace Environment
         public Vector2Int m_position;
         public GameObject m_firePivot;
 
-        [Header("Colors")]
-        // WIP the color of the tiles
-        public Color treeColor;
-        public Color plainColor;
-        public Color houseColor;
-        public Color roadColor;
-        public Color lakeColor;
+        [Header("Prefabs")]
+        // The prefabs to instanciated
+        public GameObject m_forestPrefab;
+        public GameObject m_plainPrefab;
+        public GameObject m_buildingPrefab;
+        public GameObject m_roadPrefab;
+        public GameObject m_lakePrefab;
+
+	    private GameObject m_graphicInstance = null;
 
         // Start is called before the first frame update
         void Start()
         {
             UpdateTile();
             UpdateFire();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public void UpdateFire()
@@ -42,27 +38,27 @@ namespace Environment
         public void UpdateTile()
         {
             Tile data = World.Inst[m_position];
-            Color color = Color.magenta;
+
+            Destroy(m_graphicInstance);
             switch
                 (data.m_type)
             {
                 case Tile.TileType.eForest:
-                    color = treeColor;
+                    m_graphicInstance = Instantiate(m_forestPrefab, transform) as GameObject;
                     break;
                 case Tile.TileType.eBuilding:
-                    color = houseColor;
+                    m_graphicInstance = Instantiate(m_buildingPrefab, transform) as GameObject;
                     break;
                 case Tile.TileType.eRoad:
-                    color = roadColor;
+                    m_graphicInstance = Instantiate(m_roadPrefab, transform) as GameObject;
                     break;
                 case Tile.TileType.ePlain:
-                    color = plainColor;
+                    m_graphicInstance = Instantiate(m_plainPrefab, transform) as GameObject;
                     break;
                 case Tile.TileType.eLake:
-                    color = lakeColor;
+                    m_graphicInstance = Instantiate(m_lakePrefab, transform) as GameObject;
                     break;
             }
-            gameObject.GetComponentInChildren<Renderer>().material.color = color;
         }
     }
 }
