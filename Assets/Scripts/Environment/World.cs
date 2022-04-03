@@ -70,7 +70,7 @@ namespace Environment
 
         private static float Probability4Intensity_Func(int p_intensity)
         {
-            if (p_intensity >= 0 && p_intensity <= 4)
+            if (p_intensity >= 0 && p_intensity <= World.maxFireIntensity)
                 return s_Probability4Intensity[p_intensity];
             return 0;
         }
@@ -91,7 +91,8 @@ namespace Environment
         public int m_absoluteFireFrontLine = 0;
         public static Tile nullTile;
         public float m_worldIsOnFire = 0; // Percent
-        
+        public static int maxFireIntensity = 4;
+        public static int minFireIntensity = -4;
         [Header("Events")]
         public GameEvent m_intensificationDone;
         
@@ -188,7 +189,7 @@ namespace Environment
                     // store nextIntensity in intensity
                     else
                     {
-                        tile.Intensity = Mathf.Clamp(tile.NextIntensity, -4, 4);
+                        tile.Intensity = Mathf.Clamp(tile.NextIntensity, minFireIntensity, maxFireIntensity);
                     }
 
                     if (tile.Intensity > 0)
@@ -312,9 +313,9 @@ namespace Environment
         }
         #endregion
 
-        public List<Vector2Int> neighbours(Vector2Int position, float radius) {
+        public HashSet<Vector2Int> neighbours(Vector2Int position, float radius) {
             var sqrRadius = radius * radius;
-            var res = new List<Vector2Int>();
+            var res = new HashSet<Vector2Int>();
             for (var x = (int)(position.x - radius); x < position.x + radius; x++) {
                 for (var y = (int)(position.y - radius); y < position.y + radius; y++) {
                     if (Math.Pow(position.x - x, 2) + Math.Pow(position.y - y, 2) > sqrRadius)
