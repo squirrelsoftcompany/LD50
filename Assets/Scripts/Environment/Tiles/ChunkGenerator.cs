@@ -32,48 +32,44 @@ public class ChunkGenerator : MonoBehaviour
 	private int verticalCount;
 	// Horizontal count
 	private int horizontalCount;
+    // Road Z index
+    private int roadZIndex_1;
+    private int roadZIndex_2;
 
     // Set chunk
-    void setChunk(int xStart, int xEnd, int zStart, int zEnd) {
+    void setChunk(int xStart, int zStart, bool firstInitialization = false) {
+        int xEnd = xStart + chunkSize;
+        int zEnd = zStart + chunkSize;
+
         // Get random chunck
         int chunkIndex = (int)Random.Range(0.0f, chunkList.Count);
         ChunkTile chunk = chunkList[chunkIndex];
-        float random = Random.Range(0.0f, 1.0f);
-
-
-        /*ChunkTile chunkInstance = chunk;
-
-		if (random < 0.33f) {
-			chunkInstance = chunk.flipHorizontal();
-		} else if (random < 0.66f) 	{
-			chunkInstance = chunk.flipVertical();
-		} else {
-			chunkInstance = chunk.rotate0();
-		}*/
 
         for (int x = xStart; x < xEnd; ++x) {
             for (int z = zStart; z < zEnd; ++z) {
                 // Get data
                 int index = (x * verticalCount) + (z % verticalCount);
-                
                 GameObject instance = graphicTileMap[index];
-                Vector2Int position = new Vector2Int(startIndex + x, z);
+                Environment.TileGraphic script = instance.GetComponent<Environment.TileGraphic>();
 
                 // World update
-                Environment.World.Inst[position].m_type = chunk.GetTile(x % chunkSize, z % chunkSize);
-                Environment.World.Inst[position].Intensity = 0;
+                Environment.World.Inst[script.m_position].m_type = (z == roadZIndex_1 || z == roadZIndex_2) ? Environment.Tile.TileType.eRoad : chunk.GetTile(x % chunkSize, z % chunkSize);
+                if (! firstInitialization) Environment.World.Inst[script.m_position].Intensity = 0;
 
                 // Instance update
-                instance.transform.Translate(new Vector3(horizontalCount, 0, 0));
-                instance.GetComponent<Environment.TileGraphic>().UpdateTile();
+                if (! firstInitialization) instance.transform.Translate(new Vector3(horizontalCount, 0, 0));
+                script.UpdateTile();
             }
         }
     }
 
     // Start is called before the first frame update
     void Start() {
+        // init var
         verticalCount = verticalChunkCount * chunkSize;
         horizontalCount = horizontalChunkCount * chunkSize;
+        roadZIndex_1 = verticalCount / 2;
+        roadZIndex_2 = roadZIndex_1 + 1;
 
         // Init the world
         Environment.World.Inst.IgniteWorld(new Vector2Int(horizontalCount, verticalCount));
@@ -81,41 +77,26 @@ public class ChunkGenerator : MonoBehaviour
         rootObject = GameObject.Find("/Tile Generator");
         rootObject.transform.Translate(new Vector3(horizontalCount / 2.0f, 0, verticalCount / 2.0f));
 
-        int xOffset = 0;
-        for(int xChunck = 0; xChunck < horizontalChunkCount; ++xChunck) {
-            int zOffset = 0;
-            for(int zChunck = 0; zChunck < verticalChunkCount; ++zChunck) {
+        // Instantiate all the tiles
+        for (int x = 0; x < horizontalCount; ++x) {
+            for (int z = 0; z < verticalCount; ++z) {
+                GameObject instance = Instantiate(tilePrefab, rootObject.transform);
+                instance.transform.position = new Vector3(x * tileSize, 0, z * tileSize);
+                instance.name = tilePrefab.name + "_" + x + "_" + z;
+                graphicTileMap.Add(instance);
 
-                // Get random chunck
-                int index = (int)Random.Range(0.0f, chunkList.Count);
-                ChunkTile chunk = chunkList[index];
-                
-                // Create all tiles
-                for(int x = 0; x < chunk.chunkHorizontalSize; ++x) {
-                    for(int z = 0; z < chunk.chunkVerticalSize; ++z) {
-
-                        int trueX = (x + xOffset);
-                        int trueZ = (z + zOffset);
-
-                        // Get the new instance
-                        GameObject instance = Instantiate(tilePrefab, rootObject.transform) as GameObject;
-                        // Set the position and the name
-                        instance.transform.position = new Vector3(trueX * tileSize, 0, trueZ * tileSize);
-                        instance.name = tilePrefab.name + "_" + trueX + "_" + trueZ;
-
-                        // WIP random tile type
-                        Vector2Int position = new Vector2Int(trueX, trueZ);
-                        Environment.World.Inst[position].m_type = chunk.GetTile(x, z);
-                        graphicTileMap.Add(instance);
-                        
-                        // Update tiles
-                        instance.GetComponent<Environment.TileGraphic>().m_position = position;
-                        instance.GetComponent<Environment.TileGraphic>().UpdateTile();
-                    }
-                }
-                zOffset += chunkSize;
+                Vector2Int position = new Vector2Int(x, z);
+                instance.GetComponent<Environment.TileGraphic>().m_position = position;
             }
-            xOffset += chunkSize;
+        }
+                
+        // Initialize the tiles
+        for (int xChunck = 0; xChunck < horizontalChunkCount; ++xChunck)
+        {
+            for (int zChunck = 0; zChunck < verticalChunkCount; ++zChunck)
+            {
+                setChunk(xChunck * chunkSize, zChunck * chunkSize, true);
+            }
         }
     }
 
@@ -131,7 +112,7 @@ public class ChunkGenerator : MonoBehaviour
 
 			// For each chunk in the column
             for (int z = 0; z < verticalChunkCount; ++z) {
-                setChunk(startIndex, startIndex + chunkSize, z * chunkSize, (z * chunkSize) + chunkSize);
+                setChunk(startIndex, z * chunkSize);
             }
             
 			// Start index is incremented by one (cycling > horizontal count)
