@@ -47,8 +47,9 @@ public class UIEvents : MonoBehaviour
     }
     public void onStart()
     {
+        mMenuUI.SetActive(false);
+        mInGameUI.SetActive(true);
         GameManagerCool.Inst.Play();
-
     }
     public void onMenuQuit()
     {
@@ -62,11 +63,21 @@ public class UIEvents : MonoBehaviour
 
     public void onQuitYes()
     {
-        // TODO: If we are on main menu, quit the game. Otherwise just back to the menu
-        Application.Quit();
+        if(GameManagerCool.Inst.mGameState == GameManagerCool.GameState.eIngame)
+        {
+            mInGameUI.SetActive(false);
+            mMenuUI.SetActive(true);
+            GameManagerCool.Inst.Menu();
+        }
+        else if (GameManagerCool.Inst.mGameState == GameManagerCool.GameState.eMenuStart)
+        {
+            Application.Quit();
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #endif // UNITY_EDITOR
+        }
+        mConfirmationQuitUI.GetComponentInChildren<Animator>().SetTrigger("Depop");
+
     }
 
     public void onGameOver()

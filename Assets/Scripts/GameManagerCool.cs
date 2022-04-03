@@ -53,4 +53,14 @@ public class GameManagerCool : MonoBehaviour {
     {
         mGameState = GameState.eIngame;
     }
+
+    public void Menu()
+    {
+        mGameState = GameState.eMenuStart;
+    }
+
+    public void GameOver()
+    {
+        mGameState = GameState.eGameOver;
+    }
 }
