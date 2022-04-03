@@ -177,3 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characteristics: {fileID: 11400000, guid: e63011f19960f66458493af81f2c68da, type: 2}
   transparent: {fileID: 2100000, guid: 358a9244348b50048b3efeea4a14d4b7, type: 2}
+  outlineMaxWidth: 10
+  spawningColor: {r: 1, g: 0.40879646, b: 0.015686274, a: 1}
+  cooldownColor: {r: 0, g: 1, b: 1, a: 1}
+  nbFramesPerSecond: 24

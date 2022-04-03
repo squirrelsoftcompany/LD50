@@ -4,9 +4,11 @@
 
 using System;
 using System.Collections;
+using System.Linq;
 using GameEventSystem;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.ResourcesUsable {
 [RequireComponent(typeof(Outline), typeof(GameEventListener))]
@@ -15,7 +17,16 @@ public abstract class Resource : MonoBehaviour {
     [SerializeField] private ResourceCharacteristics characteristics;
     [SerializeField] private Material transparent;
 
+    [Range(0.1f, 10f)] [SerializeField] private float outlineMaxWidth = 10f;
+    [SerializeField] private Color spawningColor = Color.yellow;
+    [SerializeField] private Color cooldownColor = Color.cyan;
+
+    [FormerlySerializedAs("nbFrames")] [SerializeField]
+    private int nbFramesPerSecond = 24;
+
     public ResourceState State => state;
+
+    private float _oneFrameS;
 
     public int WaitBeforeNextState { get; private set; }
 
@@ -27,12 +38,42 @@ public abstract class Resource : MonoBehaviour {
     private Outline _outline;
     protected abstract void applyEffect();
 
-    private void Start() {
+    private void Awake() {
+        #region debug
+
+#if UNITY_EDITOR
+        var gameEventListener = GetComponent<GameEventListener>();
+        if (gameEventListener.eventAndResponses.Count == 0) {
+            throw new ArgumentException(
+                "Don't forget to set the ticking event response and call Resource.tick()");
+        }
+
+        if (gameEventListener.eventAndResponses.Find(response =>
+                response.gameEvent.name == "TickTack") == null) {
+            throw new ArgumentException(
+                "Don't forget to set the ticking event response and call Resource.tick()");
+        }
+
+        if (gameEventListener.eventAndResponses.First(response =>
+                response.gameEvent.name == "TickTack").response == null) {
+            throw new ArgumentException(
+                "Don't forget to set the ticking event response and call Resource.tick()");
+        }
+#endif
+
+        #endregion
+
         WaitBeforeNextState = characteristics.spawnWait;
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
         _material = _meshRenderer.material;
         _meshRenderer.material = transparent;
         _outline = GetComponent<Outline>();
+        _outline.OutlineColor = spawningColor;
+        _oneFrameS = 1f / nbFramesPerSecond;
+    }
+
+    private void Start() {
+        StartCoroutine(fadeIn());
     }
 
     public void tick() {
@@ -53,18 +94,26 @@ public abstract class Resource : MonoBehaviour {
                 break;
             case ResourceState.Active:
                 Debug.Log("Now in cooldown");
+                if (characteristics.consumable) {
+                    state = ResourceState.Finished;
+                    WaitBeforeNextState = 0;
+                    break;
+                }
                 state = ResourceState.Cooldown;
                 WaitBeforeNextState = Characteristics.cooldown;
-                StartCoroutine(showInCooldown());
+                showInCooldown();
                 break;
             case ResourceState.Cooldown:
                 Debug.Log("Now finished");
                 state = ResourceState.Finished;
-                ReturnToInventory?.Invoke(this, new InventoryEventArgs(Characteristics));
-                StartCoroutine(fadeOutDestroy());
+                if (!characteristics.consumable) {
+                    ReturnToInventory?.Invoke(this, new InventoryEventArgs(Characteristics));
+                }
+
                 break;
             case ResourceState.Finished:
                 Debug.Log("Still finished");
+                Destroy(gameObject);
                 // just wait to be destroyed, what a journey!
                 break;
             default:
@@ -72,11 +121,11 @@ public abstract class Resource : MonoBehaviour {
         }
     }
 
-    private IEnumerator showInCooldown() {
+    private void showInCooldown() {
         _meshRenderer.material = transparent;
         _outline.enabled = true;
-        _outline.OutlineColor = Color.cyan;
-        yield return null;
+        _outline.OutlineColor = cooldownColor;
+        StartCoroutine(fadeOut());
     }
 
     protected IEnumerator showActive() {
@@ -86,15 +135,25 @@ public abstract class Resource : MonoBehaviour {
         yield return null;
     }
 
-    protected IEnumerator fadeOutDestroy() {
-        var materialColor = _material.color;
-        while (materialColor.a > 0) {
-            materialColor.a -= 0.1f;
-            _material.color = materialColor;
-            yield return new WaitForSeconds(0.01f);
-        }
 
-        Destroy(gameObject);
+    private IEnumerator fadeIn() {
+        _outline.OutlineWidth = 0f;
+        var stepIncrease = outlineMaxWidth / (nbFramesPerSecond * characteristics.spawnWait);
+        while (_outline.OutlineWidth < outlineMaxWidth) {
+            _outline.OutlineWidth += stepIncrease;
+            yield return new WaitForSeconds(_oneFrameS);
+        }
+    }
+
+    protected IEnumerator fadeOut() {
+        _outline.OutlineWidth = outlineMaxWidth;
+        var currentWidth = _outline.OutlineWidth;
+
+        var stepDecrease = currentWidth / (nbFramesPerSecond * characteristics.cooldown);
+        while (_outline.OutlineWidth > 0) {
+            _outline.OutlineWidth -= stepDecrease;
+            yield return new WaitForSeconds(_oneFrameS);
+        }
     }
 }
 }
