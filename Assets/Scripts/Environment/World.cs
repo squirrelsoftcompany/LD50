@@ -261,7 +261,10 @@ namespace Environment
             int X = p_position.x;
             if (X < m_physicalBeginning)
                 X = X + m_maxWorld.x;
-            Debug.Assert(X >= m_physicalBeginning && X < m_physicalBeginning + m_maxWorld.x, string.Format("ToContinuousIndex({0})={3} : X out of bounds [{1},{2}]", p_position.x, m_physicalBeginning, m_physicalBeginning + m_maxWorld.x, X));
+            
+            if (m_verbose && (X < m_physicalBeginning || X >= m_physicalBeginning + m_maxWorld.x))
+                Debug.LogWarningFormat("ToContinuousIndex({0})={3} : X out of bounds [{1},{2}[", p_position.x, m_physicalBeginning, m_physicalBeginning + m_maxWorld.x, X);
+            
             return new Vector2Int(X, p_position.y);
         }
 
@@ -270,11 +273,14 @@ namespace Environment
         private Vector2Int ToArrayIndex(Vector2Int p_position)
         {
             int X = p_position.x;
-            if (X >= m_maxWorld.x)
+            if (X >= m_maxWorld.x && X < m_maxWorld.x + m_physicalBeginning)
                 X = X - m_maxWorld.x;
-            else if (X < 0)
+            else if (X < 0 && X >= -m_physicalBeginning)
                 X = X + m_maxWorld.x;
-            Debug.Assert(X >= 0 && X < m_maxWorld.x, string.Format("ToArrayIndex({0})={3} : X out of bounds [{1},{2}]", p_position.x, 0, m_maxWorld.x, X));
+
+            if (m_verbose && (X < 0 || X >= m_maxWorld.x))
+                Debug.LogWarningFormat("ToArrayIndex({0})={3} : X out of bounds [{1},{2}[", p_position.x, 0, m_maxWorld.x, X);
+            
             return new Vector2Int(X, p_position.y);
         }
         #endregion
