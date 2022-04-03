@@ -65,11 +65,7 @@ public class GenerateTiles : MonoBehaviour {
 				// WIP random tile type
 				Vector2Int position = new Vector2Int(x, z);
 				Environment.World.Inst[position].m_type = (z != 15 && z != 16)? getRandomTileType() : Environment.Tile.TileType.eRoad;
-<<<<<<< HEAD
-				if (x == 0) Environment.World.Inst[position].m_type = Environment.Tile.TileType.eBuilding;
-=======
 				graphicTileMap.Add(instance);
->>>>>>> a427694 ([FCT] Update tile geneator in order to instanciate the good tile depending of the type)
 				
 				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
 				instance.GetComponent<Environment.TileGraphic>().m_position = position;
