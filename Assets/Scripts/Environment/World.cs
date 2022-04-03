@@ -83,15 +83,21 @@ namespace Environment
         #region Attributes
         [Header("Logs")]
         public bool m_verbose = false;
+        public bool m_logContinuous = false;
         
         [Header("Settings")]
-        private Vector2Int m_maxWorld = new Vector2Int(50, 30);
         public int m_physicalBeginning = 0;
-        private Tile[][] m_world;
+        public int m_continuousFireFrontLine = 0;
+        public int m_absoluteFireFrontLine = 0;
         public static Tile nullTile;
+        public float m_worldIsOnFire = 0; // Percent
         
         [Header("Events")]
         public GameEvent m_intensificationDone;
+        
+        private Tile[][] m_world;
+        private Vector2Int m_maxWorld = new Vector2Int(50, 30);
+        private int m_fireIntensityMax = 0;
         
         // Singleton
         private static World instance = null;
@@ -141,6 +147,8 @@ namespace Environment
             }
 
             m_world[5][p_maxWorld.y / 2].Intensity = 3;
+
+            m_fireIntensityMax = (m_maxWorld.x * m_maxWorld.y) * 4;
         }
 
         // Update is called once per frame
@@ -170,22 +178,35 @@ namespace Environment
             }
 
             // Storing !
-            for (int x = 0; x < m_maxWorld.x; x++)
+            m_continuousFireFrontLine = 0;
+            int fireIntensitySum = 0;
+            for (int x = m_physicalBeginning; x < m_physicalBeginning + m_maxWorld.x; x++)
             {
                 for (int y = 0; y < m_maxWorld.y; y++)
                 {
+                    Vector2Int continuousIndex = new Vector2Int(x, y);
+                    ref Tile tile = ref this[continuousIndex];
                     // we can't create humidity with fire only
-                    if (m_world[x][y].NextIntensity < 0 && m_world[x][y].Intensity >= 0)
+                    if (tile.NextIntensity < 0 && tile.Intensity >= 0)
                     {
-                        m_world[x][y].Intensity = 0;
+                        tile.Intensity = 0;
                     }
                     // store nextIntensity in intensity
                     else
                     {
-                        m_world[x][y].Intensity = Mathf.Clamp(m_world[x][y].NextIntensity, -4, 4);
+                        tile.Intensity = Mathf.Clamp(tile.NextIntensity, -4, 4);
+                    }
+
+                    if (tile.Intensity > 0)
+                    {
+                        m_continuousFireFrontLine = Mathf.Max(m_continuousFireFrontLine, continuousIndex.x);
+                        fireIntensitySum += tile.Intensity;
                     }
                 }
             }
+            m_worldIsOnFire = (float)fireIntensitySum / m_fireIntensityMax;
+            // make m_fireFrontLine absolute
+            m_absoluteFireFrontLine = (m_continuousFireFrontLine > m_maxWorld.x) ? m_continuousFireFrontLine - m_physicalBeginning : m_continuousFireFrontLine;
 
             // Notify
             m_intensificationDone?.Raise();
@@ -227,23 +248,29 @@ namespace Environment
         {
             if (! m_verbose) return;
 
-            string display = string.Format("Tile {0}x{1}\n", m_maxWorld.x, m_maxWorld.y);
+            string display = string.Format("Tile {0}x{1}  WorldIsOnFire {2}  FrontLine {3}\n", m_maxWorld.x, m_maxWorld.y, m_worldIsOnFire, m_continuousFireFrontLine);
             for (int y = 0; y < m_maxWorld.y; y++)
             {
                 string line = "";
                 for (int x = 0; x < m_maxWorld.x; x++)
                 {
-                    if (m_world[x][y].Intensity > 0)
+                    Vector2Int index = new Vector2Int(m_logContinuous ? x + m_physicalBeginning : x, y);
+                    ref Tile tile = ref this[index];
+                    if (m_logContinuous)
+                        line += (x == m_continuousFireFrontLine + 1) ? '|' : '_';
+                    else
+                        line += (x == m_absoluteFireFrontLine + 1) ? '|' : '_';
+                    if (tile.Intensity > 0)
                     {
-                        line += "_" + m_world[x][y].Intensity.ToString();
+                        line += tile.Intensity.ToString();
                     }
-                    else if (m_world[x][y].Intensity < 0)
+                    else if (tile.Intensity < 0)
                     {
-                        line += "_~";
+                        line += "~";
                     }
                     else
                     {
-                        line += "__";
+                        line += "_";
                     }
                 }
                 display += line + "\n";
