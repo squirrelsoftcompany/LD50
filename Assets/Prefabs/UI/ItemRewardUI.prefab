@@ -186,6 +186,8 @@ GameObject:
   - component: {fileID: 4099029940326833154}
   - component: {fileID: 4099029940326833155}
   - component: {fileID: 6637942591799218032}
+  - component: {fileID: 1506954851296792469}
+  - component: {fileID: 724722763548226297}
   m_Layer: 5
   m_Name: ItemRewardUI
   m_TagString: Untagged
@@ -305,9 +307,9 @@ MonoBehaviour:
     responseForSentBool:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4099029940326833165}
-          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-          m_MethodName: set_enabled
+        - m_Target: {fileID: 724722763548226297}
+          m_TargetAssemblyTypeName: UI.UIItemsShop, Assembly-CSharp
+          m_MethodName: showShop
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -320,3 +322,30 @@ MonoBehaviour:
     responseForSentMonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &1506954851296792469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099029940326833152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443db7ad758042fe88dcfca73fa3fb94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopChoices: {fileID: 11400000, guid: 7201a61b69ac90c4f90a858cd7ed1391, type: 2}
+  shopOpenedTimes: 0
+  profitabilityFactor: 1
+--- !u!114 &724722763548226297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099029940326833152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf15079e03b9014da0948aa70e5416e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
