@@ -91,6 +91,7 @@ public class GenerateTiles : MonoBehaviour
 				}
 				Environment.World.Inst[index].Intensity = 0;
 				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
+				instance.GetComponent<Environment.TileGraphic>().UpdateFire();
 			}
 			// Start index is incremented by one (cycling > horizontal count)
 			startIndex++;
