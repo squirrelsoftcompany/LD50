@@ -124,7 +124,7 @@ namespace Environment
             instance = this;
         }
 
-        public void InitWorld(Vector2Int p_maxWorld)
+        public void IgniteWorld(Vector2Int p_maxWorld)
         {
             m_maxWorld = p_maxWorld;
             m_world = null;

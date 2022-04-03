@@ -45,7 +45,7 @@ public class GenerateTiles : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		Environment.World.Inst.InitWorld(new Vector2Int(horizontalCount, verticalCount));
+		Environment.World.Inst.IgniteWorld(new Vector2Int(horizontalCount, verticalCount));
 		graphicTileMap = new List<GameObject>();
 
 		// Get the root object and translate to 0,0
