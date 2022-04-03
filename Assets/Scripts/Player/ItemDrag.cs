@@ -23,7 +23,7 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler {
 
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (!Physics.Raycast(ray, out hit, 1000)) return;
+        if (!Physics.Raycast(ray, out hit, 1000, ~Characteristics.ignoreLayer)) return;
         // touched something
         var tileGraphic = hit.transform.gameObject.GetComponent<TileGraphic>();
         if (tileGraphic != null) {

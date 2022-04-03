@@ -17,5 +17,6 @@ public class ResourceCharacteristics : ScriptableObject {
     public float efficiency = 1f;
     public Sprite sprite;
     public GameObject prefab;
+    public LayerMask ignoreLayer;
 }
 }

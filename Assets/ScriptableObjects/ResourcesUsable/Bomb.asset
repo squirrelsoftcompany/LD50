@@ -21,3 +21,6 @@ MonoBehaviour:
   efficiency: 3
   sprite: {fileID: 21300000, guid: 8f4b870719592344cb6c3cb520fe9ff5, type: 3}
   prefab: {fileID: 592192817141039420, guid: b7516eb02788c5f4aac06c2c7e80dcab, type: 3}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8
