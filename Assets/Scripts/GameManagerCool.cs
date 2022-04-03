@@ -8,8 +8,8 @@ public class GameManagerCool : MonoBehaviour {
     [SerializeField] private GameEvent tickTack;
     [SerializeField] private GameEvent showChoiceItem;
     private float waitTime;
-    [ReadOnly][SerializeField] private long totalBeats;
-    [SerializeField] private long winItemRate = 60;
+    [ReadOnly] [SerializeField] private long totalBeats;
+    [Range(1, 200)] [SerializeField] private long winItemRate = 60;
 
     public enum GameState {
         eMenuStart = 0,
