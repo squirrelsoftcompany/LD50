@@ -6,24 +6,28 @@ using UnityEngine.Rendering;
 public class SignalArrow : MonoBehaviour
 {
     public GameObject mArrowSignal;
-
+    public Renderer mFarmEggRd;
     // Start is called before the first frame update
     void Start()
     {
         Transform lArrowTransform = mArrowSignal.GetComponent<Transform>();
         Transform lCivilTransform = this.GetComponent<Transform>();
         lArrowTransform.SetPositionAndRotation(new Vector3(0,0, lCivilTransform.position.z), lArrowTransform.rotation);
-
-        Renderer lArrowRenderer = mArrowSignal.GetComponent<Renderer>();
-        lArrowRenderer.sortingOrder = 5;
-        SortingGroup lSortingLayer = mArrowSignal.AddComponent<SortingGroup>() as SortingGroup;
-        lSortingLayer.sortingOrder = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
         Transform lArrowTransform = mArrowSignal.GetComponent<Transform>();
+
+        if (mFarmEggRd && mFarmEggRd.isVisible)
+        {
+            mArrowSignal.SetActive(false);
+        }
+        else
+        {
+            mArrowSignal.SetActive(true);
+        }
 
         Transform lCivilTransform = this.GetComponent<Transform>();
         Camera cam = Camera.main;
