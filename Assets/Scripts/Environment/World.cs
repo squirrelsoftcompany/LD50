@@ -1,6 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using GameEventSystem;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Environment
 {
@@ -86,10 +88,10 @@ namespace Environment
         private Vector2Int m_maxWorld = new Vector2Int(50, 30);
         public int m_physicalBeginning = 0;
         private Tile[][] m_world;
-        private static Tile nullTile;
+        public static Tile nullTile;
         
         [Header("Events")]
-        public GameEventSystem.GameEvent m_intensificationDone;
+        public GameEvent m_intensificationDone;
         
         // Singleton
         private static World instance = null;
@@ -276,6 +278,20 @@ namespace Environment
             return new Vector2Int(X, p_position.y);
         }
         #endregion
+
+        public List<Vector2Int> neighbours(Vector2Int position, float radius) {
+            var sqrRadius = radius * radius;
+            var res = new List<Vector2Int>();
+            for (var x = (int)(position.x - radius); x < position.x + radius; x++) {
+                for (var y = (int)(position.y - radius); y < position.y + radius; y++) {
+                    if (Math.Pow(position.x - x, 2) + Math.Pow(position.y - y, 2) > sqrRadius)
+                        continue;
+                    res.Add(new Vector2Int(x, y));
+                }
+            }
+
+            return res;
+        }
     }
 
 }
