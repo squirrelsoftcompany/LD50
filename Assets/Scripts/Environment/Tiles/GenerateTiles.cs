@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Environment;
 using UnityEngine;
 
 // Generated tile map
@@ -24,9 +26,16 @@ public class GenerateTiles : MonoBehaviour {
 	// Instance map
 	private List<GameObject> graphicTileMap;
 
-	Environment.Tile.TileType getRandomTileType()
-	{
-		float random = Random.Range(0.0f, 1.0f);
+    private static GenerateTiles instance = null;
+    public static GenerateTiles Inst => instance;
+
+    public TileGraphic get(Vector2Int p_index) {
+        return graphicTileMap.Select(obj => obj.GetComponent<TileGraphic>())
+            .FirstOrDefault(tile => tile.m_position == p_index);
+    }
+
+    Environment.Tile.TileType getRandomTileType() {
+        float random = Random.Range(0.0f, 1.0f);
 
 		if (random < 0.66f)
 		{
@@ -45,6 +54,11 @@ public class GenerateTiles : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
+        if (instance != null) {
+            Debug.LogError("Generate Tiles should be a singleton!");
+        }
+
+        instance = this;
 		Environment.World.Inst.IgniteWorld(new Vector2Int(horizontalCount, verticalCount));
 		graphicTileMap = new List<GameObject>();
 
