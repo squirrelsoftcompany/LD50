@@ -6,9 +6,7 @@ using UnityEngine;
 namespace Player.ResourcesUsable {
 public class FireFighter : Resource {
     protected override void applyEffect() {
-        var tile = Tile.tileData;
-        tile.Intensity = (int)Math.Max(0, tile.Intensity - Characteristics.efficiency);
-        List<Vector2Int> neighbours =
+        HashSet<Vector2Int> neighbours =
             World.Inst.neighbours(Tile.m_position, Characteristics.rangeOfAction);
 
         foreach (var vector2Int in neighbours) {
