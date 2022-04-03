@@ -103,7 +103,7 @@ namespace Environment
                 if (indexArray.x >= 0 && indexArray.y >= 0
                     && indexArray.x < m_maxWorld.x && indexArray.y < m_maxWorld.y)
                 {
-                    return ref m_world[p_index.x][p_index.y];
+                    return ref m_world[indexArray.x][indexArray.y];
                 }
                 return ref nullTile;
             }
@@ -205,7 +205,7 @@ namespace Environment
 
                     Vector2Int neighbour = new Vector2Int(p_index.x + x, p_index.y + y);
                     float neighbourDistanceProbability = Probability4Distance(p_index, neighbour);
-                    this[new Vector2Int(p_index.x + x, p_index.y + y)].IntensifyNext(neighbourDistanceProbability * currentIntensityProbability);
+                    this[neighbour].IntensifyNext(neighbourDistanceProbability * currentIntensityProbability);
                 }
             }
         }
@@ -256,18 +256,24 @@ namespace Environment
         // Already continuous index should not be affected
         private Vector2Int ToContinuousIndex(Vector2Int p_position)
         {
-            if (p_position.x < m_physicalBeginning)
-                return new Vector2Int((p_position.x + 1) + m_maxWorld.x, p_position.y);
-            return p_position;
+            int X = p_position.x;
+            if (X < m_physicalBeginning)
+                X = X + m_maxWorld.x;
+            Debug.Assert(X >= m_physicalBeginning && X < m_physicalBeginning + m_maxWorld.x, string.Format("ToContinuousIndex({0})={3} : X out of bounds [{1},{2}]", p_position.x, m_physicalBeginning, m_physicalBeginning + m_maxWorld.x, X));
+            return new Vector2Int(X, p_position.y);
         }
 
         // Translate x-value to have array indices from continous indices
         // Already array index should not be affected
         private Vector2Int ToArrayIndex(Vector2Int p_position)
         {
-            if (p_position.x > m_maxWorld.x)
-                return new Vector2Int((p_position.x + 1) % m_maxWorld.x, p_position.y);
-            return p_position;
+            int X = p_position.x;
+            if (X >= m_maxWorld.x)
+                X = X - m_maxWorld.x;
+            else if (X < 0)
+                X = X + m_maxWorld.x;
+            Debug.Assert(X >= 0 && X < m_maxWorld.x, string.Format("ToArrayIndex({0})={3} : X out of bounds [{1},{2}]", p_position.x, 0, m_maxWorld.x, X));
+            return new Vector2Int(X, p_position.y);
         }
         #endregion
     }
