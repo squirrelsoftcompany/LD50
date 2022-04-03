@@ -222,9 +222,13 @@ namespace Environment
                 {
                     if (x == 0 && y == 0) continue;
 
-                    Vector2Int neighbour = new Vector2Int(p_index.x + x, p_index.y + y);
-                    float neighbourDistanceProbability = Probability4Distance(p_index, neighbour);
-                    this[neighbour].IntensifyNext(neighbourDistanceProbability * currentIntensityProbability);
+                    Vector2Int neighbourIndex = new Vector2Int(p_index.x + x, p_index.y + y);
+                    ref Tile neighbour = ref this[neighbourIndex];
+                    if (neighbour.m_type != Tile.TileType.eNone)
+                    {
+                        float neighbourDistanceProbability = Probability4Distance(p_index, neighbourIndex);
+                        neighbour.IntensifyNext(neighbourDistanceProbability * currentIntensityProbability);
+                    }
                 }
             }
         }
