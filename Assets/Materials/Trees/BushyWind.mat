@@ -49,7 +49,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
-    - _Gradiant: 0.2
+    - _Gradiant: 0.4
     - _MaxPosX: 3
     - _PosX: 1.53
     - _QueueControl: 0
@@ -57,7 +57,7 @@ Material:
     - _ReceiveShadows: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _WindDensity: 2
+    - _WindDensity: 6
     - _WindDirection: 98
     - _WindSpeed: 0.337
     - _WindStrengh: 0.102
