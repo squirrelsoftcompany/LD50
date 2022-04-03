@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6776361836483851360}
   - component: {fileID: 6776361836483851361}
+  - component: {fileID: 8714552479920027624}
+  - component: {fileID: 5659240542869459966}
   m_Layer: 0
   m_Name: Tile Generator
   m_TagString: Untagged
@@ -46,11 +48,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 7528226629490284919, guid: 0d48be57e01004e8587e5a86682d8f79,
     type: 3}
-  treeColor: {r: 0, g: 0.2830189, b: 0.06191288, a: 1}
-  plainColor: {r: 0.504717, g: 1, b: 0.6519815, a: 1}
-  houseColor: {r: 0.6037736, g: 0.12815951, b: 0.18960702, a: 1}
-  roadColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
-  lakeColor: {r: 0, g: 0.54403925, b: 1, a: 1}
   verticalCount: 30
   horizontalCount: 32
   tileSize: 1
+--- !u!114 &8714552479920027624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776361836483851362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08cf454e272e6094199128ee69024c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_verbose: 0
+  m_physicalBeginning: 0
+  m_intensificationDone: {fileID: 11400000, guid: b43b4ca9ae5702043b6ec810c471ee33,
+    type: 2}
+--- !u!114 &5659240542869459966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776361836483851362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2ef1ffd03a864cbca588995683751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: TickTack -> Fire
+    gameEvent: {fileID: 11400000, guid: 606ef6c18dd1d4d40b12d7907b29c4e5, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8714552479920027624}
+          m_TargetAssemblyTypeName: Environment.World, Assembly-CSharp
+          m_MethodName: Fire
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
