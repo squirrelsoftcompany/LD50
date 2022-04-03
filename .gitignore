@@ -68,3 +68,7 @@ crashlytics-build.properties
 
 /UserSettings/
 /Recordings/
+
+# FMod
+Cache/
+Cache.meta
