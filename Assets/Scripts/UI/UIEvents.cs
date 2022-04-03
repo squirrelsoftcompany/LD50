@@ -25,10 +25,14 @@ public class UIEvents : MonoBehaviour
     [Header("Annotation")]
     public Text mAnnotationText;
 
-    [Header("Animations")]
-    public Animator mAnnotationDisplay;
-    public Animator mQuitDisplay;
-    public Animator mGameOverDisplay;
+    [Header("UIs")]
+    public GameObject mMenuUI;
+    public GameObject mNotificationUI;
+    public GameObject mGameOverUI;
+    public GameObject mInGameUI;
+    public GameObject mConfirmationQuitUI;
+    public GameObject mRewardUI;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,16 +47,17 @@ public class UIEvents : MonoBehaviour
     }
     public void onStart()
     {
-        //GameManager.Inst.StartGame();
+        GameManagerCool.Inst.Play();
+
     }
     public void onMenuQuit()
     {
-        mQuitDisplay.SetTrigger("Pop");
+        mConfirmationQuitUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
     }
 
     public void onGlobalQuit()
     {
-        mQuitDisplay.SetTrigger("Pop");
+        mConfirmationQuitUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
     }
 
     public void onQuitYes()
@@ -66,32 +71,32 @@ public class UIEvents : MonoBehaviour
 
     public void onGameOver()
     {
-        mGameOverDisplay.SetTrigger("Pop");
+        mGameOverUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
     }
 
     public void onGameOverOK()
     {
-        mGameOverDisplay.SetTrigger("Depop");
+        mGameOverUI.GetComponentInChildren<Animator>().SetTrigger("Depop");
         //Change game state to menu
     }
 
     public void onQuitNo()
     {
-        mQuitDisplay.SetTrigger("Depop");
+        mConfirmationQuitUI.GetComponentInChildren<Animator>().SetTrigger("Depop");
     }
 
     public void onFulldisplay()
     {
-        //GameManager.Inst.Fulldisplay();
+        //GameManagerCool.Inst.Fulldisplay();
     }
 
     public void onValidate()
     {
-        //GameManager.Inst.Validate();
+        //GameManagerCool.Inst.Validate();
     }
 
     public void popAnnotation()
     {
-        mAnnotationDisplay.SetTrigger("Pop");
+        mNotificationUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
     }
 }
