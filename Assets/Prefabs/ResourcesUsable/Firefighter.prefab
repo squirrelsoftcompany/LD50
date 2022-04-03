@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7626394660076600933}
   - component: {fileID: 695612516914558401}
   m_Layer: 0
-  m_Name: FireFighter
+  m_Name: Firefighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,6 +190,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8dda8e24ae0f884b8b768f1f578871c, type: 3}
+--- !u!1 &8168456433040767453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f8dda8e24ae0f884b8b768f1f578871c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9051467830866412684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7117687020956659549
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168456433040767453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f37977a56e562f74fbe4021709043ee1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &8797781272586249063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f8dda8e24ae0f884b8b768f1f578871c,
