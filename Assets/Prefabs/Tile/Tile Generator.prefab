@@ -49,7 +49,7 @@ MonoBehaviour:
   tilePrefab: {fileID: 7528226629490284919, guid: 0d48be57e01004e8587e5a86682d8f79,
     type: 3}
   verticalCount: 30
-  horizontalCount: 50
+  horizontalCount: 70
   tileSize: 1
   scrollingSpeed: 0.01
 --- !u!114 &8714552479920027624
@@ -67,8 +67,7 @@ MonoBehaviour:
   m_verbose: 0
   m_logContinuous: 0
   m_physicalBeginning: 0
-  m_continuousFireFrontLine: 0
-  m_absoluteFireFrontLine: 0
+  m_fireFrontLine: 0
   m_worldIsOnFire: 0
   m_intensificationDone: {fileID: 11400000, guid: b43b4ca9ae5702043b6ec810c471ee33,
     type: 2}
