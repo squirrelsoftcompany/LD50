@@ -36,9 +36,12 @@ public class UIInventory : MonoBehaviour {
 
     private void changeImageAndText(GameObject uiSlot, InventorySlot slot) {
         var itemDrag = uiSlot.GetComponentInChildren<ItemDrag>();
-        itemDrag.gameObject.GetComponent<Image>().sprite = slot.Characteristics.sprite;
-        itemDrag.Characteristics = slot.Characteristics;
-        itemDrag.onSpawn += onSpawn;
+        if (itemDrag.Characteristics == null) {
+            itemDrag.gameObject.GetComponent<Image>().sprite = slot.Characteristics.sprite;
+            itemDrag.Characteristics = slot.Characteristics;
+            itemDrag.onSpawn += onSpawn;
+        }
+
         uiSlot.GetComponentInChildren<Text>().text = $"{slot.NumberAvailable}/{slot.NumberTotal}";
     }
 
