@@ -4,6 +4,7 @@ using Environment;
 using GameEventSystem;
 using Player.ResourcesUsable;
 using ScriptableObjects;
+using Shop;
 using UnityEngine;
 
 namespace Player {
@@ -27,7 +28,7 @@ public class Inventory : MonoBehaviour {
      * Set returning to true if it comes back to the inventory after being called to duty.
      * Else it comes from the reward dialog (so put returning to false)
      */
-    public void addItem(ResourceCharacteristics characteristics, int number,
+    private void addItem(ResourceCharacteristics characteristics, int number,
         bool returning = false) {
         var indexSlot = _items.FindIndex(slot => slot.Characteristics == characteristics);
         var inventorySlot = _items[indexSlot];
@@ -42,6 +43,10 @@ public class Inventory : MonoBehaviour {
         InventoryChanged?.Invoke(this, new InventorySlotEventArgs(inventorySlot, indexSlot));
         showChoiceDialog.sentBool = false;
         showChoiceDialog.Raise();
+    }
+    
+    public void choosePack(ShopChoice choice) {
+        addItem(choice.Characteristics, choice.Number);
     }
 
     public void testAddItem() {

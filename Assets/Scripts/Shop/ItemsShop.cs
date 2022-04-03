@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Attributes;
+using Player;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -14,14 +15,17 @@ public class ItemsShop : MonoBehaviour {
 
     [ReadOnly] [SerializeField] private int shopOpenedTimes = 0;
     [SerializeField] private float profitabilityFactor = 1f;
+    private Inventory _inventory;
 
-#if UNITY_EDITOR
     private void Awake() {
+#if UNITY_EDITOR
         if (shopChoices == null) {
             Debug.LogError("ItemsShop should be completed with shopChoices");
         }
-    }
 #endif
+        _inventory = FindObjectOfType<Inventory>();
+    }
+
 
     public List<ShopChoice> fetchChoices() {
         shopOpenedTimes++;
@@ -46,6 +50,10 @@ public class ItemsShop : MonoBehaviour {
     private static int nbOfChoices(int openTimes) {
         if (openTimes < 10) return 2;
         return 3;
+    }
+
+    public void chooseShopPack(ShopChoice choice) {
+        _inventory.choosePack(choice);
     }
 }
 }

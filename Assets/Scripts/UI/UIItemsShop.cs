@@ -16,10 +16,15 @@ public class UIItemsShop : MonoBehaviour {
 
     public void showShop(bool show) {
         if (show) {
+            Time.timeScale = 0;
             // take 2 or 3 choices
             List<ShopChoice> choices = _shop.fetchChoices();
             // todo(xavier) display them in the canvas
             Debug.Log($"available choices are {choices}");
+            // todo(xavier) call (somewhere) _shop.chooseShopPack(myChoiceClicked);
+        }
+        else {
+            Time.timeScale = 1;
         }
 
         _canvas.enabled = show;
