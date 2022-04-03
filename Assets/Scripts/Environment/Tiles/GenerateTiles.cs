@@ -81,8 +81,8 @@ public class GenerateTiles : MonoBehaviour {
 				Environment.World.Inst[position].m_type = (z != 15 && z != 16)? getRandomTileType() : Environment.Tile.TileType.eRoad;
 				graphicTileMap.Add(instance);
 				
-				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
 				instance.GetComponent<Environment.TileGraphic>().m_position = position;
+				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
 			}
 		}
 	}

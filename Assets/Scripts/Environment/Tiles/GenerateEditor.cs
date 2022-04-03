@@ -36,7 +36,7 @@ public class GenerateEditor : MonoBehaviour {
 		}
 	}
 
-	public void save() {
+	public void Save() {
 		// Create and set chunk
 		ChunkTile asset = ScriptableObject.CreateInstance<ChunkTile>();
 		asset.Init();
