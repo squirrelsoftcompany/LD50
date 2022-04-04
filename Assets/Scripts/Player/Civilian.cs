@@ -49,7 +49,6 @@ public class Civilian : MonoBehaviour, IMortal {
         _animator.SetTrigger(Save);
     }
 
-    // todo call this from the animation
     public void onSaveAnimEnded() {
         Destroy(gameObject);
     }

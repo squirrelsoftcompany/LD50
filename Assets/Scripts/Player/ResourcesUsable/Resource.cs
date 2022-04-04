@@ -93,8 +93,6 @@ public abstract class Resource : MonoBehaviour, ITick {
 
     [UsedImplicitly]
     public virtual void tick() {
-        // todo call this
-        Debug.Log("tick!");
         WaitBeforeNextState--;
         if (State == ResourceState.Active) {
             applyEffect();
