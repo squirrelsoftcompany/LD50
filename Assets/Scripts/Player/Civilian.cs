@@ -2,7 +2,7 @@ using GameEventSystem;
 using UnityEngine;
 
 namespace Player {
-public class Civilian : MonoBehaviour, IMortal, ITick {
+public class Civilian : MonoBehaviour, IMortal {
     [SerializeField] private GameEvent deathEvent;
     [SerializeField] private int survivableFire = 2;
     private int _currentFireExposed;
@@ -23,23 +23,11 @@ public class Civilian : MonoBehaviour, IMortal, ITick {
         return survivableFire;
     }
 
-    public void tick() {
-        if (_currentFireExposed == 0) return;
-        _amountFireExposed += _currentFireExposed;
+    public void newFireIntensity(int intensity) {
+        if (intensity == 0) return;
+        _amountFireExposed += intensity;
         if (_amountFireExposed >= criticalAmountSurvivable()) {
             _animator.SetTrigger(Death);
-        }
-    }
-    
-    public void newFireIntensity(int intensity)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void OnTriggerStay(Collider other) {
-        if (other.CompareTag("Fire")) {
-            // todo get the tile under us in order to get the fire intensity
-            // todo put it in amountFireExposed
         }
     }
 }

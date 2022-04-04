@@ -19,27 +19,11 @@ public abstract class HumanFighter : Resource, IMortal {
         animator = GetComponentInChildren<Animator>();
     }
 
-    public override void tick() {
-        base.tick();
-        if (currentFireExposed > 0) {
-            amountFireExposed += currentFireExposed;
-        }
-
+    public void newFireIntensity(int intensity) {
+        if(intensity ==0) return;
+        amountFireExposed += intensity;
         if (amountFireExposed >= criticalAmountSurvivable()) {
             animator.SetTrigger(Death);
-        }
-    }
-
-    private void OnTriggerStay(Collider other) {
-        if (other.CompareTag("Fire")) {
-            // todo get the tile under us in order to get the fire intensity
-            // todo put it in amountFireExposed
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-        if (other.CompareTag("Fire")) {
-            currentFireExposed = 0;
         }
     }
 
