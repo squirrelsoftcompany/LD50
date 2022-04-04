@@ -7,6 +7,8 @@ public class ChunkGenerator : MonoBehaviour
 	public float scrollingSpeed = 0.01f;
     // Tile prefab
 	public GameObject tilePrefab = null;
+    // Border tile prefab
+	public GameObject borderTilePrefab = null;
     // The tile size
     public float tileSize = 1;
     // Vertical chunck count
@@ -15,6 +17,8 @@ public class ChunkGenerator : MonoBehaviour
     public int horizontalChunkCount = 5;
     // The chunk size (square)
     public int chunkSize = 10;
+    // Border (vertical) size
+    public int borderChunkSize = 30;
     // The list of chunk
     public List<ChunkTile> chunkList = new List<ChunkTile>();
     
@@ -24,6 +28,8 @@ public class ChunkGenerator : MonoBehaviour
 	private GameObject rootObject = null;
     // Instance map
 	private List<GameObject> graphicTileMap = new List<GameObject>();
+	private List<GameObject> graphicTileMap_leftBorder = new List<GameObject>();
+	private List<GameObject> graphicTileMap_rightBorder = new List<GameObject>();
     // The translation count
 	private float globalTranslate = 0.0f;
 	// The starting tiles index
@@ -63,6 +69,28 @@ public class ChunkGenerator : MonoBehaviour
         }
     }
 
+    void setBorderChunk(int xStart, bool p_isLeft = true, bool firstInitialization = false)
+    {
+        int xEnd = xStart + chunkSize;
+        int zStart = 0;
+        int zEnd = borderChunkSize;
+
+        for (int x = xStart; x < xEnd; ++x)
+        {
+            for (int z = zStart; z < zEnd; ++z)
+            {
+                // Get data
+                int index = (x * borderChunkSize) + (Mathf.Abs(z) % borderChunkSize);
+                GameObject instance = p_isLeft ? graphicTileMap_leftBorder[index] : graphicTileMap_rightBorder[index];
+                Environment.TileGraphic script = instance.GetComponent<Environment.TileGraphic>();
+
+                // Instance update
+                if (! firstInitialization) instance.transform.Translate(new Vector3(horizontalCount, 0, 0));
+                script.UpdateTile();
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start() {
         // init var
@@ -89,7 +117,33 @@ public class ChunkGenerator : MonoBehaviour
                 instance.GetComponent<Environment.TileGraphic>().m_position = position;
             }
         }
+        // Instantiate all the left border
+        for (int x = 0; x < horizontalCount; ++x) {
+            for (int z = 0; z < borderChunkSize; ++z) {
+                GameObject instance = Instantiate(borderTilePrefab, rootObject.transform);
+                int trueZ = -z-1;
+                instance.transform.position = new Vector3(x * tileSize, 0, trueZ * tileSize);
+                instance.name = borderTilePrefab.name + "_" + x + "_" + trueZ;
+                graphicTileMap_leftBorder.Add(instance);
+
+                Vector2Int position = new Vector2Int(x, ((z+1)%verticalCount));
+                instance.GetComponent<Environment.TileGraphic>().m_position = position;
+            }
+        }
+        // Instantiate all the right border
+        for (int x = 0; x < horizontalCount; ++x) {
+            for (int z = 0; z < borderChunkSize; ++z) {
+                GameObject instance = Instantiate(borderTilePrefab, rootObject.transform);
+                int trueZ = verticalCount + z;
+                instance.transform.position = new Vector3(x * tileSize, 0, trueZ * tileSize);
+                instance.name = borderTilePrefab.name + "_" + x + "_" + trueZ;
+                graphicTileMap_rightBorder.Add(instance);
                 
+                Vector2Int position = new Vector2Int(x, verticalCount - ((z+1)%verticalCount));
+                instance.GetComponent<Environment.TileGraphic>().m_position = position;
+            }
+        }
+
         // Initialize the tiles
         for (int xChunck = 0; xChunck < horizontalChunkCount; ++xChunck)
         {
@@ -98,6 +152,10 @@ public class ChunkGenerator : MonoBehaviour
                 setChunk(xChunck * chunkSize, zChunck * chunkSize, true);
             }
         }
+        for (int xChunk = 0; xChunk < horizontalChunkCount; ++xChunk)
+            setBorderChunk(xChunk * chunkSize, true, true);
+        for (int xChunk = 0; xChunk < horizontalChunkCount; ++xChunk)
+            setBorderChunk(xChunk * chunkSize, false, true);
     }
 
     // Update is called once per frame
@@ -114,6 +172,11 @@ public class ChunkGenerator : MonoBehaviour
             for (int z = 0; z < verticalChunkCount; ++z) {
                 setChunk(startIndex, z * chunkSize);
             }
+            
+            // For each left border chunk in the column
+            setBorderChunk(startIndex);
+            // For each right border chunk in the column
+            setBorderChunk(startIndex, false);
             
 			// Start index is incremented by one (cycling > horizontal count)
 			startIndex += chunkSize;
