@@ -49,7 +49,7 @@ public class UIInventory : MonoBehaviour {
         {
             backgroudImage.color = Color.HSVToRGB(H, S, 0.5f); //Magic number, don't ask, we don't have time.
         }
-        else if (slot.NumberAvailable > 1 && V < 1.0f)
+        else if (slot.NumberAvailable >= 1 && V < 1.0f)
         {
             backgroudImage.color = Color.HSVToRGB(H, S, 1.0f);
         }

@@ -68,7 +68,7 @@ public class GameManagerCool : MonoBehaviour {
         }
 
         //Trigger notification at the begining to explain the game
-        if (totalBeats == 6) //Show after 3 sec
+        if (totalBeats == 2) //Show after 1 sec
         {
             showNotification.sentString =
                 "Oh no the forest is on fire!\n It's up to you to manage the deployment of the fire fighters !";
@@ -76,13 +76,13 @@ public class GameManagerCool : MonoBehaviour {
             showNotification.Raise();
         }
 
-        if (totalBeats == 26) //Hide after 10 sec (total: 13 sec)
+        if (totalBeats == 16) //Hide after 8 sec
         {
             showNotification.sentBool = false;
             showNotification.Raise();
         }
 
-        if (totalBeats == 30) //Show after 15 sec (total: 15 sec)
+        if (totalBeats == 20) //Show after 10 sec
         {
             showNotification.sentString =
                 "Drag and drop the units and consumable that you have at the bottom of the screen on the map to counter the advance of fire.";
@@ -90,13 +90,13 @@ public class GameManagerCool : MonoBehaviour {
             showNotification.Raise();
         }
 
-        if (totalBeats == 50) //Hide after 10 sec (total: 25 sec)
+        if (totalBeats == 34) //Hide after 17 sec)
         {
             showNotification.sentBool = false;
             showNotification.Raise();
         }
 
-        if (totalBeats == winItemRate - 5) //Show at the first shop display
+        if (totalBeats == winItemRate - 1) //Show at the first shop display
         {
             showNotification.sentString =
                 "Here are some reinforcements. Be careful, you can only make one choice each time.";
@@ -104,7 +104,7 @@ public class GameManagerCool : MonoBehaviour {
             showNotification.Raise();
         }
 
-        if (totalBeats == winItemRate + 5) //Hide after 10 sec
+        if (totalBeats == winItemRate + 1) //Hide just after shop closed
         {
             showNotification.sentBool = false;
             showNotification.Raise();
