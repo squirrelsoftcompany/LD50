@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,9 @@ public class UIEvents : MonoBehaviour
     public GameObject mConfirmationQuitUI;
     public GameObject mRewardUI;
 
+    [Header("GameEvents")]
+    // todo fill this !!!
+    public GameEvent onStartOver;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +87,7 @@ public class UIEvents : MonoBehaviour
     public void onGameOver()
     {
         mGameOverUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
+        onStartOver.Raise();
     }
 
     public void onGameOverOK()

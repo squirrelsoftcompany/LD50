@@ -121,6 +121,13 @@ public class GameManagerCool : MonoBehaviour {
         mGameState = GameState.eMenuStart;
     }
 
+    public void StartOver() {
+        Debug.Log("TODO restart everything!");
+        // todo restart fire
+        // todo show menu
+        // todo restart generation tiles
+    }
+
     public void GameOver() {
         mGameState = GameState.eGameOver;
         _formerTimeScale = Time.timeScale;
