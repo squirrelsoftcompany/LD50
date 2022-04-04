@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4388991727808220946}
   - component: {fileID: 3402478764774963613}
   - component: {fileID: 2485720909123832735}
+  - component: {fileID: 1657326198947695656}
   m_Layer: 0
   m_Name: LumberFighter
   m_TagString: Untagged
@@ -118,6 +119,38 @@ MonoBehaviour:
   fps: 24
   deathEvent: {fileID: 11400000, guid: 6419c62451c10f64785f79abfdde1095, type: 2}
   criticalFireSurvivable: 3
+--- !u!114 &1657326198947695656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339587082465755466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1615980121
+      Data2: 1157931250
+      Data3: 1450972579
+      Data4: -952872447
+    Path: event:/Firefighter
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: Enter
+    Value: 1
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &8339587081564727809
 PrefabInstance:
   m_ObjectHideFlags: 0
