@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6526789362340521652}
   - component: {fileID: 1446956478627287839}
   - component: {fileID: 7893085720588381519}
+  - component: {fileID: -1099900535964019208}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -49,11 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_position: {x: 0, y: 0}
   m_fireGraphic: {fileID: 4499504294759561514}
-  m_forestPrefab: {fileID: 999651086290531577, guid: ee595fe9b5c474b888dfafbc6cacc03c,
+  m_forestPrefab: {fileID: 2445991105373140352, guid: 245138d6e1771e34598065669baa3188,
     type: 3}
   m_plainPrefab: {fileID: 2045516277777759959, guid: 46ebdc09a8f45844eaab67523d8b0550,
     type: 3}
-  m_buildingPrefab: {fileID: 8770644410232577323, guid: 2e750597bdeeb4370bc19d239fe3db3d,
+  m_buildingPrefab: {fileID: 1500446723804206212, guid: cbc260b37e4b43449b233a0c5b680383,
     type: 3}
   m_roadPrefab: {fileID: 3841108948039134184, guid: abe56d36942a4481d9ab6723f971ac8c,
     type: 3}
