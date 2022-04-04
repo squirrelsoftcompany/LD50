@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6776361836483851360}
-  - component: {fileID: 6776361836483851361}
+  - component: {fileID: 6701671032115195497}
   - component: {fileID: 8714552479920027624}
   - component: {fileID: 5659240542869459966}
   m_Layer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6776361836483851361
+--- !u!114 &6701671032115195497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,15 +43,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6776361836483851362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51fc324abcd494495b20322480b142de, type: 3}
+  m_Script: {fileID: 11500000, guid: f13e28bc6ed9048088a5e0ed5daf0ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollingSpeed: 0.4
   tilePrefab: {fileID: 7528226629490284919, guid: 0d48be57e01004e8587e5a86682d8f79,
     type: 3}
-  verticalCount: 30
-  horizontalCount: 70
+  borderTilePrefab: {fileID: 7528226629490284919, guid: 0c9be49df1264f84b86297931537efdf,
+    type: 3}
   tileSize: 1
-  scrollingSpeed: 0.01
+  verticalChunkCount: 3
+  horizontalChunkCount: 8
+  chunkSize: 10
+  borderChunkSize: 35
+  chunkList:
+  - {fileID: 11400000, guid: d6b231260919745ea98ab9fbace8cea5, type: 2}
 --- !u!114 &8714552479920027624
 MonoBehaviour:
   m_ObjectHideFlags: 0
