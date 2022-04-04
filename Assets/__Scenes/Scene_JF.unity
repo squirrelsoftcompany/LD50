@@ -190,6 +190,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 7820738541036952595, guid: 2b2641f7a53e76042abffc7521b5f256,
+        type: 3}
+      propertyPath: hardlLevel
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820738541036952595, guid: 2b2641f7a53e76042abffc7521b5f256,
+        type: 3}
+      propertyPath: tenseLevel
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b2641f7a53e76042abffc7521b5f256, type: 3}
 --- !u!1 &410087039
