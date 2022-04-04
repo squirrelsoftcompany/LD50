@@ -148,7 +148,7 @@ namespace Environment
                 }
             }
 
-            m_world[5][p_maxWorld.y / 2].Intensity = 3;
+            m_world[15][p_maxWorld.y / 2].Intensity = 3;
 
             m_fireIntensityMax = (m_maxWorld.x * m_maxWorld.y) * 4;
         }
