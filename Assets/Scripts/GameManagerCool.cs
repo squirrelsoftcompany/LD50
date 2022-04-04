@@ -12,6 +12,7 @@ public class GameManagerCool : MonoBehaviour {
     [ReadOnly] [SerializeField] private long totalBeats;
     [Range(1, 200)] [SerializeField] private long winItemRate = 60;
     private float _formerTimeScale = 1f;
+
     public enum GameState {
         eMenuStart = 0,
         eIngame,
@@ -39,6 +40,8 @@ public class GameManagerCool : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
         if (_inst == null) _inst = this;
+        _formerTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
         mUIEvents = FindObjectOfType<UIEvents>();
         mGameState = GameState.eMenuStart;
         waitTime = 60f / bpm;
@@ -65,49 +68,52 @@ public class GameManagerCool : MonoBehaviour {
         }
 
         //Trigger notification at the begining to explain the game
-        if (totalBeats == 6)   //Show after 3 sec
+        if (totalBeats == 6) //Show after 3 sec
         {
-            showNotification.sentString = "Oh no the forest is on fire!\n It's up to you to manage the deployment of the fire fighters !";
+            showNotification.sentString =
+                "Oh no the forest is on fire!\n It's up to you to manage the deployment of the fire fighters !";
             showNotification.sentBool = true;
             showNotification.Raise();
         }
 
-        if (totalBeats == 26)  //Hide after 10 sec (total: 13 sec)
+        if (totalBeats == 26) //Hide after 10 sec (total: 13 sec)
         {
             showNotification.sentBool = false;
             showNotification.Raise();
         }
 
-        if (totalBeats == 30)   //Show after 15 sec (total: 15 sec)
+        if (totalBeats == 30) //Show after 15 sec (total: 15 sec)
         {
-            showNotification.sentString = "Drag and drop the units and consumable that you have at the bottom of the screen on the map to counter the advance of fire.";
+            showNotification.sentString =
+                "Drag and drop the units and consumable that you have at the bottom of the screen on the map to counter the advance of fire.";
             showNotification.sentBool = true;
             showNotification.Raise();
         }
 
-        if (totalBeats == 50)  //Hide after 10 sec (total: 25 sec)
+        if (totalBeats == 50) //Hide after 10 sec (total: 25 sec)
         {
             showNotification.sentBool = false;
             showNotification.Raise();
         }
 
-        if (totalBeats == winItemRate -5)   //Show at the first shop display
+        if (totalBeats == winItemRate - 5) //Show at the first shop display
         {
-            showNotification.sentString = "Here are some reinforcements. Be careful, you can only make one choice each time.";
+            showNotification.sentString =
+                "Here are some reinforcements. Be careful, you can only make one choice each time.";
             showNotification.sentBool = true;
             showNotification.Raise();
         }
 
-        if (totalBeats == winItemRate+5)  //Hide after 10 sec
+        if (totalBeats == winItemRate + 5) //Hide after 10 sec
         {
             showNotification.sentBool = false;
             showNotification.Raise();
         }
-
     }
 
     public void Play() {
         mGameState = GameState.eIngame;
+        Time.timeScale = _formerTimeScale;
         StartCoroutine(beats());
     }
 
