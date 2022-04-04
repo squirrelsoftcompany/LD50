@@ -52,3 +52,9 @@ MonoBehaviour:
   - Characteristics: {fileID: 11400000, guid: e63011f19960f66458493af81f2c68da, type: 2}
     Number: 8
     Profitability: 2
+  - Characteristics: {fileID: 11400000, guid: f0ef10de83317154f912dc3d4eb90e75, type: 2}
+    Number: 1
+    Profitability: 2
+  - Characteristics: {fileID: 11400000, guid: 15924692d8ee4044e929a987e4c33fcc, type: 2}
+    Number: 1
+    Profitability: 3
