@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3247f8512b0c2434d8139883b6de2303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_onScoreUpdated: {fileID: 0}
+  m_onScoreUpdated: {fileID: 11400000, guid: 7789cb4f68c43f74fa97a596a31e4d14, type: 2}
 --- !u!114 &4709125705067449531
 MonoBehaviour:
   m_ObjectHideFlags: 0
