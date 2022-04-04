@@ -18,9 +18,11 @@ public class SignalArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Camera cam = Camera.main;
         Transform lArrowTransform = mArrowSignal.GetComponent<Transform>();
-
-        if (mFarmEggRd && mFarmEggRd.isVisible)
+        Vector3 lCivilScreenSpaceVec3 = cam.WorldToScreenPoint(this.GetComponent<Transform>().position);
+        Vector2 lCivilScreenSpaceVec2 = new Vector2(lCivilScreenSpaceVec3.x, lCivilScreenSpaceVec3.y);
+        if (checkInFrustrum(lCivilScreenSpaceVec2, cam))
         {
             mArrowSignal.SetActive(false);
         }
@@ -30,7 +32,6 @@ public class SignalArrow : MonoBehaviour
         }
 
         Transform lCivilTransform = this.GetComponent<Transform>();
-        Camera cam = Camera.main;
         Vector3 arrowScreenPos = cam.WorldToScreenPoint(mArrowSignal.GetComponent<Transform>().position);   //x1,y1
         Vector3 civilScreenPos = cam.WorldToScreenPoint(this.GetComponent<Transform>().position);           //x2,y2
 
@@ -105,5 +106,11 @@ public class SignalArrow : MonoBehaviour
         float T = ((x1 - x3) * (y3-y4) - (y1-y3) * (x3-x4)) / ((x1-x2) * (y3-y4) - (y1-y2) * (x3-x4));
         Vector2 P = new Vector2( x1 + T * (x2-x1), y1 + T * (y2 - y1));
         return P;
+    }
+
+    bool checkInFrustrum(Vector2 pPoint, Camera cam)
+    {
+        //Check valid intersections
+        return (pPoint.x > 0 && pPoint.x <= cam.pixelWidth && pPoint.y > 0 && pPoint.y <= cam.pixelHeight);
     }
 }
