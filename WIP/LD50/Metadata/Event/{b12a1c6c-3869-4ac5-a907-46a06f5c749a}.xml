@@ -36,6 +36,10 @@
 			<destination>{47a287e4-7ee4-4f6d-a34a-01fb234e2c69}</destination>
 			<destination>{8afe821b-06f4-48c8-a724-e4df890e4aa2}</destination>
 			<destination>{8e1cb176-7cc3-4911-a405-93c43b6ee6b5}</destination>
+			<destination>{114f48e7-da4d-4c9a-ab2a-5c83824c7280}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{4303bc88-39e7-45b9-9864-0aebf3f1ebd6}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{e0bae8b5-b3a3-46e8-8854-8be2081dfb17}">
@@ -71,6 +75,8 @@
 			<destination>{dbc39665-16ba-44bd-bc25-9869390b4831}</destination>
 			<destination>{c6c24857-8546-4142-bbae-e36cc92ffb73}</destination>
 			<destination>{918a0d06-bc05-4a8b-a6c3-061c15261c9c}</destination>
+			<destination>{e617ecf0-66dd-49b7-a141-a605703d1a93}</destination>
+			<destination>{a8ba5dd7-399d-46fd-9664-9454810e2bea}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{9cfd0805-9603-434c-801c-7b5a84345db5}</destination>
@@ -115,6 +121,15 @@
 		</relationship>
 		<relationship name="preset">
 			<destination>{b3400903-8f15-46a3-8142-f4e9c787177e}</destination>
+		</relationship>
+	</object>
+	<object class="ParameterProxy" id="{114f48e7-da4d-4c9a-ab2a-5c83824c7280}">
+		<relationship name="modules">
+			<destination>{e617ecf0-66dd-49b7-a141-a605703d1a93}</destination>
+			<destination>{a8ba5dd7-399d-46fd-9664-9454810e2bea}</destination>
+		</relationship>
+		<relationship name="preset">
+			<destination>{91293862-d166-4ed6-96eb-3807d6a59811}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{33402245-562d-4900-8ba7-afa9714bd875}">
@@ -208,6 +223,25 @@
 		</property>
 		<relationship name="audioFile">
 			<destination>{f104e190-9897-4361-b1cd-12cc539ded08}</destination>
+		</relationship>
+	</object>
+	<object class="CommandSound" id="{e617ecf0-66dd-49b7-a141-a605703d1a93}">
+		<property name="start">
+			<value>1</value>
+		</property>
+		<property name="commandType">
+			<value>3</value>
+		</property>
+		<relationship name="commandTarget">
+			<destination>{91293862-d166-4ed6-96eb-3807d6a59811}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{a8ba5dd7-399d-46fd-9664-9454810e2bea}">
+		<property name="start">
+			<value>1</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{2e6f5475-3985-45dd-8c51-e965bbbb31d3}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{9cfd0805-9603-434c-801c-7b5a84345db5}">
