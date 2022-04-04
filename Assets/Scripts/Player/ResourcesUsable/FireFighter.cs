@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Player.ResourcesUsable {
 public class FireFighter : HumanFighter {
-    private static readonly int Death = Animator.StringToHash("Death");
     [SerializeField] private int criticalFireSurvivable = 5;
 
     protected override void applyEffect() {

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace Environment
@@ -34,7 +33,7 @@ namespace Environment
         {
             m_fireGraphic.UpdateFire(tileData.Intensity);
 
-            Player.IMortal[] mortals = GetComponentsInChildren<Player.IMortal>();
+            IMortal[] mortals = GetComponentsInChildren<IMortal>();
             foreach (var mortal in mortals)
                 mortal.newFireIntensity(tileData.Intensity);
         }
