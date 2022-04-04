@@ -11,7 +11,7 @@ public class LumberFighter : HumanFighter {
             ref var tile = ref World.Inst[vector2Int];
             if (tile.m_type != Environment.Tile.TileType.eForest) continue;
             tile.m_type = Environment.Tile.TileType.ePlain;
-            TileGraphic tileGraphic = GenerateTiles.Inst.get(vector2Int);
+            TileGraphic tileGraphic = ChunkGenerator.Inst.get(vector2Int);
             tileGraphic.UpdateTile();
         }
     }
