@@ -4933,7 +4933,7 @@ MonoBehaviour:
   distanceFlyingAfter: 15
   maxFlyingBeats: 20
   maxManeuverBeats: 5
-  fullManeuverAngle: 0.7853982
+  fullManeuverAngle: 1.5707964
   radiusManeuverBack: 15
 --- !u!1001 &8452869845815446385
 PrefabInstance:

@@ -6,10 +6,9 @@ using System;
 using System.Collections;
 using Environment;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player.ResourcesUsable {
-public class CanadairDelay : Resource {
+public class Canadair : Resource {
     private ParticleSystem _particle;
     [SerializeField] private float distanceFlyingBefore = 60;
     [SerializeField] private float distanceFlyingAfter = 30;
@@ -17,7 +16,9 @@ public class CanadairDelay : Resource {
     [SerializeField] private int maxManeuverBeats = 3;
 
     [Tooltip("Angle for the arc of a circle after the effect (in radian)")] [SerializeField]
-    private float fullManeuverAngle = Mathf.PI / 4;
+    private float fullManeuverAngle = Mathf.PI / 2;
+
+    private float eulerAngle() => fullManeuverAngle * Mathf.Rad2Deg;
 
     [SerializeField] private float radiusManeuverBack = 1f;
 
@@ -61,15 +62,15 @@ public class CanadairDelay : Resource {
         var maneuverSec = 60f * maneuverBeats / GameManagerCool.Inst.bpm;
 
         var thetaIncrements = fullManeuverAngle * spf / maneuverSec;
+        var angle = new Vector3(0f, 0f, 0f);
+        var angleIncrement = -eulerAngle() * spf / maneuverSec;
         var theta = 0f;
         while (theta < fullManeuverAngle) {
             theta += thetaIncrements;
-
             var newPos = new Vector3(-radiusManeuverBack * Mathf.Sin(theta),
                 transform.localPosition.y, radiusManeuverBack * (Mathf.Cos(theta) - 1));
-            // Local pos to global pos 
-            var lookAtPos = transform.TransformVector(newPos);
-            transform.LookAt(lookAtPos);
+            angle.y += angleIncrement;
+            transform.localEulerAngles = angle;
             transform.localPosition = newPos;
             yield return new WaitForSeconds(spf);
         }
