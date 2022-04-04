@@ -35,7 +35,6 @@ public class UIEvents : MonoBehaviour
     public GameObject mRewardUI;
 
     [Header("GameEvents")]
-    // todo fill this !!!
     public GameEvent onStartOver;
 
     // Start is called before the first frame update

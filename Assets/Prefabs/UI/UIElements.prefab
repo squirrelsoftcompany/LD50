@@ -66,6 +66,7 @@ MonoBehaviour:
   mInGameUI: {fileID: 4705563003680570782}
   mConfirmationQuitUI: {fileID: 1327500821601566671}
   mRewardUI: {fileID: 4705563002865616771}
+  onStartOver: {fileID: 11400000, guid: ec96dd2ffd4a70c4797b00ce8be438f5, type: 2}
 --- !u!1001 &128826638641296511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1113,11 +1114,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemRewardUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4099029940326833152, guid: cfb08b839d1a4004996dba248d171868,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4099029940326833164, guid: cfb08b839d1a4004996dba248d171868,
         type: 3}
