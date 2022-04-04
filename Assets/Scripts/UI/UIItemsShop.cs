@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameEventSystem;
 using Shop;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,23 +14,14 @@ public class UIItemsShop : MonoBehaviour {
     [SerializeField] private int startX = -200;
     [SerializeField] private int intervalX = 200;
     [SerializeField] private int y = 300;
-
-    public bool show = false;
-
+    [SerializeField] private GameEvent showChoices;
+    
     private float _formerTimeScale = 1f;
+
     // Start is called before the first frame update
     private void Start() {
         _canvas = GetComponent<Canvas>();
         _shop = GetComponent<ItemsShop>();
-    }
-
-    private void Update()
-    {
-            if(show)
-            {
-                showShop(show);
-                show = false;
-            }
     }
 
     public void showShop(bool show) {
@@ -39,8 +31,7 @@ public class UIItemsShop : MonoBehaviour {
             // take 2 or 3 choices
             List<ShopChoice> choices = _shop.fetchChoices();
             _uiSlots = new List<GameObject>();
-            for (var i = 0; i < choices.Count; i++)
-            {
+            for (var i = 0; i < choices.Count; i++) {
                 var shopChoice = choices[i];
                 var ui = Instantiate(shopUI, transform);
                 ui.GetComponent<RectTransform>().anchoredPosition =
@@ -48,6 +39,7 @@ public class UIItemsShop : MonoBehaviour {
                 changeImageAndText(ui, shopChoice);
                 _uiSlots.Add(ui);
             }
+
             Debug.Log($"available choices are {choices}");
         }
         else {
@@ -57,11 +49,9 @@ public class UIItemsShop : MonoBehaviour {
         _canvas.enabled = show;
     }
 
-    private void changeImageAndText(GameObject uiSlot, ShopChoice shopChoice)
-    {
+    private void changeImageAndText(GameObject uiSlot, ShopChoice shopChoice) {
         var itemClick = uiSlot.GetComponentInChildren<ItemClick>();
-        if (itemClick.item == null)
-        {
+        if (itemClick.item == null) {
             itemClick.gameObject.GetComponent<Image>().sprite = shopChoice.Characteristics.sprite;
             itemClick.item = shopChoice;
             itemClick.onClick += onClick;
@@ -70,16 +60,16 @@ public class UIItemsShop : MonoBehaviour {
         uiSlot.GetComponentInChildren<Text>().text = $"{shopChoice.Number}";
     }
 
-    private void onClick(object sender, ItemClick.ClickEventArg e)
-    {
+    private void onClick(object sender, ItemClick.ClickEventArg e) {
         _shop.chooseShopPack(e.item);
-        showShop(false); //Yes I know, raise an event is surly a better idea but I'm lazy
-        for (int i = 0; i < _uiSlots.Count; i++)
-        {
+        showChoices.sentBool = false;
+        showChoices.Raise();
+        // showShop(false); //Yes I know, raise an event is surly a better idea but I'm lazy
+        for (int i = 0; i < _uiSlots.Count; i++) {
             Destroy(_uiSlots[i].gameObject);
         }
-            _uiSlots.Clear();
-    }
 
+        _uiSlots.Clear();
     }
+}
 }

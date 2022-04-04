@@ -223,7 +223,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4099029940326833152}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -353,4 +353,4 @@ MonoBehaviour:
   startX: -200
   intervalX: 200
   y: 300
-  show: 0
+  showChoices: {fileID: 11400000, guid: d7f7e35a4deab044daca3c79d0b92186, type: 2}
