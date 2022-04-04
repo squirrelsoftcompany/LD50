@@ -59,8 +59,13 @@ public class ChunkGenerator : MonoBehaviour
                 Environment.TileGraphic script = instance.GetComponent<Environment.TileGraphic>();
 
                 // World update
-                Environment.World.Inst[script.m_position].m_type = (z == roadZIndex_1 || z == roadZIndex_2) ? Environment.Tile.TileType.eRoad : chunk.GetTile(x % chunkSize, z % chunkSize);
-                if (! firstInitialization) Environment.World.Inst[script.m_position].Intensity = 0;
+                ref Environment.Tile tile = ref Environment.World.Inst[script.m_position];
+                tile.m_type = (z == roadZIndex_1 || z == roadZIndex_2) ? Environment.Tile.TileType.eRoad : chunk.GetTile(x % chunkSize, z % chunkSize);
+                if (!firstInitialization)
+                {
+                    tile.Intensity = 0;
+                    tile.ComputeHasCivilian();
+                }
 
                 // Instance update
                 if (! firstInitialization) instance.transform.Translate(new Vector3(horizontalCount, 0, 0));

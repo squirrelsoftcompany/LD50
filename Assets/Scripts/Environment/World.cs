@@ -9,9 +9,11 @@ namespace Environment
     public struct Tile
     {
         #region Attributes
+        const float c_buildingHasCivilianPercentage = 1f/6;
 
         private int m_intensity;
         private int m_nextIntensity;
+        private bool m_hasCivilian;
 
         public int Intensity
         {
@@ -21,6 +23,7 @@ namespace Environment
 
         public int NextIntensity => m_nextIntensity;
 
+        public bool HasCivilian => m_hasCivilian;
 
         public enum TileType
         {
@@ -33,7 +36,17 @@ namespace Environment
         }
         public TileType m_type;
 
-        public Tile(int p_intensity = 0, TileType p_type = TileType.eNone) { m_intensity = p_intensity; m_nextIntensity = p_intensity; m_type = p_type; }
+        public Tile(int p_intensity = 0, TileType p_type = TileType.eNone) {
+            m_intensity = p_intensity;
+            m_nextIntensity = p_intensity;
+            m_type = p_type;
+            m_hasCivilian = false;
+        }
+
+        public bool ComputeHasCivilian()
+        {
+            return m_hasCivilian = m_type == TileType.eBuilding && Random.value < c_buildingHasCivilianPercentage;
+        }
 
         #endregion
 

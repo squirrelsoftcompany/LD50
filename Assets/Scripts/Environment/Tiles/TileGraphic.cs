@@ -17,6 +17,9 @@ namespace Environment
         public GameObject m_roadPrefab;
         public GameObject m_lakePrefab;
 
+        [Header("Civilian")]
+        public GameObject m_civilian;
+
 	    private GameObject m_graphicInstance = null;
 
         public ref Tile tileData => ref World.Inst[m_position];
@@ -62,6 +65,13 @@ namespace Environment
             }
 
             UpdateFire();
+            UpdateCivilian();
+        }
+
+        protected virtual void UpdateCivilian()
+        {
+            if (m_civilian)
+                m_civilian.SetActive(tileData.HasCivilian);
         }
     }
 }
