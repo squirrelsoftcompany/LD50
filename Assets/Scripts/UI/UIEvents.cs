@@ -37,6 +37,7 @@ public class UIEvents : MonoBehaviour
     [Header("GameEvents")]
     public GameEvent onStartOver;
     public GameEvent m_launchAnimationEvent;
+    public GameEvent mStart;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,7 @@ public class UIEvents : MonoBehaviour
     {
         mInGameUI.SetActive(true);
         GameManagerCool.Inst.Play();
+        mStart.Raise();
     }
 
     public void onMenuQuit()

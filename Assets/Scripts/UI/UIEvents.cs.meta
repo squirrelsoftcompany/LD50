@@ -3,7 +3,24 @@ guid: db1006fef969418458ddd9ed5cc17989
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mMenuStart: {instanceID: 0}
+  - mMenuQuit: {instanceID: 0}
+  - mGlobalMusic: {instanceID: 0}
+  - mGlobalQuit: {instanceID: 0}
+  - mQuitYes: {instanceID: 0}
+  - mQuitNo: {instanceID: 0}
+  - mGameoverOK: {instanceID: 0}
+  - mAnnotationText: {instanceID: 0}
+  - mMenuUI: {instanceID: 0}
+  - mNotificationUI: {instanceID: 0}
+  - mGameOverUI: {instanceID: 0}
+  - mInGameUI: {instanceID: 0}
+  - mConfirmationQuitUI: {instanceID: 0}
+  - mRewardUI: {instanceID: 0}
+  - onStartOver: {instanceID: 0}
+  - m_launchAnimationEvent: {instanceID: 0}
+  - mStart: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
