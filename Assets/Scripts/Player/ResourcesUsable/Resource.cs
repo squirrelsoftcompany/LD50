@@ -44,6 +44,8 @@ public abstract class Resource : MonoBehaviour, ITick {
         set => _tileGraphic = value;
     }
 
+    public event EventHandler<InventoryEventArgs> OnLost;
+
     public event EventHandler<InventoryEventArgs> ReturnToInventory;
     private MeshRenderer _meshRenderer;
     private Material _material;
@@ -128,6 +130,10 @@ public abstract class Resource : MonoBehaviour, ITick {
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    protected void loseSadly() {
+        OnLost?.Invoke(this, new InventoryEventArgs(characteristics));
     }
 
     protected virtual IEnumerator showInCooldown() {

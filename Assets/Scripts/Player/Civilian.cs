@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Player {
 public class Civilian : MonoBehaviour, IMortal {
     [SerializeField] private GameEvent deathEvent;
+    [SerializeField] private GameEvent gameOver;
     [SerializeField] private int survivableFire = 2;
     private int _currentFireExposed;
     private int _amountFireExposed;
@@ -16,7 +17,9 @@ public class Civilian : MonoBehaviour, IMortal {
 
     public void doDie() {
         deathEvent.sentString = "Civilian";
+        deathEvent.sentBool = true;
         deathEvent.Raise();
+        gameOver.Raise();
     }
 
     public int criticalAmountSurvivable() {

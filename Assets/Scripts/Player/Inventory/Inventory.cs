@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour {
 
     public event EventHandler<InventorySlotEventArgs> InventoryChanged;
     [SerializeField] private GameEvent showChoiceDialog;
+    [SerializeField] private GameEvent showResourceLostDialog;
 
     [SerializeField] private List<ResourceCharacteristics> allResourceTypes;
 
@@ -44,7 +45,16 @@ public class Inventory : MonoBehaviour {
         showChoiceDialog.sentBool = false;
         showChoiceDialog.Raise();
     }
-    
+
+    private void onResourceLost(object sender, InventoryEventArgs resourceType) {
+        var indexSlot = _items.FindIndex(slot => slot.Characteristics == resourceType.item);
+        var inventorySlot = _items[indexSlot];
+        inventorySlot.NumberTotal--;
+        InventoryChanged?.Invoke(this, new InventorySlotEventArgs(inventorySlot, indexSlot));
+        showResourceLostDialog.sentBool = true;
+        showResourceLostDialog.Raise();
+    }
+
     public void choosePack(ShopChoice choice) {
         addItem(choice.Characteristics, choice.Number);
     }
@@ -65,6 +75,7 @@ public class Inventory : MonoBehaviour {
         var resource = newResource.GetComponent<Resource>();
         resource.Tile = tile;
         resource.ReturnToInventory += onReturnToInventory;
+        resource.OnLost += onResourceLost;
     }
 
     private void onReturnToInventory(object sender, InventoryEventArgs resourceType) {

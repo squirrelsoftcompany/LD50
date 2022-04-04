@@ -23,6 +23,7 @@ public abstract class HumanFighter : Resource, IMortal {
         if(intensity ==0) return;
         amountFireExposed += intensity;
         if (amountFireExposed >= criticalAmountSurvivable()) {
+            loseSadly();
             animator.SetTrigger(Death);
         }
     }
