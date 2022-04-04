@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7519569471016454216}
   - component: {fileID: 7047415620531022913}
-  - component: {fileID: 4155531934903990706}
   - component: {fileID: 3053443459330169804}
   m_Layer: 0
   m_Name: Overlay
@@ -77,14 +76,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4155531934903990706
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3392375113356272432}
-  m_Enabled: 1
 --- !u!114 &3053443459330169804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,4 +404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bfc5093657124781804993a20c20043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  busVolume: 10
+  sfxBusVolume: 0
+  musiqueBusVolume: 0
+  masterBusVolume: 1
