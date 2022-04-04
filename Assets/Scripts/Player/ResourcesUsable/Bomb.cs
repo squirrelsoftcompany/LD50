@@ -18,6 +18,10 @@ public class Bomb : Resource {
         _animator = GetComponent<Animator>();
     }
 
+    protected override IEnumerator spawnAnimation() {
+        yield return null;
+    }
+
     protected override IEnumerator showActive() {
         _animator.SetTrigger(Boom);
         yield return null;
