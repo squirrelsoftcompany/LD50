@@ -37,6 +37,9 @@ namespace Environment
                 m_firePivot.transform.localScale = Vector3.zero;
             else
                 m_firePivot.transform.localScale = Vector3.one * data.Intensity / 4f;
+            Player.IMortal[] mortals = GetComponentsInChildren<Player.IMortal>();
+            foreach (var mortal in mortals)
+                mortal.newFireIntensity(tileData.Intensity);
         }
 
         public virtual void UpdateTile()
