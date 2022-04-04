@@ -7,7 +7,7 @@ namespace Environment
     public class TileGraphic : MonoBehaviour
     {
         public Vector2Int m_position;
-        public GameObject m_firePivot;
+        public FireGraphic m_fireGraphic;
         
         [Header("Prefabs")]
         // The prefabs to instanciated
@@ -32,11 +32,8 @@ namespace Environment
 
         public virtual void UpdateFire()
         {
-            Tile data = tileData;
-            if (data.Intensity <= 0)
-                m_firePivot.transform.localScale = Vector3.zero;
-            else
-                m_firePivot.transform.localScale = Vector3.one * data.Intensity / 4f;
+            m_fireGraphic.UpdateFire(tileData.Intensity);
+
             Player.IMortal[] mortals = GetComponentsInChildren<Player.IMortal>();
             foreach (var mortal in mortals)
                 mortal.newFireIntensity(tileData.Intensity);
