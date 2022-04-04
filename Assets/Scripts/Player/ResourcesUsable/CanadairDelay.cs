@@ -6,14 +6,22 @@ using System;
 using System.Collections;
 using Environment;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.ResourcesUsable {
 public class CanadairDelay : Resource {
     private ParticleSystem _particle;
     [SerializeField] private float distanceFlyingBefore = 60;
     [SerializeField] private float distanceFlyingAfter = 30;
-    [SerializeField] private int maxFlyingTime = 20;
-    [SerializeField] private float fps = 24f;
+    [SerializeField] private int maxFlyingBeats = 20;
+    [SerializeField] private int maxManeuverBeats = 3;
+
+    [Tooltip("Angle for the arc of a circle after the effect (in radian)")] [SerializeField]
+    private float fullManeuverAngle = Mathf.PI / 4;
+
+    [SerializeField] private float radiusManeuverBack = 1f;
+
+    private float spf => 1f / fps;
 
     protected override void Awake() {
         base.Awake();
@@ -30,30 +38,55 @@ public class CanadairDelay : Resource {
     }
 
     protected override IEnumerator spawnAnimation() {
-        transform.localPosition = Vector3.left * distanceFlyingBefore;
+        transform.localPosition = Vector3.right * distanceFlyingBefore;
         // transform.Translate(Vector3.left * distanceFlyingBefore);
-        var spf = 1f / fps;
-        var speed = distanceFlyingBefore /
-                    (Math.Min(Characteristics.spawnWait, maxFlyingTime) * fps);
 
-        while (transform.localPosition.x < 0) {
-            transform.localPosition += Vector3.right * speed;
+        var lineBeats = Characteristics.spawnWait - 0.5f; // account for de-synchronization of beats
+        var lineSec = 60f * lineBeats / GameManagerCool.Inst.bpm;
+        var xIncrements = distanceFlyingBefore * spf / lineSec;
+        while (transform.localPosition.x > 0) {
+            transform.localPosition += Vector3.left * xIncrements;
             yield return new WaitForSeconds(spf);
         }
+
+        Debug.Log($"Finished spawn animation at {transform.localPosition}");
     }
 
     protected override IEnumerator showInCooldown() {
         var emissionModule = _particle.emission;
         emissionModule.enabled = false;
-        var spf = 1f / fps;
-        var speed = distanceFlyingAfter / (Math.Min(Characteristics.cooldown, maxFlyingTime) * fps);
-        while (transform.localPosition.x < distanceFlyingAfter) {
-            transform.localPosition+= Vector3.right * speed;
-            // transform.Translate(Vector3.right * speed);
+
+        // maneuver time (draw a quarter of a circle in the air)
+        var maneuverBeats = Math.Min(maxManeuverBeats, Characteristics.cooldown);
+        var maneuverSec = 60f * maneuverBeats / GameManagerCool.Inst.bpm;
+
+        var thetaIncrements = fullManeuverAngle * spf / maneuverSec;
+        var theta = 0f;
+        while (theta < fullManeuverAngle) {
+            theta += thetaIncrements;
+
+            var newPos = new Vector3(-radiusManeuverBack * Mathf.Sin(theta),
+                transform.localPosition.y, radiusManeuverBack * (Mathf.Cos(theta) - 1));
+            // Local pos to global pos 
+            var lookAtPos = transform.TransformVector(newPos);
+            transform.LookAt(lookAtPos);
+            transform.localPosition = newPos;
             yield return new WaitForSeconds(spf);
         }
 
-        Debug.Log("finished");
+        // now for the last line
+        if (maneuverBeats >= Characteristics.cooldown) yield return null;
+
+        var lineBeats = Math.Min(Characteristics.cooldown - maneuverBeats,
+            Math.Max(0, maxFlyingBeats - maneuverBeats));
+        var lineSec = 60f * lineBeats / GameManagerCool.Inst.bpm;
+        var zIncrements = distanceFlyingAfter * spf / lineSec;
+        while (transform.localPosition.z < distanceFlyingAfter) {
+            transform.localPosition += Vector3.back * zIncrements;
+            yield return new WaitForSeconds(spf);
+        }
+
+        Debug.Log($"Target local position {distanceFlyingAfter}");
     }
 
     protected override IEnumerator showActive() {

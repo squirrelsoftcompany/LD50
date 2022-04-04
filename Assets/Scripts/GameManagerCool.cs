@@ -4,7 +4,7 @@ using GameEventSystem;
 using UnityEngine;
 
 public class GameManagerCool : MonoBehaviour {
-    [SerializeField] private int bpm;
+    [SerializeField] public int bpm;
     [SerializeField] private GameEvent tickTack;
     [SerializeField] private GameEvent showChoiceItem;
     private float waitTime;
