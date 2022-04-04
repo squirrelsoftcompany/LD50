@@ -21,6 +21,7 @@ public class LumberFighter : HumanFighter {
     public override void doDie() {
         deathEvent.sentString = "Lumber fighter";
         deathEvent.Raise();
+        Destroy(gameObject);
     }
 }
 }

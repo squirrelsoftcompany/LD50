@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour {
         var inventorySlot = _items[indexSlot];
         inventorySlot.NumberTotal--;
         InventoryChanged?.Invoke(this, new InventorySlotEventArgs(inventorySlot, indexSlot));
-        showResourceLostDialog.sentBool = true;
+        showResourceLostDialog.sentString = resourceType.item.name;
         showResourceLostDialog.Raise();
     }
 

@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showChoiceDialog: {fileID: 11400000, guid: d7f7e35a4deab044daca3c79d0b92186, type: 2}
+  showResourceLostDialog: {fileID: 11400000, guid: 0ca2f01401214864d8e55c7460ae8ee4,
+    type: 2}
   allResourceTypes:
   - {fileID: 11400000, guid: 5c96163eac0ca8749822084a3e58c126, type: 2}
   - {fileID: 11400000, guid: e63011f19960f66458493af81f2c68da, type: 2}

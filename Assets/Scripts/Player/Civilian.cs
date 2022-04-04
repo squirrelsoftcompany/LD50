@@ -20,6 +20,7 @@ public class Civilian : MonoBehaviour, IMortal {
         deathEvent.sentBool = true;
         deathEvent.Raise();
         gameOver.Raise();
+        Destroy(gameOver);
     }
 
     public int criticalAmountSurvivable() {
