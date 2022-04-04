@@ -1,3 +1,4 @@
+using Attributes;
 using GameEventSystem;
 using UnityEngine;
 
@@ -9,12 +10,13 @@ public class Civilian : MonoBehaviour, IMortal {
     [SerializeField] private int survivableFire = 2;
     private int _currentFireExposed;
     private int _amountFireExposed;
-    private int beingSaved;
+    [ReadOnly] [SerializeField] private int beingSaved;
     private Animator _animator;
     private static readonly int Death = Animator.StringToHash("Death");
     [SerializeField] private int saveThreshold = 7;
     public bool saved => beingSaved >= saveThreshold;
     private bool dead;
+    private static readonly int Save = Animator.StringToHash("Save");
 
     private void Awake() {
         _animator = GetComponentInChildren<Animator>();
@@ -43,7 +45,7 @@ public class Civilian : MonoBehaviour, IMortal {
     }
 
     private void startAnimSaved() {
-        _animator.SetTrigger("Save");
+        _animator.SetTrigger(Save);
     }
 
     // todo call this from the animation
