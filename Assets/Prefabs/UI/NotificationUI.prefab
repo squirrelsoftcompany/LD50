@@ -210,6 +210,8 @@ GameObject:
   - component: {fileID: 6936435788224491121}
   - component: {fileID: 6936435788224491120}
   - component: {fileID: 6936435788224491123}
+  - component: {fileID: 7761598096729303040}
+  - component: {fileID: 900296813153742091}
   m_Layer: 5
   m_Name: NotificationUI
   m_TagString: Untagged
@@ -299,3 +301,74 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7761598096729303040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6936435788224491122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2ef1ffd03a864cbca588995683751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: Show / Hide notification
+    gameEvent: {fileID: 11400000, guid: 27248b3b7aa002444990a982f52a1340, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 900296813153742091}
+          m_TargetAssemblyTypeName: UI.UINotification, Assembly-CSharp
+          m_MethodName: textChange
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 900296813153742091}
+          m_TargetAssemblyTypeName: UI.UINotification, Assembly-CSharp
+          m_MethodName: show
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &900296813153742091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6936435788224491122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5100540d0a4c2c54fa2010556a54c05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mNotificationText: {fileID: 6936435788207236470}
+  mNotificationAnimation: {fileID: 1685617047}

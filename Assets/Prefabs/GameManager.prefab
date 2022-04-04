@@ -47,5 +47,6 @@ MonoBehaviour:
   bpm: 120
   tickTack: {fileID: 11400000, guid: 606ef6c18dd1d4d40b12d7907b29c4e5, type: 2}
   showChoiceItem: {fileID: 11400000, guid: d7f7e35a4deab044daca3c79d0b92186, type: 2}
+  showNotification: {fileID: 11400000, guid: 27248b3b7aa002444990a982f52a1340, type: 2}
   totalBeats: 0
   winItemRate: 60

@@ -7,6 +7,7 @@ public class GameManagerCool : MonoBehaviour {
     [SerializeField] public int bpm;
     [SerializeField] private GameEvent tickTack;
     [SerializeField] private GameEvent showChoiceItem;
+    [SerializeField] private GameEvent showNotification;
     private float waitTime;
     [ReadOnly] [SerializeField] private long totalBeats;
     [Range(1, 200)] [SerializeField] private long winItemRate = 60;
@@ -29,7 +30,7 @@ public class GameManagerCool : MonoBehaviour {
 
     private void Awake() {
 #if UNITY_EDITOR
-        if (showChoiceItem == null || tickTack == null) {
+        if (showNotification == null || showChoiceItem == null || tickTack == null) {
             Debug.LogError("The GameManager should have the field completed");
         }
 #endif
@@ -63,6 +64,47 @@ public class GameManagerCool : MonoBehaviour {
             showChoiceItem.sentBool = true;
             showChoiceItem.Raise();
         }
+
+        //Trigger notification at the begining to explain the game
+        if (totalBeats == 6)   //Show after 3 sec
+        {
+            showNotification.sentString = "Oh no the forest is on fire!\n It's up to you to manage the deployment of the fire fighters !";
+            showNotification.sentBool = true;
+            showNotification.Raise();
+        }
+
+        if (totalBeats == 26)  //Hide after 10 sec (total: 13 sec)
+        {
+            showNotification.sentBool = false;
+            showNotification.Raise();
+        }
+
+        if (totalBeats == 30)   //Show after 15 sec (total: 15 sec)
+        {
+            showNotification.sentString = "Drag and drop the units and consumable that you have at the bottom of the screen on the map to counter the advance of fire.";
+            showNotification.sentBool = true;
+            showNotification.Raise();
+        }
+
+        if (totalBeats == 50)  //Hide after 10 sec (total: 25 sec)
+        {
+            showNotification.sentBool = false;
+            showNotification.Raise();
+        }
+
+        if (totalBeats == winItemRate)   //Show at the first shop display
+        {
+            showNotification.sentString = "Here are some reinforcements. Be careful, you can only make one choice each time.";
+            showNotification.sentBool = true;
+            showNotification.Raise();
+        }
+
+        if (totalBeats == winItemRate+10)  //Hide after 10 sec
+        {
+            showNotification.sentBool = false;
+            showNotification.Raise();
+        }
+
     }
 
     public void Play() {
