@@ -54,7 +54,7 @@ MonoBehaviour:
     Profitability: 2
   - Characteristics: {fileID: 11400000, guid: f0ef10de83317154f912dc3d4eb90e75, type: 2}
     Number: 1
-    Profitability: 2
+    Profitability: 0
   - Characteristics: {fileID: 11400000, guid: 15924692d8ee4044e929a987e4c33fcc, type: 2}
     Number: 1
-    Profitability: 3
+    Profitability: 0

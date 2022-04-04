@@ -7,7 +7,7 @@ using Player.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI {
+namespace UI { 
 public class UIInventory : MonoBehaviour {
     private Inventory _inventory;
     private List<GameObject> _uiSlots;
@@ -39,6 +39,19 @@ public class UIInventory : MonoBehaviour {
             itemDrag.gameObject.GetComponent<Image>().sprite = slot.Characteristics.sprite;
             itemDrag.Characteristics = slot.Characteristics;
             itemDrag.onSpawn += onSpawn;
+        }
+
+        //Disable slot if no item available
+        float H, S, V;
+        Image backgroudImage = itemDrag.gameObject.transform.parent.GetComponentInParent<Image>();
+        Color.RGBToHSV(backgroudImage.color, out H, out S, out V);
+        if (slot.NumberTotal < 1 || slot.NumberAvailable <1)
+        {
+            backgroudImage.color = Color.HSVToRGB(H, S, 0.5f); //Magic number, don't ask, we don't have time.
+        }
+        else if (slot.NumberAvailable > 1 && V < 1.0f)
+        {
+            backgroudImage.color = Color.HSVToRGB(H, S, 1.0f);
         }
 
         var text = $"{slot.NumberAvailable}";
