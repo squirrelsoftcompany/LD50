@@ -14,6 +14,9 @@
         },
         {
             "m_Id": "17515c06d07c4e9ea7201f8fe8d6ba0d"
+        },
+        {
+            "m_Id": "59bc77afab6b43f883d64ca4921f77f0"
         }
     ],
     "m_Keywords": [],
@@ -137,11 +140,28 @@
         },
         {
             "m_Id": "bf1c9e80a64d44918662fe944118f334"
+        },
+        {
+            "m_Id": "1394da8c0853480faabdd324e635f588"
         }
     ],
     "m_GroupDatas": [],
     "m_StickyNoteDatas": [],
     "m_Edges": [
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "1394da8c0853480faabdd324e635f588"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "69183a62485b4b629cd73eb28a821dbd"
+                },
+                "m_SlotId": 0
+            }
+        },
         {
             "m_OutputSlot": {
                 "m_Node": {
@@ -955,6 +975,41 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "1394da8c0853480faabdd324e635f588",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -513.9517211914063,
+            "y": 130.15660095214845,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "557a5dd3996941448aea30ad1b5a80b5"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "59bc77afab6b43f883d64ca4921f77f0"
+    }
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "17515c06d07c4e9ea7201f8fe8d6ba0d",
@@ -1646,6 +1701,9 @@
         },
         {
             "m_Id": "17515c06d07c4e9ea7201f8fe8d6ba0d"
+        },
+        {
+            "m_Id": "59bc77afab6b43f883d64ca4921f77f0"
         }
     ]
 }
@@ -2181,6 +2239,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "557a5dd3996941448aea30ad1b5a80b5",
+    "m_Id": 0,
+    "m_DisplayName": "watertable",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "567eb1808ce94aec9259823358796aef",
     "m_Id": 0,
@@ -2260,6 +2333,33 @@
         "y": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "59bc77afab6b43f883d64ca4921f77f0",
+    "m_Guid": {
+        "m_GuidSerialized": "46ea882b-2127-432f-9929-f7407d6c26e9"
+    },
+    "m_Name": "watertable",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "watertable",
+    "m_DefaultReferenceName": "_watertable",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
