@@ -180,13 +180,13 @@ MonoBehaviour:
   m_firePivot: {fileID: 5765857664970564620}
   m_forestPrefab: {fileID: 999651086290531577, guid: ee595fe9b5c474b888dfafbc6cacc03c,
     type: 3}
-  m_plainPrefab: {fileID: 7016277582672982863, guid: 177a26a1071254cd2a462cc15101b5da,
+  m_plainPrefab: {fileID: 2045516277777759959, guid: 46ebdc09a8f45844eaab67523d8b0550,
     type: 3}
   m_buildingPrefab: {fileID: 8770644410232577323, guid: 2e750597bdeeb4370bc19d239fe3db3d,
     type: 3}
   m_roadPrefab: {fileID: 3841108948039134184, guid: abe56d36942a4481d9ab6723f971ac8c,
     type: 3}
-  m_lakePrefab: {fileID: 8209259022002362626, guid: ee65a389b17a942b7ba2dd037b666f5a,
+  m_lakePrefab: {fileID: 2798194724152522237, guid: b17d53d10c1ba584eb65dd19f972160e,
     type: 3}
 --- !u!114 &7893085720588381519
 MonoBehaviour:
