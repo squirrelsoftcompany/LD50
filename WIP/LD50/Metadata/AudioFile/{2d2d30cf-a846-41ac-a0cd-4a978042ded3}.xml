@@ -2,10 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{2d2d30cf-a846-41ac-a0cd-4a978042ded3}">
 		<property name="assetPath">
-			<value>Plane_motor.mp3</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>FX/Plane_motor.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

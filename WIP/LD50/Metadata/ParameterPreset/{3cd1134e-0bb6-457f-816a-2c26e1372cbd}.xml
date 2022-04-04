@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{3cd1134e-0bb6-457f-816a-2c26e1372cbd}">
+		<property name="name">
+			<value>DropWater</value>
+		</property>
+		<relationship name="folder">
+			<destination>{dcb4d382-bb70-44ff-9760-552c04e9114a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{60f2a0d8-147c-4f50-941e-e6415299554c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{60f2a0d8-147c-4f50-941e-e6415299554c}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

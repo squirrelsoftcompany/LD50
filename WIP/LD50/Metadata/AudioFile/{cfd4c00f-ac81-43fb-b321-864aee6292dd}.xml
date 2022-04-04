@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{cfd4c00f-ac81-43fb-b321-864aee6292dd}">
+		<property name="assetPath">
+			<value>FX/Chop_wood.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>32</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.8720000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a6c07cec-2680-4b34-9392-15de5eedb532}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -2,10 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{d62a5d41-9977-4869-b9f7-8c6cd79aea20}">
 		<property name="assetPath">
-			<value>Abbey_melo+12.aif</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>Musique/Abbey_melo+12.aif</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

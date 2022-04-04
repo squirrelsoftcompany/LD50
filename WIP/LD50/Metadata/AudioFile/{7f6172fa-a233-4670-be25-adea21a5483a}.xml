@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7f6172fa-a233-4670-be25-adea21a5483a}">
+		<property name="assetPath">
+			<value>FX/Water_canadair.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.0563265306122447</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a6c07cec-2680-4b34-9392-15de5eedb532}</destination>
+		</relationship>
+	</object>
+</objects>

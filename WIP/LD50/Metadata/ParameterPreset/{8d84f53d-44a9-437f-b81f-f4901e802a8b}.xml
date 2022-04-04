@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{8d84f53d-44a9-437f-b81f-f4901e802a8b}">
+		<property name="name">
+			<value>StartBomb</value>
+		</property>
+		<relationship name="folder">
+			<destination>{dcb4d382-bb70-44ff-9760-552c04e9114a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c57fc656-5a3b-4b04-8b29-686d07bd15ef}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c57fc656-5a3b-4b04-8b29-686d07bd15ef}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

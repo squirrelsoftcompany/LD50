@@ -2,10 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{5523b7f1-e466-46a4-a476-9524cb53d0c4}">
 		<property name="assetPath">
-			<value>Basse.aif</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>Musique/Basse.aif</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

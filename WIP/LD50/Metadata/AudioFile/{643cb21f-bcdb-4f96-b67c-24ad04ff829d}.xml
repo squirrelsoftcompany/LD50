@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{643cb21f-bcdb-4f96-b67c-24ad04ff829d}">
 		<property name="assetPath">
-			<value>Pouet.wav</value>
+			<value>FX/Pouet.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
