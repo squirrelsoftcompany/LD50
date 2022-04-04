@@ -339,8 +339,8 @@ namespace Environment
         public HashSet<Vector2Int> neighbours(Vector2Int position, float radius) {
             var sqrRadius = radius * radius;
             var res = new HashSet<Vector2Int>();
-            for (var x = (int)(position.x - radius); x < position.x + radius; x++) {
-                for (var y = (int)(position.y - radius); y < position.y + radius; y++) {
+            for (var x = (int)(position.x - radius); x <= position.x + radius; x++) {
+                for (var y = (int)(position.y - radius); y <= position.y + radius; y++) {
                     if (Math.Pow(position.x - x, 2) + Math.Pow(position.y - y, 2) > sqrRadius)
                         continue;
                     res.Add(new Vector2Int(x, y));
