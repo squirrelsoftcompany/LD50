@@ -57,7 +57,7 @@ public class ChunkGenerator : MonoBehaviour
         int zEnd = zStart + chunkSize;
 
         // Get random chunck
-        int chunkIndex = (int)Random.Range(0.0f, chunkList.Count);
+        int chunkIndex = Random.Range(0, chunkList.Count);
         ChunkTile chunk = chunkList[chunkIndex];
 
         for (int x = xStart; x < xEnd; ++x) {
