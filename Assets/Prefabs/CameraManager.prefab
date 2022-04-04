@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_onIntroductionFinishedEvent: {fileID: 11400000, guid: 81e4ad0285e37e14da3679c8d5a33650,
     type: 2}
+  m_carEventEmitter: {fileID: 8275657884052589072}
 --- !u!114 &8275657884250934088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +505,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9b405f6ac8f535e47afd3cf4433a1ef8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -546,11 +547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8275657884250934090}
     m_Modifications:
-    - target: {fileID: 2169268065768814119, guid: 2b2641f7a53e76042abffc7521b5f256,
-        type: 3}
-      propertyPath: PlayEvent
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3742282327359874355, guid: 2b2641f7a53e76042abffc7521b5f256,
         type: 3}
       propertyPath: m_RootOrder
@@ -645,8 +641,8 @@ MonoBehaviour:
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
+    m_Style: 3
+    m_Time: 4
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
