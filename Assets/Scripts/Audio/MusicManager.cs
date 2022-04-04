@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public float chillLevel = 0.0f;
     public float tenseLevel = 0.3f;
-    public float hardlLevel = 0.5f;
+    public float hardLevel = 0.5f;
 
     private FMODUnity.StudioEventEmitter emitter;
     private Environment.World world;
