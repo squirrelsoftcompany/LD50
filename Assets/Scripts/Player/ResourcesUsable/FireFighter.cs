@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Environment;
 using UnityEngine;
 
@@ -16,6 +17,12 @@ public class FireFighter : HumanFighter {
         }
         saveCivilians();
     }
+    
+    protected override IEnumerator showActive() {
+        fmod.SetParameter("DropWater", 1f);
+        yield return base.showActive();
+    }
+
 
     public override int criticalAmountSurvivable() => criticalFireSurvivable;
     public override void doDie() {

@@ -2,6 +2,7 @@
 // 
 // Created by jessi on 2022-04-04
 
+using System.Collections;
 using Environment;
 using GameEventSystem;
 using UnityEngine;
@@ -9,6 +10,7 @@ using UnityEngine;
 namespace Player.ResourcesUsable {
 public abstract class HumanFighter : Resource, IMortal {
     protected Animator animator;
+    protected FMODUnity.StudioEventEmitter fmod;
     protected int amountFireExposed;
     private bool hasLost;
     private static readonly int Death = Animator.StringToHash("Death");
@@ -18,6 +20,7 @@ public abstract class HumanFighter : Resource, IMortal {
     protected override void Awake() {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
+        fmod = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     public void newFireIntensity(int intensity) {
@@ -29,6 +32,11 @@ public abstract class HumanFighter : Resource, IMortal {
             animator.SetTrigger(Death);
             hasLost = true;
         }
+    }
+
+    protected override IEnumerator showInCooldown() {
+        fmod.SetParameter("Exit", 1f);
+        yield return base.showInCooldown();
     }
 
     protected void saveCivilians() {

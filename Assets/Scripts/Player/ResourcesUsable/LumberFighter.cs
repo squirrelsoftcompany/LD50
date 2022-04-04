@@ -1,3 +1,4 @@
+using System.Collections;
 using Environment;
 using UnityEngine;
 
@@ -15,6 +16,12 @@ public class LumberFighter : HumanFighter {
             tileGraphic.UpdateTile();
         }
         saveCivilians();
+    }
+
+    
+    protected override IEnumerator showActive() {
+        fmod.SetParameter("ChopChop", 1f);
+        yield return base.showActive();
     }
 
     public override int criticalAmountSurvivable() => criticalFireSurvivable;
