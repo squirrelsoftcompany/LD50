@@ -352,5 +352,5 @@ MonoBehaviour:
   shopUI: {fileID: 292899852065875210, guid: 455d2fcc6e328324d839c6883c5982c0, type: 3}
   startX: -200
   intervalX: 200
-  y: 300
+  y: 50
   showChoices: {fileID: 11400000, guid: d7f7e35a4deab044daca3c79d0b92186, type: 2}
