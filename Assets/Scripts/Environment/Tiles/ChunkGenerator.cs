@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Environment;
 
 public class ChunkGenerator : MonoBehaviour
 {
@@ -21,8 +23,15 @@ public class ChunkGenerator : MonoBehaviour
     public int borderChunkSize = 30;
     // The list of chunk
     public List<ChunkTile> chunkList = new List<ChunkTile>();
-    
 
+    private static ChunkGenerator instance = null;
+    public static ChunkGenerator Inst => instance;
+
+    public TileGraphic get(Vector2Int p_index)
+    {
+        return graphicTileMap.Select(obj => obj.GetComponent<TileGraphic>())
+            .FirstOrDefault(tile => tile.m_position == p_index);
+    }
 
     // The root object of all tiles
 	private GameObject rootObject = null;
@@ -98,6 +107,13 @@ public class ChunkGenerator : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        // Singleton
+        if (instance != null)
+        {
+            Debug.LogError("Generate Tiles should be a singleton!");
+        }
+        instance = this;
+
         // init var
         verticalCount = verticalChunkCount * chunkSize;
         horizontalCount = horizontalChunkCount * chunkSize;
