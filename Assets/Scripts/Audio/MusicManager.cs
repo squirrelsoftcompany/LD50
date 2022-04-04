@@ -21,7 +21,7 @@ public class MusicManager : MonoBehaviour
         float fire = world.m_worldIsOnFire;
         int value = 1;
 
-        if(fire > hardlLevel) {
+        if(fire > hardLevel) {
             value = 3;
         } else if(fire > tenseLevel) {
             value = 2;
