@@ -49,7 +49,7 @@ MonoBehaviour:
   scrollingSpeed: 0.4
   tilePrefab: {fileID: 7528226629490284919, guid: 0d48be57e01004e8587e5a86682d8f79,
     type: 3}
-  borderTilePrefab: {fileID: 7528226629490284919, guid: 0c9be49df1264f84b86297931537efdf,
+  borderTilePrefab: {fileID: 8016265564664363726, guid: 6029a839a6af9344dbc0dc8b44072a76,
     type: 3}
   tileSize: 1
   verticalChunkCount: 3
