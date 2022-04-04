@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705563002810285379}
   - component: {fileID: 5328799996169281079}
+  - component: {fileID: 262032406747335157}
   m_Layer: 0
   m_Name: UIElements
   m_TagString: Untagged
@@ -67,6 +68,53 @@ MonoBehaviour:
   mConfirmationQuitUI: {fileID: 1327500821601566671}
   mRewardUI: {fileID: 4705563002865616771}
   onStartOver: {fileID: 11400000, guid: ec96dd2ffd4a70c4797b00ce8be438f5, type: 2}
+  m_launchAnimationEvent: {fileID: 11400000, guid: ad245fafca48c1941a28028ebf42243c,
+    type: 2}
+--- !u!114 &262032406747335157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705563002810285378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2ef1ffd03a864cbca588995683751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: IntroFinished -> AfterIntroduction
+    gameEvent: {fileID: 11400000, guid: 81e4ad0285e37e14da3679c8d5a33650, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5328799996169281079}
+          m_TargetAssemblyTypeName: UIEvents, Assembly-CSharp
+          m_MethodName: AfterIntroduction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &128826638641296511
 PrefabInstance:
   m_ObjectHideFlags: 0
