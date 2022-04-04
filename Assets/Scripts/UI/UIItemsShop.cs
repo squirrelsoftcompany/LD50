@@ -16,7 +16,8 @@ public class UIItemsShop : MonoBehaviour {
 
     public bool show = false;
 
-        // Start is called before the first frame update
+    private float _formerTimeScale = 1f;
+    // Start is called before the first frame update
     private void Start() {
         _canvas = GetComponent<Canvas>();
         _shop = GetComponent<ItemsShop>();
@@ -33,6 +34,7 @@ public class UIItemsShop : MonoBehaviour {
 
     public void showShop(bool show) {
         if (show) {
+            _formerTimeScale = Time.timeScale;
             Time.timeScale = 0;
             // take 2 or 3 choices
             List<ShopChoice> choices = _shop.fetchChoices();
@@ -49,7 +51,7 @@ public class UIItemsShop : MonoBehaviour {
             Debug.Log($"available choices are {choices}");
         }
         else {
-            Time.timeScale = 1;
+            Time.timeScale = _formerTimeScale;
         }
 
         _canvas.enabled = show;
