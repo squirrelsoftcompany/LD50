@@ -16,9 +16,9 @@ MonoBehaviour:
   actionType: 0
   spawnWait: 5
   activeDuration: 4
-  cooldown: 50
-  rangeOfAction: 10
-  efficiency: 5
+  cooldown: 80
+  rangeOfAction: 5
+  efficiency: 2
   sprite: {fileID: 21300000, guid: 69e359804a6872743941ae8f0cfa60b3, type: 3}
   prefab: {fileID: 6248311184929083844, guid: 00746b364a49a284a95cd693841799b3, type: 3}
   ignoreLayer:

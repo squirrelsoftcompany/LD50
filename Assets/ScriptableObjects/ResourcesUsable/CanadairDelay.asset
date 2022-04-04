@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a723d8e5ef48ff8e69f2065313394e, type: 3}
   m_Name: CanadairDelay
   m_EditorClassIdentifier: 
-  consumable: 0
+  consumable: 1
   actionType: 0
-  spawnWait: 5
+  spawnWait: 10
   activeDuration: 4
-  cooldown: 70
+  cooldown: 20
   rangeOfAction: 10
   efficiency: 7
   sprite: {fileID: 21300000, guid: f29bc935233994648963dbfbefb6fcc2, type: 3}
