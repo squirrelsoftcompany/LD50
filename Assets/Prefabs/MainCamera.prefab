@@ -128,10 +128,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3742282327359874355}
   - component: {fileID: 3742282327359874352}
-  - component: {fileID: 3742282327359874353}
   - component: {fileID: 3742282327359874354}
   - component: {fileID: 3742282327359874357}
-  - component: {fileID: 400368549252545044}
+  - component: {fileID: 6441890224411000902}
+  - component: {fileID: 2169268065768814119}
+  - component: {fileID: 7820738541036952595}
+  - component: {fileID: 3179943336753233219}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -198,14 +200,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3742282327359874353
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3742282327359874366}
-  m_Enabled: 1
 --- !u!114 &3742282327359874354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
---- !u!114 &400368549252545044
+--- !u!114 &6441890224411000902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,3 +261,93 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
   ListenerNumber: -1
+--- !u!114 &2169268065768814119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742282327359874366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 999726663
+      Data2: 1098734340
+      Data3: 511830961
+      Data4: 286395867
+    Path: event:/Main
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &7820738541036952595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742282327359874366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e2578b799d04b90b92a6ecd6b76fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chillLevel: 0
+  tenseLevel: 0.1
+  hardlLevel: 0.3
+--- !u!114 &3179943336753233219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742282327359874366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2ef1ffd03a864cbca588995683751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: Fire Intensify
+    gameEvent: {fileID: 11400000, guid: b43b4ca9ae5702043b6ec810c471ee33, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7820738541036952595}
+          m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+          m_MethodName: fireIntensity
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
