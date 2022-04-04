@@ -463,6 +463,72 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].name
+      value: Game over (because of fire)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].gameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 454d107102cdeae4ba8829bfc9d47404,
+        type: 2}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].responseForSentBool.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2034137350}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Pop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695677876165309827, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+        type: 3}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4705563002810285378, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
         type: 3}
       propertyPath: m_Name
@@ -666,6 +732,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9feee43fc614f455ba10a659e2d95230, type: 3}
+--- !u!95 &2034137350 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4142085717300279092, guid: 812c5df0efaa6c34d8041ba9c39bd46d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1730959102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2497137737212238835
 PrefabInstance:
   m_ObjectHideFlags: 0
