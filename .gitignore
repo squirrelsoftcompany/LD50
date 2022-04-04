@@ -83,3 +83,4 @@ fmod_editor.log
 Cache/
 Cache.meta
 .cache/
+.unsaved/

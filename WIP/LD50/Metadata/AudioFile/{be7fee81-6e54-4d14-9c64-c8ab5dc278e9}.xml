@@ -3,7 +3,7 @@
 	<object class="AudioFile" id="{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}">
 		<property name="note" />
 		<property name="assetPath">
-			<value>LD50_bip.aif</value>
+			<value>Batterie_trans.aif</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
