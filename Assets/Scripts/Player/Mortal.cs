@@ -7,5 +7,6 @@ public interface IMortal {
     public void doDie();
     public int criticalAmountSurvivable();
     
+    public void newFireIntensity(int intensity);
 }
 }

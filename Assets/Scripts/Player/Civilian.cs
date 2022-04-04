@@ -30,6 +30,11 @@ public class Civilian : MonoBehaviour, IMortal, ITick {
             _animator.SetTrigger(Death);
         }
     }
+    
+    public void newFireIntensity(int intensity)
+    {
+        throw new System.NotImplementedException();
+    }
 
     private void OnTriggerStay(Collider other) {
         if (other.CompareTag("Fire")) {
