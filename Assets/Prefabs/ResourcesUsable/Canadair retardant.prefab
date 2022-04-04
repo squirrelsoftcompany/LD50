@@ -4824,6 +4824,7 @@ GameObject:
   - component: {fileID: 7972826314274206506}
   - component: {fileID: 2359903344203174569}
   - component: {fileID: 5819781528515483494}
+  - component: {fileID: -4565325691413232457}
   m_Layer: 0
   m_Name: Canadair retardant
   m_TagString: Untagged
@@ -4935,6 +4936,36 @@ MonoBehaviour:
   maxManeuverBeats: 5
   fullManeuverAngle: 1.5707964
   radiusManeuverBack: 15
+--- !u!114 &-4565325691413232457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452869844500699449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -530425640
+      Data2: 1145749664
+      Data3: 788295300
+      Data4: -2033292840
+    Path: event:/Plane
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 1
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 50
 --- !u!1001 &8452869845815446385
 PrefabInstance:
   m_ObjectHideFlags: 0
