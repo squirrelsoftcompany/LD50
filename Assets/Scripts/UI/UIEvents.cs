@@ -80,6 +80,7 @@ public class UIEvents : MonoBehaviour
         {
             mInGameUI.SetActive(false);
             mMenuUI.SetActive(true);
+            onStartOver.Raise();
             GameManagerCool.Inst.Menu();
         }
         else if (GameManagerCool.Inst.mGameState == GameManagerCool.GameState.eMenuStart)

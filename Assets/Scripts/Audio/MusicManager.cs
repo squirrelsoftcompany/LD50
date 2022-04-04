@@ -35,14 +35,11 @@ public class MusicManager : MonoBehaviour
         emitter.SetParameter("Fire", 1);
         emitter.SetParameter("StartFire", 1);
         emitter.SetParameter("StartGame", 1);
-        emitter.SetParameter("GameOver", 0);
     }
 
-    // Start the music !!!
+    // Restart all
     public void goToMenu() {
-        emitter.SetParameter("Fire", 1);
         emitter.SetParameter("StartFire", 0);
-        emitter.SetParameter("StartGame", 0);
-        emitter.SetParameter("GameOver", 1);
+        emitter.SetParameter("Restart", 1);
     }
 }
