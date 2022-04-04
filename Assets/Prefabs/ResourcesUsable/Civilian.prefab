@@ -108,6 +108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7311141259018434250}
   - component: {fileID: 6599620073476168315}
+  - component: {fileID: 5338056340350986358}
+  - component: {fileID: 5789011490023685730}
   m_Layer: 7
   m_Name: Civilian
   m_TagString: Untagged
@@ -146,6 +148,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mArrowSignal: {fileID: 4753197565001933202}
   mFarmEggRd: {fileID: 1804801035196085993}
+--- !u!114 &5338056340350986358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311233841032038393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee88bf4f1d1a3a44b37b19d2f8581b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathEvent: {fileID: 11400000, guid: 6419c62451c10f64785f79abfdde1095, type: 2}
+  survivableFire: 2
+--- !u!114 &5789011490023685730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311233841032038393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2ef1ffd03a864cbca588995683751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: Tick
+    gameEvent: {fileID: 11400000, guid: 606ef6c18dd1d4d40b12d7907b29c4e5, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5338056340350986358}
+          m_TargetAssemblyTypeName: Player.Civilian, Assembly-CSharp
+          m_MethodName: tick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1081964282074103172
 PrefabInstance:
   m_ObjectHideFlags: 0

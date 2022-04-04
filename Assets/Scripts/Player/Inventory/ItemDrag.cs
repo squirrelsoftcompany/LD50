@@ -8,7 +8,7 @@ using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Player {
+namespace Player.Inventory {
 public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler {
     public ResourceCharacteristics Characteristics { get; set; }
 

@@ -1,7 +1,10 @@
 using Environment;
+using UnityEngine;
 
 namespace Player.ResourcesUsable {
-public class LumberFighter : Resource {
+public class LumberFighter : HumanFighter {
+    [SerializeField] private int criticalFireSurvivable = 3;
+
     // Start is called before the first frame update
     protected override void applyEffect() {
         foreach (var vector2Int in neighbours) {
@@ -11,6 +14,13 @@ public class LumberFighter : Resource {
             TileGraphic tileGraphic = GenerateTiles.Inst.get(vector2Int);
             tileGraphic.UpdateTile();
         }
+    }
+
+    public override int criticalAmountSurvivable() => criticalFireSurvivable;
+
+    public override void doDie() {
+        deathEvent.sentString = "Lumber fighter";
+        deathEvent.Raise();
     }
 }
 }

@@ -115,7 +115,9 @@ MonoBehaviour:
   outlineMaxWidth: 10
   spawningColor: {r: 1, g: 0.69411767, b: 0.18431373, a: 1}
   cooldownColor: {r: 0, g: 1, b: 1, a: 1}
-  nbFramesPerSecond: 24
+  fps: 24
+  deathEvent: {fileID: 11400000, guid: 6419c62451c10f64785f79abfdde1095, type: 2}
+  criticalFireSurvivable: 5
 --- !u!1001 &9051467830866412684
 PrefabInstance:
   m_ObjectHideFlags: 0

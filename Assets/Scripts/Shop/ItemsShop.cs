@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Attributes;
 using Player;
+using Player.Inventory;
 using ScriptableObjects;
 using UnityEngine;
 

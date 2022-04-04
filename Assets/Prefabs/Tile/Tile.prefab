@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 8006233446458912268}
   m_Layer: 3
   m_Name: FirePivot
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,10 +1,12 @@
 using System;
-using System.Collections.Generic;
 using Environment;
 using UnityEngine;
 
 namespace Player.ResourcesUsable {
-public class FireFighter : Resource {
+public class FireFighter : HumanFighter {
+    private static readonly int Death = Animator.StringToHash("Death");
+    [SerializeField] private int criticalFireSurvivable = 5;
+
     protected override void applyEffect() {
         foreach (var vector2Int in neighbours) {
             ref var neighbor = ref World.Inst[vector2Int];
@@ -13,6 +15,12 @@ public class FireFighter : Resource {
                 (int)Math.Clamp(neighbor.Intensity - Characteristics.efficiency,
                     World.minFireIntensity, World.maxFireIntensity);
         }
+    }
+
+    public override int criticalAmountSurvivable() => criticalFireSurvivable;
+    public override void doDie() {
+        deathEvent.sentString = "Fire fighter";
+        deathEvent.Raise();
     }
 }
 }

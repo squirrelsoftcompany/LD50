@@ -7,7 +7,7 @@ using ScriptableObjects;
 using Shop;
 using UnityEngine;
 
-namespace Player {
+namespace Player.Inventory {
 public class Inventory : MonoBehaviour {
     private readonly List<InventorySlot> _items = new();
     public List<InventorySlot> Items => _items;

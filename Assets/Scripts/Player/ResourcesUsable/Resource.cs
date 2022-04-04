@@ -9,12 +9,13 @@ using System.Linq;
 using Environment;
 using GameEventSystem;
 using JetBrains.Annotations;
+using Player.Inventory;
 using ScriptableObjects;
 using UnityEngine;
 
 namespace Player.ResourcesUsable {
 [RequireComponent(typeof(Outline), typeof(GameEventListener))]
-public abstract class Resource : MonoBehaviour {
+public abstract class Resource : MonoBehaviour, ITick {
     protected ResourceState state = ResourceState.Spawning;
     [SerializeField] private ResourceCharacteristics characteristics;
     [SerializeField] private Material transparent;
@@ -87,7 +88,7 @@ public abstract class Resource : MonoBehaviour {
     }
 
     [UsedImplicitly]
-    public void tick() {
+    public virtual void tick() {
         // todo call this
         Debug.Log("tick!");
         WaitBeforeNextState--;

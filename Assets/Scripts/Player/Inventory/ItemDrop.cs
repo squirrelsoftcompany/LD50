@@ -5,7 +5,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Player {
+namespace Player.Inventory {
 public class ItemDrop : MonoBehaviour, IDropHandler {
     public void OnDrop(PointerEventData eventData) {
         var invPanel = transform as RectTransform;

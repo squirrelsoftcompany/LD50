@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 107022504596487388}
   - component: {fileID: 107022504596487390}
   - component: {fileID: 107022504596487391}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4832,7 +4832,7 @@ GameObject:
   - component: {fileID: 107022504914655086}
   - component: {fileID: 107022504914655080}
   - component: {fileID: 107022504914655081}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Beat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9709,9 +9709,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 107022505763285606}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
