@@ -145,7 +145,7 @@ namespace Environment
             instance = this;
         }
 
-        public void IgniteWorld(Vector2Int p_maxWorld)
+        public void SetupWorld(Vector2Int p_maxWorld)
         {
             m_maxWorld = p_maxWorld;
             m_world = null;
@@ -161,9 +161,28 @@ namespace Environment
                 }
             }
 
-            m_world[15][p_maxWorld.y / 2].Intensity = 3;
+            m_fireIntensityMax = (m_maxWorld.x * m_maxWorld.y) * maxFireIntensity;
+        }
 
-            m_fireIntensityMax = (m_maxWorld.x * m_maxWorld.y) * 4;
+        public void ExtinguishWorld()
+        {
+            for (int x = 0; x < m_maxWorld.x; x++)
+            {
+                for (int y = 0; y < m_maxWorld.y; y++)
+                {
+                    m_world[x][y].Intensity = 0;
+                }
+            }
+
+            m_worldIsOnFire = 0;
+            m_fireFrontLine = 0;
+            m_intensificationDone.Raise();
+        }
+
+        public void IgniteWorld(Vector2Int p_fireDeparture)
+        {
+            this[p_fireDeparture - new Vector2Int(m_physicalBeginning, 0)].Intensity = 3;
+            m_intensificationDone.Raise();
         }
 
         // Update is called once per frame

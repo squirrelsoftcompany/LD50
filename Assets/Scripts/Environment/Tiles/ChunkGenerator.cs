@@ -121,7 +121,7 @@ public class ChunkGenerator : MonoBehaviour
         roadZIndex_2 = roadZIndex_1 + 1;
 
         // Init the world
-        Environment.World.Inst.IgniteWorld(new Vector2Int(horizontalCount, verticalCount));
+        World.Inst.SetupWorld(new Vector2Int(horizontalCount, verticalCount));
         // Get the root object and translate to 0,0
         rootObject = GameObject.Find("/Tile Generator");
         rootObject.transform.Translate(new Vector3(horizontalCount / 2.0f, 0, verticalCount / 2.0f));
@@ -177,6 +177,16 @@ public class ChunkGenerator : MonoBehaviour
             setBorderChunk(xChunk * chunkSize, true, true);
         for (int xChunk = 0; xChunk < horizontalChunkCount; ++xChunk)
             setBorderChunk(xChunk * chunkSize, false, true);
+    }
+
+    public void ResetWorld()
+    {
+        World.Inst.ExtinguishWorld();
+    }
+
+    public void IgniteWorld()
+    {
+        World.Inst.IgniteWorld(new Vector2Int(15, (verticalCount / 2) - 1));
     }
 
     // Update is called once per frame

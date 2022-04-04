@@ -59,7 +59,8 @@ public class GenerateTiles : MonoBehaviour {
         }
 
         instance = this;
-		Environment.World.Inst.IgniteWorld(new Vector2Int(horizontalCount, verticalCount));
+		World.Inst.SetupWorld(new Vector2Int(horizontalCount, verticalCount));
+		World.Inst.IgniteWorld(new Vector2Int(15, (verticalCount/2) - 1));
 		graphicTileMap = new List<GameObject>();
 
 		// Get the root object and translate to 0,0
