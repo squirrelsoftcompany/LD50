@@ -14,6 +14,7 @@ public class LumberFighter : HumanFighter {
             TileGraphic tileGraphic = ChunkGenerator.Inst.get(vector2Int);
             tileGraphic.UpdateTile();
         }
+        saveCivilians();
     }
 
     public override int criticalAmountSurvivable() => criticalFireSurvivable;

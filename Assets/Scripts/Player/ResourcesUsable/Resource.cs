@@ -38,6 +38,8 @@ public abstract class Resource : MonoBehaviour, ITick {
     protected HashSet<Vector2Int> neighbours =>
         World.Inst.neighbours(Tile.m_position, Characteristics.rangeOfAction);
 
+    protected HashSet<Vector2Int> neighboursCivilians =>
+        World.Inst.neighbours(Tile.m_position, Characteristics.rangeCivilians);
 
     public TileGraphic Tile {
         get => _tileGraphic;

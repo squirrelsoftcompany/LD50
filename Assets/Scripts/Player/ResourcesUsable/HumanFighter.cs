@@ -2,6 +2,7 @@
 // 
 // Created by jessi on 2022-04-04
 
+using Environment;
 using GameEventSystem;
 using UnityEngine;
 
@@ -27,6 +28,15 @@ public abstract class HumanFighter : Resource, IMortal {
             loseSadly();
             animator.SetTrigger(Death);
             hasLost = true;
+        }
+    }
+
+    protected void saveCivilians() {
+        foreach (var vector2Int in neighboursCivilians) {
+            ref var neighbor = ref World.Inst[vector2Int];
+            if (!neighbor.HasCivilian) continue;
+            var tileGraphic = ChunkGenerator.Inst.get(vector2Int);
+            tileGraphic.m_civilian.GetComponent<Civilian>().save();
         }
     }
 

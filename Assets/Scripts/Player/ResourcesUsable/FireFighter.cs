@@ -15,6 +15,7 @@ public class FireFighter : HumanFighter {
                 (int)Math.Clamp(neighbor.Intensity - Characteristics.efficiency,
                     World.minFireIntensity, World.maxFireIntensity);
         }
+        saveCivilians();
     }
 
     public override int criticalAmountSurvivable() => criticalFireSurvivable;

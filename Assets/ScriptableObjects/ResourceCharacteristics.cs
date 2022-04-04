@@ -18,5 +18,6 @@ public class ResourceCharacteristics : ScriptableObject {
     public Sprite sprite;
     public GameObject prefab;
     public LayerMask ignoreLayer;
+    public float rangeCivilians = 1f;
 }
 }
