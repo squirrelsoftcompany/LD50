@@ -4883,6 +4883,7 @@ GameObject:
   - component: {fileID: 4494571630923863991}
   - component: {fileID: 3353432855831604127}
   - component: {fileID: 324559828869906489}
+  - component: {fileID: 5969214190969923017}
   m_Layer: 0
   m_Name: Bomb 1
   m_TagString: Untagged
@@ -5008,7 +5009,37 @@ MonoBehaviour:
   outlineMaxWidth: 10
   spawningColor: {r: 1, g: 0.5576531, b: 0.015686274, a: 1}
   cooldownColor: {r: 0, g: 1, b: 1, a: 1}
-  nbFramesPerSecond: 24
+  fps: 24
+--- !u!114 &5969214190969923017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950711721794078144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1964710353
+      Data2: 1152967135
+      Data3: 1759349937
+      Data4: 729476526
+    Path: event:/Bomb
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5950711722105974564
 GameObject:
   m_ObjectHideFlags: 0

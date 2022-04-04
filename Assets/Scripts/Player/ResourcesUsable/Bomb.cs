@@ -11,10 +11,12 @@ namespace Player.ResourcesUsable {
 [RequireComponent(typeof(Animator))]
 public class Bomb : Resource {
     private Animator _animator;
+    private FMODUnity.StudioEventEmitter fmod;
     private static readonly int Boom = Animator.StringToHash("Boom");
 
     protected new void Awake() {
         base.Awake();
+        fmod = GetComponent<FMODUnity.StudioEventEmitter>();
         _animator = GetComponent<Animator>();
     }
 
@@ -24,6 +26,7 @@ public class Bomb : Resource {
 
     protected override IEnumerator showActive() {
         _animator.SetTrigger(Boom);
+        fmod.SetParameter("StartBomb", 1f);
         yield return null;
     }
 
