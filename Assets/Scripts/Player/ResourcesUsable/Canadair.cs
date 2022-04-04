@@ -49,8 +49,6 @@ public class Canadair : Resource {
             transform.localPosition += Vector3.left * xIncrements;
             yield return new WaitForSeconds(spf);
         }
-
-        Debug.Log($"Finished spawn animation at {transform.localPosition}");
     }
 
     protected override IEnumerator showInCooldown() {
@@ -86,8 +84,6 @@ public class Canadair : Resource {
             transform.localPosition += Vector3.back * zIncrements;
             yield return new WaitForSeconds(spf);
         }
-
-        Debug.Log($"Target local position {distanceFlyingAfter}");
     }
 
     protected override IEnumerator showActive() {
