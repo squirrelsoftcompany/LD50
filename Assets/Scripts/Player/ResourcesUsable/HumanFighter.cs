@@ -30,9 +30,5 @@ public abstract class HumanFighter : Resource, IMortal {
 
     public abstract void doDie();
 
-    public void newFireIntensity(int intensity)
-    {
-        throw new System.NotImplementedException();
-    }
 }
 }
