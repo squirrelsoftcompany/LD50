@@ -290,9 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e2578b799d04b90b92a6ecd6b76fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chillLevel: 0
   tenseLevel: 0.1
-  hardlLevel: 0.3
+  hardLevel: 0.5
 --- !u!114 &3179943336753233219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,11 +352,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 452680923
-      Data2: 1216751494
-      Data3: -1608435282
-      Data4: -489957214
-    Path: event:/Fire Ambient
+      Data1: 336826400
+      Data2: 1157565554
+      Data3: 805073070
+      Data4: 186822910
+    Path: event:/Fire
   Event: 
   PlayEvent: 1
   StopEvent: 0
