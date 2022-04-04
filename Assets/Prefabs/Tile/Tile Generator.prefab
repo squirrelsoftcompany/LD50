@@ -58,6 +58,7 @@ MonoBehaviour:
   borderChunkSize: 35
   chunkList:
   - {fileID: 11400000, guid: d6b231260919745ea98ab9fbace8cea5, type: 2}
+  - {fileID: 11400000, guid: c7d5965152575b648af31aa4b9b44295, type: 2}
 --- !u!114 &8714552479920027624
 MonoBehaviour:
   m_ObjectHideFlags: 0
