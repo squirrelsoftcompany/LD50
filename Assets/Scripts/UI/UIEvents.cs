@@ -94,13 +94,13 @@ public class UIEvents : MonoBehaviour
     public void onGameOver()
     {
         mGameOverUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
-        onStartOver.Raise();
     }
 
     public void onGameOverOK()
     {
         mGameOverUI.GetComponentInChildren<Animator>().SetTrigger("Depop");
         //Change game state to menu
+        onStartOver.Raise();
     }
 
     public void onQuitNo()
