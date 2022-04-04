@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{58b477dd-7242-46e2-be81-58b1aef8ac0d}">
 		<property name="name">
-			<value>StartChopChop</value>
+			<value>ChopChop</value>
 		</property>
 		<relationship name="folder">
 			<destination>{dcb4d382-bb70-44ff-9760-552c04e9114a}</destination>
