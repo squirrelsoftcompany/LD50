@@ -161,7 +161,7 @@ public class ChunkGenerator : MonoBehaviour
     // Update is called once per frame
 	void Update() {
 		// Update the translation
-		globalTranslate -= scrollingSpeed;
+		globalTranslate -= scrollingSpeed * Time.deltaTime;
 		
 		// If one column of tile is outside
 		if (globalTranslate <= -chunkSize) {	
@@ -186,7 +186,7 @@ public class ChunkGenerator : MonoBehaviour
 			Environment.World.Inst.m_physicalBeginning = startIndex;
 		} else {
 			// Translate all tiles
-			rootObject.transform.Translate(new Vector3(-scrollingSpeed, 0, 0));
-		}
+            rootObject.transform.Translate(new Vector3(-scrollingSpeed * Time.deltaTime, 0, 0));
+        }
 	}
 }
