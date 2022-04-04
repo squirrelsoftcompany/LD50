@@ -4962,7 +4962,9 @@ MonoBehaviour:
   AllowFadeout: 1
   TriggerOnce: 1
   Preload: 0
-  Params: []
+  Params:
+  - Name: StartPlane
+    Value: 1
   OverrideAttenuation: 1
   OverrideMinDistance: 1
   OverrideMaxDistance: 50

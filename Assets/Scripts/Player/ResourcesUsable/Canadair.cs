@@ -14,6 +14,7 @@ public class Canadair : Resource {
     [SerializeField] private float distanceFlyingAfter = 30;
     [SerializeField] private int maxFlyingBeats = 20;
     [SerializeField] private int maxManeuverBeats = 3;
+    private FMODUnity.StudioEventEmitter fmod;
 
     [Tooltip("Angle for the arc of a circle after the effect (in radian)")] [SerializeField]
     private float fullManeuverAngle = Mathf.PI / 2;
@@ -27,6 +28,7 @@ public class Canadair : Resource {
     protected override void Awake() {
         base.Awake();
         _particle = GetComponentInChildren<ParticleSystem>();
+        fmod = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     protected override void applyEffect() {
@@ -39,6 +41,7 @@ public class Canadair : Resource {
     }
 
     protected override IEnumerator spawnAnimation() {
+        fmod.SetParameter("DropWater", 1f);
         transform.localPosition = Vector3.right * distanceFlyingBefore;
         // transform.Translate(Vector3.left * distanceFlyingBefore);
 
@@ -52,6 +55,7 @@ public class Canadair : Resource {
     }
 
     protected override IEnumerator showInCooldown() {
+        fmod.SetParameter("StartPlane", 1f);
         var emissionModule = _particle.emission;
         emissionModule.enabled = false;
 
