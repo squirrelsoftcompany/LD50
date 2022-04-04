@@ -91,14 +91,14 @@ public class GameManagerCool : MonoBehaviour {
             showNotification.Raise();
         }
 
-        if (totalBeats == winItemRate)   //Show at the first shop display
+        if (totalBeats == winItemRate -5)   //Show at the first shop display
         {
             showNotification.sentString = "Here are some reinforcements. Be careful, you can only make one choice each time.";
             showNotification.sentBool = true;
             showNotification.Raise();
         }
 
-        if (totalBeats == winItemRate+10)  //Hide after 10 sec
+        if (totalBeats == winItemRate+5)  //Hide after 10 sec
         {
             showNotification.sentBool = false;
             showNotification.Raise();
