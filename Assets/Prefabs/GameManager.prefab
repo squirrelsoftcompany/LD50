@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6336740348986681086}
   - component: {fileID: 6336740348986681087}
   - component: {fileID: 8550412267262775339}
-  - component: {fileID: 4709125705067449531}
   - component: {fileID: 4325060793128591717}
   m_Layer: 0
   m_Name: GameManager
@@ -66,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_onScoreUpdated: {fileID: 11400000, guid: 7789cb4f68c43f74fa97a596a31e4d14, type: 2}
---- !u!114 &4709125705067449531
+--- !u!114 &4325060793128591717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,14 +78,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventAndResponses:
-  - name: TickTack -> IncrementHighScore()
-    gameEvent: {fileID: 11400000, guid: 606ef6c18dd1d4d40b12d7907b29c4e5, type: 2}
+  - name: Game over
+    gameEvent: {fileID: 11400000, guid: 454d107102cdeae4ba8829bfc9d47404, type: 2}
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8550412267262775339}
-          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
-          m_MethodName: IncrementScore
+        - m_Target: {fileID: 6336740348986681087}
+          m_TargetAssemblyTypeName: GameManagerCool, Assembly-CSharp
+          m_MethodName: GameOver
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -111,27 +110,14 @@ MonoBehaviour:
     responseForSentMonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
---- !u!114 &4325060793128591717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336740348986681084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f2ef1ffd03a864cbca588995683751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventAndResponses:
-  - name: Game over
-    gameEvent: {fileID: 11400000, guid: 454d107102cdeae4ba8829bfc9d47404, type: 2}
+  - name: TickTack -> IncrementHighScore()
+    gameEvent: {fileID: 11400000, guid: 606ef6c18dd1d4d40b12d7907b29c4e5, type: 2}
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6336740348986681087}
-          m_TargetAssemblyTypeName: GameManagerCool, Assembly-CSharp
-          m_MethodName: GameOver
+        - m_Target: {fileID: 8550412267262775339}
+          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+          m_MethodName: IncrementScore
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
