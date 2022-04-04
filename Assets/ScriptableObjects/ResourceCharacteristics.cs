@@ -19,5 +19,6 @@ public class ResourceCharacteristics : ScriptableObject {
     public GameObject prefab;
     public LayerMask ignoreLayer;
     public float rangeCivilians = 1f;
+    public bool isStarter = false;
 }
 }

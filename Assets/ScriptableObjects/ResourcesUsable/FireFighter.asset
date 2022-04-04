@@ -24,3 +24,5 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  rangeCivilians: 1
+  isStarter: 1

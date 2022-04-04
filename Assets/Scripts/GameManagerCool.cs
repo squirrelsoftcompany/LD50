@@ -1,8 +1,10 @@
 using System.Collections;
 using Attributes;
 using GameEventSystem;
+using Player.Inventory;
 using UnityEngine;
 
+[RequireComponent(typeof(Inventory))]
 public class GameManagerCool : MonoBehaviour {
     [SerializeField] public int bpm;
     [SerializeField] private GameEvent tickTack;
@@ -12,6 +14,7 @@ public class GameManagerCool : MonoBehaviour {
     [ReadOnly] [SerializeField] private long totalBeats;
     [Range(1, 200)] [SerializeField] private long winItemRate = 60;
     private float _formerTimeScale = 1f;
+    private Inventory _inventory;
 
     public enum GameState {
         eMenuStart = 0,
@@ -35,6 +38,7 @@ public class GameManagerCool : MonoBehaviour {
             Debug.LogError("The GameManager should have the field completed");
         }
 #endif
+        _inventory = GetComponent<Inventory>();
     }
 
     // Start is called before the first frame update
@@ -80,6 +84,11 @@ public class GameManagerCool : MonoBehaviour {
         {
             showNotification.sentBool = false;
             showNotification.Raise();
+        }
+
+        if (totalBeats == 18) {
+            // fill the inventory
+            _inventory.fillWithStarter();
         }
 
         if (totalBeats == 20) //Show after 10 sec

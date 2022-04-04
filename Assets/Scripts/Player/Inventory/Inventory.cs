@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Environment;
 using GameEventSystem;
 using Player.ResourcesUsable;
@@ -62,6 +63,12 @@ public class Inventory : MonoBehaviour {
     public void testAddItem() {
         foreach (var type in allResourceTypes) {
             addItem(type, 3);
+        }
+    }
+    
+    public void fillWithStarter() {
+        foreach (var starters in allResourceTypes.Where(characteristics => characteristics.isStarter)) {
+            addItem(starters, 1);
         }
     }
 
