@@ -41,7 +41,12 @@ public class UIInventory : MonoBehaviour {
             itemDrag.onSpawn += onSpawn;
         }
 
-        uiSlot.GetComponentInChildren<Text>().text = $"{slot.NumberAvailable}/{slot.NumberTotal}";
+        var text = $"{slot.NumberAvailable}";
+        if (!slot.Characteristics.consumable) {
+            text += $"/{slot.NumberTotal}";
+        }
+
+        uiSlot.GetComponentInChildren<Text>().text = text;
     }
 
     private void onSpawn(object sender, ItemDrag.SpawnEventArg e) {
