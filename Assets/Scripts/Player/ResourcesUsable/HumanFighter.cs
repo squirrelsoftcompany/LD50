@@ -36,7 +36,9 @@ public abstract class HumanFighter : Resource, IMortal {
             ref var neighbor = ref World.Inst[vector2Int];
             if (!neighbor.HasCivilian) continue;
             var tileGraphic = ChunkGenerator.Inst.get(vector2Int);
-            tileGraphic.m_civilian.GetComponent<Civilian>().save();
+            if (tileGraphic.m_civilian != null) {
+                tileGraphic.m_civilian.GetComponent<Civilian>().save();
+            }
         }
     }
 
