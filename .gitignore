@@ -72,3 +72,6 @@ crashlytics-build.properties
 # FMod
 Cache/
 Cache.meta
+.cache/
+fmod_editor.log
+
