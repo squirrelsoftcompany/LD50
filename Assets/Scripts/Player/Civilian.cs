@@ -17,6 +17,7 @@ public class Civilian : MonoBehaviour, IMortal {
     public bool saved => beingSaved >= saveThreshold;
     private bool dead;
     private static readonly int Save = Animator.StringToHash("Save");
+    private static readonly int Saving = Animator.StringToHash("Saving");
 
     private void Awake() {
         _animator = GetComponentInChildren<Animator>();
@@ -41,7 +42,7 @@ public class Civilian : MonoBehaviour, IMortal {
     }
 
     private void startAnimSaving() {
-        // todo saving animation 
+        _animator.SetTrigger(Saving);
     }
 
     private void startAnimSaved() {
