@@ -813,5 +813,9 @@ PrefabInstance:
       propertyPath: winItemRate
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: eventAndResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae17cca57a38d514393c96fdc06c4264, type: 3}
