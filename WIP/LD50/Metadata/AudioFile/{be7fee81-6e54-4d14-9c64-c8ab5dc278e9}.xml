@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}">
+		<property name="note" />
 		<property name="assetPath">
 			<value>LD50_bip.aif</value>
 		</property>

@@ -281,6 +281,9 @@
 		<property name="length">
 			<value>2.0244897959183672</value>
 		</property>
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}</destination>
 		</relationship>
@@ -292,12 +295,15 @@
 	</object>
 	<object class="TransitionDestinationSound" id="{23bf414a-6466-4466-812d-a1203ba1594f}">
 		<property name="length">
-			<value>10</value>
+			<value>2.0244897959183672</value>
 		</property>
 	</object>
 	<object class="SingleSound" id="{8a54aac0-8fa9-4694-bc11-645c6c63053d}">
 		<property name="length">
 			<value>2.0244897959183672</value>
+		</property>
+		<property name="volume">
+			<value>-5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}</destination>
@@ -317,6 +323,9 @@
 		<property name="length">
 			<value>2.0244897959183672</value>
 		</property>
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}</destination>
 		</relationship>
@@ -334,6 +343,9 @@
 	<object class="SingleSound" id="{b7d871af-0391-4e1e-9420-61eb62d70eda}">
 		<property name="length">
 			<value>2.0244897959183672</value>
+		</property>
+		<property name="volume">
+			<value>-5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}</destination>
@@ -353,6 +365,9 @@
 		<property name="length">
 			<value>2.0244897959183672</value>
 		</property>
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}</destination>
 		</relationship>
@@ -370,6 +385,9 @@
 	<object class="SingleSound" id="{da757dcf-c21a-4f81-a885-00e052f758ae}">
 		<property name="length">
 			<value>2.0244897959183672</value>
+		</property>
+		<property name="volume">
+			<value>-5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{be7fee81-6e54-4d14-9c64-c8ab5dc278e9}</destination>
