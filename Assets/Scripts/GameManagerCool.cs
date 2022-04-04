@@ -11,7 +11,7 @@ public class GameManagerCool : MonoBehaviour {
     private float waitTime;
     [ReadOnly] [SerializeField] private long totalBeats;
     [Range(1, 200)] [SerializeField] private long winItemRate = 60;
-
+    private float _formerTimeScale = 1f;
     public enum GameState {
         eMenuStart = 0,
         eIngame,
@@ -42,7 +42,6 @@ public class GameManagerCool : MonoBehaviour {
         mUIEvents = FindObjectOfType<UIEvents>();
         mGameState = GameState.eMenuStart;
         waitTime = 60f / bpm;
-        StartCoroutine(beats());
     }
 
     private IEnumerator beats() {
@@ -109,6 +108,7 @@ public class GameManagerCool : MonoBehaviour {
 
     public void Play() {
         mGameState = GameState.eIngame;
+        StartCoroutine(beats());
     }
 
     public void Menu() {
@@ -117,5 +117,8 @@ public class GameManagerCool : MonoBehaviour {
 
     public void GameOver() {
         mGameState = GameState.eGameOver;
+        _formerTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+        StopCoroutine(beats());
     }
 }
