@@ -6,6 +6,7 @@ namespace Environment
 {
     public class BorderTileGraphic : TileGraphic
     {
+        [Header("Front line")]
         public GameObject frontLineRepresentation;
 
         public override void UpdateFire()
