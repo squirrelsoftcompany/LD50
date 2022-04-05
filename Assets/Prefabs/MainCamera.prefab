@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e2578b799d04b90b92a6ecd6b76fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tenseLevel: 0.1
+  tenseLevel: 0.3
   hardLevel: 0.5
 --- !u!114 &3179943336753233219
 MonoBehaviour:

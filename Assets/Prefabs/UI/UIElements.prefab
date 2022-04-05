@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4705563002810285379}
   - component: {fileID: 5328799996169281079}
   - component: {fileID: 262032406747335157}
+  - component: {fileID: 6258382957858042680}
   m_Layer: 0
   m_Name: UIElements
   m_TagString: Untagged
@@ -116,6 +117,68 @@ MonoBehaviour:
     responseForSentMonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
+  - name: Show/Hide choice dialog
+    gameEvent: {fileID: 11400000, guid: d7f7e35a4deab044daca3c79d0b92186, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5328799996169281079}
+          m_TargetAssemblyTypeName: UIEvents, Assembly-CSharp
+          m_MethodName: onChoicePop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &6258382957858042680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705563002810285378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1322640276
+      Data2: 1254439017
+      Data3: -1606023255
+      Data4: -1703650193
+    Path: event:/GUI
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &128826638641296511
 PrefabInstance:
   m_ObjectHideFlags: 0

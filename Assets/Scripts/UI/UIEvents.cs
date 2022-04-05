@@ -39,10 +39,12 @@ public class UIEvents : MonoBehaviour
     public GameEvent m_launchAnimationEvent;
     public GameEvent mStart;
 
+    FMODUnity.StudioEventEmitter emitter;
+
     // Start is called before the first frame update
     void Start()
     {
-
+       emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     // Update is called once per frame
@@ -53,8 +55,13 @@ public class UIEvents : MonoBehaviour
 
     public void onStart()
     {
+        emitter.SetParameter("Valid", 1);
         mMenuUI.SetActive(false);
         m_launchAnimationEvent.Raise();
+    }
+
+    public void onChoicePop() {
+        emitter.SetParameter("Reward", 1);
     }
 
     public void AfterIntroduction()
@@ -66,16 +73,19 @@ public class UIEvents : MonoBehaviour
 
     public void onMenuQuit()
     {
+        emitter.SetParameter("Valid", 1);
         mConfirmationQuitUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
     }
 
     public void onGlobalQuit()
     {
+        emitter.SetParameter("Valid", 1);
         mConfirmationQuitUI.GetComponentInChildren<Animator>().SetTrigger("Pop");
     }
 
     public void onQuitYes()
     {
+        emitter.SetParameter("Valid", 1);
         if(GameManagerCool.Inst.mGameState == GameManagerCool.GameState.eIngame)
         {
             mInGameUI.SetActive(false);
@@ -108,6 +118,7 @@ public class UIEvents : MonoBehaviour
 
     public void onQuitNo()
     {
+        emitter.SetParameter("Valid", 1);
         mConfirmationQuitUI.GetComponentInChildren<Animator>().SetTrigger("Depop");
     }
 
