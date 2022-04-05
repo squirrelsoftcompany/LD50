@@ -1057,16 +1057,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4705563002810285379}
     m_Modifications:
+    - target: {fileID: 3684154396934152992, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -300
+      objectReference: {fileID: 0}
     - target: {fileID: 3684154396934152993, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5328799996169281079}
+    - target: {fileID: 3684154398033661894, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -370
+      objectReference: {fileID: 0}
     - target: {fileID: 3684154398033661895, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5328799996169281079}
+    - target: {fileID: 3684154398294768624, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
+        type: 3}
+      propertyPath: m_Text
+      value: Delay the dancing fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684154398294768627, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684154398294768627, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -150
+      objectReference: {fileID: 0}
     - target: {fileID: 3684154398620920297, guid: 6d0c120f04f9c6545aa1a75fad0c1f17,
         type: 3}
       propertyPath: m_Name

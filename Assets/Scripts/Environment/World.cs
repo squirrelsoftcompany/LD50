@@ -78,7 +78,7 @@ namespace Environment
 
         #region Static probability stuff
 
-        private static float[] s_Probability4TileType = { 0, 0, 1f/4, 1f/4, 1f/3, 1f/2 }; // N L P R B F
+        private static float[] s_Probability4TileType = { 0, 0, 1f/5, 1f/5, 1f/3.2f, 1f/2.1f }; // N L P R B F
         private static float[] s_Probability4Intensity = { 0, 1f/3, 1f/2, 1, -1f/2 };
 
         private static float Probability4Intensity_Func(int p_intensity)
