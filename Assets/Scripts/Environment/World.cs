@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Environment
 {
-    public struct Tile
+    public class Tile
     {
         #region Attributes
         const float c_buildingHasCivilianPercentage = 1f/6;
@@ -103,7 +103,7 @@ namespace Environment
         public int m_fireFrontLine = 0;
         private int m_continuousFireFrontLine = 0;
         private int m_arrayFireFrontLine = 0;
-        public static Tile nullTile;
+        public static Tile nullTile = new Tile();
         public float m_worldIsOnFire = 0; // Percent
         public static int maxFireIntensity = 4;
         public static int minFireIntensity = -4;
@@ -157,6 +157,7 @@ namespace Environment
                 m_world[x] = new Tile[m_maxWorld.y];
                 for (int y = 0; y < m_maxWorld.y; y++)
                 {
+                    m_world[x][y] = new Tile();
                     m_world[x][y].m_type = Tile.TileType.eForest;
                 }
             }
