@@ -20,8 +20,16 @@ namespace Environment
         public GameObject m_civilian;
 
 	    private GameObject m_graphicInstance = null;
-
-        public ref Tile tileData => ref World.Inst[m_position];
+        
+        private Tile tileData = null;
+        public Tile TileData
+        {
+            get
+            {
+                if (tileData == null) tileData = World.Inst[m_position];
+                return tileData;
+            }
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -31,20 +39,18 @@ namespace Environment
 
         public virtual void UpdateFire()
         {
-            m_fireGraphic.UpdateFire(tileData.Intensity);
+            m_fireGraphic.UpdateFire(TileData.Intensity);
 
             IMortal[] mortals = GetComponentsInChildren<IMortal>();
             foreach (var mortal in mortals)
-                mortal.newFireIntensity(tileData.Intensity);
+                mortal.newFireIntensity(TileData.Intensity);
         }
 
         public virtual void UpdateTile()
         {
-            Tile data = World.Inst[m_position];
-
             Destroy(m_graphicInstance);
             switch
-                (data.m_type)
+                (TileData.m_type)
             {
                 case Tile.TileType.eForest:
                     m_graphicInstance = Instantiate(m_forestPrefab, transform) as GameObject;
