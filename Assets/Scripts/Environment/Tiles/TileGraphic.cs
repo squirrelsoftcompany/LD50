@@ -41,9 +41,9 @@ namespace Environment
         {
             m_fireGraphic.UpdateFire(TileData.Intensity);
 
-            IMortal[] mortals = GetComponentsInChildren<IMortal>();
-            foreach (var mortal in mortals)
-                mortal.newFireIntensity(TileData.Intensity);
+            // IMortal[] mortals = GetComponentsInChildren<IMortal>();
+            // foreach (var mortal in mortals)
+                // mortal.newFireIntensity(TileData.Intensity);
         }
 
         public virtual void UpdateTile()
