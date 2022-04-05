@@ -160,7 +160,7 @@ public class ChunkGenerator : MonoBehaviour
                 instance.name = borderTilePrefab.name + "_" + x + "_" + trueZ;
                 graphicTileMap_rightBorder.Add(instance);
                 
-                Vector2Int position = new Vector2Int(x, verticalCount - ((z+1)%verticalCount));
+                Vector2Int position = new Vector2Int(x, verticalCount - (z%verticalCount) - 1);
                 instance.GetComponent<Environment.TileGraphic>().m_position = position;
             }
         }
