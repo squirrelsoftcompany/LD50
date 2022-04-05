@@ -13,7 +13,7 @@ public class LumberFighter : HumanFighter {
             if (tile.m_type != Environment.Tile.TileType.eForest) continue;
             tile.m_type = Environment.Tile.TileType.ePlain;
             TileGraphic tileGraphic = ChunkGenerator.Inst.get(vector2Int);
-            tileGraphic.UpdateTile();
+            tileGraphic?.UpdateTile();
         }
         saveCivilians();
     }

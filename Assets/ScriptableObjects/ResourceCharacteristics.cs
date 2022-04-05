@@ -13,12 +13,12 @@ public class ResourceCharacteristics : ScriptableObject {
     public int spawnWait = 2;
     public int activeDuration = 1;
     public int cooldown = 3;
-    public float rangeOfAction = 1f;
+    public int rangeOfAction = 1;
     public float efficiency = 1f;
     public Sprite sprite;
     public GameObject prefab;
     public LayerMask ignoreLayer;
-    public float rangeCivilians = 1f;
+    public int rangeCivilians = 1;
     public bool isStarter = false;
 }
 }

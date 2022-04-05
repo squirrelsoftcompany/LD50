@@ -356,17 +356,15 @@ namespace Environment
         }
         #endregion
 
-        public HashSet<Vector2Int> neighbours(Vector2Int position, float radius) {
+        public HashSet<Vector2Int> neighbours(Vector2Int position, int radius) {
             var sqrRadius = radius * radius;
             var res = new HashSet<Vector2Int>();
-            for (var x = (int)(position.x - radius); x <= position.x + radius; x++) {
-                for (var y = (int)(position.y - radius); y <= position.y + radius; y++) {
-                    if (Math.Pow(position.x - x, 2) + Math.Pow(position.y - y, 2) > sqrRadius)
-                        continue;
-                    res.Add(new Vector2Int(x, y));
+            for (var x = (position.x - radius); x <= position.x + radius; x++) {
+                for (var y = (position.y - radius); y <= position.y + radius; y++) {
+                    if ((position.x - x)*(position.x - x) + (position.y - y)*(position.y - y) <= sqrRadius)
+                        res.Add(new Vector2Int(x, y));
                 }
             }
-
             return res;
         }
 
