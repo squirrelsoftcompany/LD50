@@ -225,7 +225,7 @@ MonoBehaviour:
     type: 3}
   m_roadPrefab: {fileID: 3841108948039134184, guid: abe56d36942a4481d9ab6723f971ac8c,
     type: 3}
-  m_lakePrefab: {fileID: 2798194724152522237, guid: b17d53d10c1ba584eb65dd19f972160e,
+  m_lakePrefab: {fileID: 3794921068079707489, guid: d7f918b6dd30c574bac791a5a2fab8af,
     type: 3}
   m_civilian: {fileID: 0}
   frontLineRepresentation: {fileID: 1267337547975256672}
