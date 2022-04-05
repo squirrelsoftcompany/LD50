@@ -39,8 +39,6 @@ public class UIItemsShop : MonoBehaviour {
                 changeImageAndText(ui, shopChoice);
                 _uiSlots.Add(ui);
             }
-
-            Debug.Log($"available choices are {choices}");
         }
         else {
             Time.timeScale = _formerTimeScale;
