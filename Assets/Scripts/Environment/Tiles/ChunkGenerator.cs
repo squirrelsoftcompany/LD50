@@ -29,16 +29,15 @@ public class ChunkGenerator : MonoBehaviour
 
     public TileGraphic get(Vector2Int p_index)
     {
-        return graphicTileMap.Select(obj => obj.GetComponent<TileGraphic>())
-            .FirstOrDefault(tile => tile.m_position == p_index);
+        return graphicTileList.Find(tileGraphic => tileGraphic.m_position == p_index);
     }
 
     // The root object of all tiles
 	private GameObject rootObject = null;
     // Instance map
-	private List<GameObject> graphicTileMap = new List<GameObject>();
-	private List<GameObject> graphicTileMap_leftBorder = new List<GameObject>();
-	private List<GameObject> graphicTileMap_rightBorder = new List<GameObject>();
+	private List<TileGraphic> graphicTileList = new List<TileGraphic>();
+	private List<TileGraphic> graphicTileList_leftBorder = new List<TileGraphic>();
+	private List<TileGraphic> graphicTileList_rightBorder = new List<TileGraphic>();
     // The translation count
 	private float globalTranslate = 0.0f;
 	// The starting tiles index
@@ -64,11 +63,10 @@ public class ChunkGenerator : MonoBehaviour
             for (int z = zStart; z < zEnd; ++z) {
                 // Get data
                 int index = (x * verticalCount) + (z % verticalCount);
-                GameObject instance = graphicTileMap[index];
-                Environment.TileGraphic script = instance.GetComponent<Environment.TileGraphic>();
-
+                TileGraphic tileGraphic = graphicTileList[index];
+                
                 // World update
-                ref Environment.Tile tile = ref Environment.World.Inst[script.m_position];
+                ref Environment.Tile tile = ref Environment.World.Inst[tileGraphic.m_position];
                 tile.m_type = (z == roadZIndex_1 || z == roadZIndex_2) ? Environment.Tile.TileType.eRoad : chunk.GetTile(x % chunkSize, z % chunkSize);
                 if (!firstInitialization)
                 {
@@ -77,8 +75,8 @@ public class ChunkGenerator : MonoBehaviour
                 }
 
                 // Instance update
-                if (! firstInitialization) instance.transform.Translate(new Vector3(horizontalCount, 0, 0));
-                script.UpdateTile();
+                if (! firstInitialization) tileGraphic.gameObject.transform.Translate(new Vector3(horizontalCount, 0, 0));
+                tileGraphic.UpdateTile();
             }
         }
     }
@@ -95,12 +93,11 @@ public class ChunkGenerator : MonoBehaviour
             {
                 // Get data
                 int index = (x * borderChunkSize) + (Mathf.Abs(z) % borderChunkSize);
-                GameObject instance = p_isLeft ? graphicTileMap_leftBorder[index] : graphicTileMap_rightBorder[index];
-                Environment.TileGraphic script = instance.GetComponent<Environment.TileGraphic>();
+                TileGraphic tileGraphic = p_isLeft ? graphicTileList_leftBorder[index] : graphicTileList_rightBorder[index];
 
                 // Instance update
-                if (! firstInitialization) instance.transform.Translate(new Vector3(horizontalCount, 0, 0));
-                script.UpdateTile();
+                if (! firstInitialization) tileGraphic.gameObject.transform.Translate(new Vector3(horizontalCount, 0, 0));
+                tileGraphic.UpdateTile();
             }
         }
     }
@@ -130,38 +127,45 @@ public class ChunkGenerator : MonoBehaviour
         for (int x = 0; x < horizontalCount; ++x) {
             for (int z = 0; z < verticalCount; ++z) {
                 GameObject instance = Instantiate(tilePrefab, rootObject.transform);
+                TileGraphic tileGraphic = instance.GetComponent<TileGraphic>();
                 instance.transform.position = new Vector3(x * tileSize, 0, z * tileSize);
                 instance.name = tilePrefab.name + "_" + x + "_" + z;
-                graphicTileMap.Add(instance);
+                
+                Debug.Assert(tileGraphic);
+                graphicTileList.Add(tileGraphic);
 
                 Vector2Int position = new Vector2Int(x, z);
-                instance.GetComponent<Environment.TileGraphic>().m_position = position;
+                tileGraphic.m_position = position;
             }
         }
         // Instantiate all the left border
         for (int x = 0; x < horizontalCount; ++x) {
             for (int z = 0; z < borderChunkSize; ++z) {
                 GameObject instance = Instantiate(borderTilePrefab, rootObject.transform);
+                TileGraphic tileGraphic = instance.GetComponent<TileGraphic>();
+
                 int trueZ = -z-1;
                 instance.transform.position = new Vector3(x * tileSize, 0, trueZ * tileSize);
                 instance.name = borderTilePrefab.name + "_" + x + "_" + trueZ;
-                graphicTileMap_leftBorder.Add(instance);
+                graphicTileList_leftBorder.Add(tileGraphic);
 
                 Vector2Int position = new Vector2Int(x, ((z+1)%verticalCount));
-                instance.GetComponent<Environment.TileGraphic>().m_position = position;
+                tileGraphic.m_position = position;
             }
         }
         // Instantiate all the right border
         for (int x = 0; x < horizontalCount; ++x) {
             for (int z = 0; z < borderChunkSize; ++z) {
                 GameObject instance = Instantiate(borderTilePrefab, rootObject.transform);
+                TileGraphic tileGraphic = instance.GetComponent<TileGraphic>();
+
                 int trueZ = verticalCount + z;
                 instance.transform.position = new Vector3(x * tileSize, 0, trueZ * tileSize);
                 instance.name = borderTilePrefab.name + "_" + x + "_" + trueZ;
-                graphicTileMap_rightBorder.Add(instance);
+                graphicTileList_rightBorder.Add(tileGraphic);
                 
                 Vector2Int position = new Vector2Int(x, verticalCount - (z%verticalCount) - 1);
-                instance.GetComponent<Environment.TileGraphic>().m_position = position;
+                tileGraphic.m_position = position;
             }
         }
 
@@ -214,7 +218,7 @@ public class ChunkGenerator : MonoBehaviour
 			if (startIndex >= horizontalCount) {
 				startIndex = 0;
 			}
-			Environment.World.Inst.m_physicalBeginning = startIndex;
+			World.Inst.m_physicalBeginning = startIndex;
 		} else {
 			// Translate all tiles
             rootObject.transform.Translate(new Vector3(-scrollingSpeed * Time.deltaTime, 0, 0));
