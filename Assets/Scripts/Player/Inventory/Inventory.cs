@@ -80,7 +80,7 @@ public class Inventory : MonoBehaviour {
         var newResource = Instantiate(characteristics.prefab, tile.transform);
         InventoryChanged?.Invoke(this, new InventorySlotEventArgs(item, indexSlot));
         var resource = newResource.GetComponent<Resource>();
-        resource.Tile = tile;
+        resource.TileGraphic = tile;
         resource.ReturnToInventory += onReturnToInventory;
         resource.OnLost += onResourceLost;
     }

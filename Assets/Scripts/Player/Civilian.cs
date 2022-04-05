@@ -1,9 +1,10 @@
 using Attributes;
+using Environment;
 using GameEventSystem;
 using UnityEngine;
 
 namespace Player {
-public class Civilian : MonoBehaviour, IMortal {
+public class Civilian : MonoBehaviour, IMortal, ITick {
     [SerializeField] private GameEvent deathEvent;
     [SerializeField] private GameEvent gameOver;
     [SerializeField] private GameEvent civilianSaved;
@@ -18,9 +19,15 @@ public class Civilian : MonoBehaviour, IMortal {
     private bool dead;
     private static readonly int Save = Animator.StringToHash("Save");
     private static readonly int Saving = Animator.StringToHash("Saving");
+    private Tile _tile;
 
     private void Awake() {
         _animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Start() {
+        var tileGraphic = GetComponentInParent<TileGraphic>();
+        _tile = World.Inst[tileGraphic.m_position];
     }
 
     public void doDie() {
@@ -64,6 +71,11 @@ public class Civilian : MonoBehaviour, IMortal {
             dead = true;
             _animator.SetTrigger(Death);
         }
+    }
+
+    public void tick() {
+        if (_tile.m_type == Tile.TileType.eNone) return;
+        newFireIntensity(_tile.Intensity);
     }
 }
 }

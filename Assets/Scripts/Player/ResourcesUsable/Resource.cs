@@ -25,7 +25,7 @@ public abstract class Resource : MonoBehaviour, ITick {
     [SerializeField] private Color cooldownColor = Color.cyan;
 
     [SerializeField] protected int fps = 24;
-    private TileGraphic _tileGraphic;
+    private TileGraphic _tileGraphicGraphic;
 
     public ResourceState State => state;
 
@@ -36,15 +36,22 @@ public abstract class Resource : MonoBehaviour, ITick {
     public ResourceCharacteristics Characteristics => characteristics;
 
     protected HashSet<Vector2Int> neighbours =>
-        World.Inst.neighbours(Tile.m_position, Characteristics.rangeOfAction);
+        World.Inst.neighbours(TileGraphic.m_position, Characteristics.rangeOfAction);
 
     protected HashSet<Vector2Int> neighboursCivilians =>
-        World.Inst.neighbours(Tile.m_position, Characteristics.rangeCivilians);
+        World.Inst.neighbours(TileGraphic.m_position, Characteristics.rangeCivilians);
 
-    public TileGraphic Tile {
-        get => _tileGraphic;
-        set => _tileGraphic = value;
+    public TileGraphic TileGraphic {
+        get => _tileGraphicGraphic;
+        set {
+            _tileGraphicGraphic = value;
+            _tile = World.Inst[value.m_position];
+        }
     }
+
+    public Tile Tile => _tile;
+
+    private Tile _tile;
 
     public event EventHandler<InventoryEventArgs> OnLost;
 

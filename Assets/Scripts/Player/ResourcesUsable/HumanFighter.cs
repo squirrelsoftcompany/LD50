@@ -16,11 +16,17 @@ public abstract class HumanFighter : Resource, IMortal {
     private static readonly int Death = Animator.StringToHash("Death");
     [SerializeField] protected GameEvent deathEvent;
     public abstract int criticalAmountSurvivable();
-
+    
     protected override void Awake() {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
         fmod = GetComponent<FMODUnity.StudioEventEmitter>();
+    }
+
+    public override void tick() {
+        base.tick();
+        if (Tile.m_type == Tile.TileType.eNone) return;
+        newFireIntensity(Tile.Intensity);
     }
 
     public void newFireIntensity(int intensity) {
