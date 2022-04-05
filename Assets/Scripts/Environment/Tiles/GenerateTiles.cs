@@ -83,7 +83,7 @@ public class GenerateTiles : MonoBehaviour {
 				graphicTileMap.Add(instance);
 				
 				instance.GetComponent<Environment.TileGraphic>().m_position = position;
-				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
+				instance.GetComponent<Environment.TileGraphic>().InitTile();
 			}
 		}
 	}
@@ -113,8 +113,7 @@ public class GenerateTiles : MonoBehaviour {
 				
 				instance.transform.position = new Vector3((horizontalCount - 1) * tileSize, 0, z * tileSize);
 				instance.GetComponent<Environment.TileGraphic>().m_position = newPosition;
-				instance.GetComponent<Environment.TileGraphic>().UpdateTile();
-				instance.GetComponent<Environment.TileGraphic>().UpdateFire(); // we need to force an UpdateFire now otherwise fire will seem to cycle
+				instance.GetComponent<Environment.TileGraphic>().InitTile();
 			}
 			// Start index is incremented by one (cycling > horizontal count)
 			startIndex++;

@@ -76,7 +76,7 @@ public class ChunkGenerator : MonoBehaviour
 
                 // Instance update
                 if (! firstInitialization) tileGraphic.gameObject.transform.Translate(new Vector3(horizontalCount, 0, 0));
-                tileGraphic.UpdateTile();
+                tileGraphic.InitTile();
             }
         }
     }
@@ -97,7 +97,7 @@ public class ChunkGenerator : MonoBehaviour
 
                 // Instance update
                 if (! firstInitialization) tileGraphic.gameObject.transform.Translate(new Vector3(horizontalCount, 0, 0));
-                tileGraphic.UpdateTile();
+                tileGraphic.InitTile();
             }
         }
     }

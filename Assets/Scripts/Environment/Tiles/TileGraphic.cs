@@ -17,9 +17,11 @@ namespace Environment
         public GameObject m_lakePrefab;
 
         [Header("Civilian")]
-        public GameObject m_civilian;
+        public Civilian m_civilianPrefab;
 
 	    private GameObject m_graphicInstance = null;
+	    private Civilian m_civilianInstance = null;
+	    public Civilian CivilianInstance => m_civilianInstance;
         
         private Tile tileData = null;
         public Tile TileData
@@ -34,16 +36,18 @@ namespace Environment
         // Start is called before the first frame update
         void Start()
         {
-            //UpdateTile();
         }
 
         public virtual void UpdateFire()
         {
             m_fireGraphic.UpdateFire(TileData.Intensity);
+        }
 
-            // IMortal[] mortals = GetComponentsInChildren<IMortal>();
-            // foreach (var mortal in mortals)
-                // mortal.newFireIntensity(TileData.Intensity);
+        public virtual void InitTile()
+        {
+            UpdateTile();
+            UpdateFire();
+            InitCivilian();
         }
 
         public virtual void UpdateTile()
@@ -70,13 +74,16 @@ namespace Environment
             }
 
             UpdateFire();
-            UpdateCivilian();
         }
 
-        protected virtual void UpdateCivilian()
+        protected virtual void InitCivilian()
         {
-            if (m_civilian)
-                m_civilian.SetActive(tileData.HasCivilian);
+            if (m_civilianInstance) Destroy(m_civilianInstance);
+
+            if (m_civilianPrefab && tileData.HasCivilian)
+            {
+                m_civilianInstance = Instantiate(m_civilianPrefab, transform);
+            }
         }
     }
 }
