@@ -49,6 +49,7 @@ public class GameManagerCool : MonoBehaviour {
         mUIEvents = FindObjectOfType<UIEvents>();
         mGameState = GameState.eMenuStart;
         waitTime = 60f / bpm;
+        totalBeats = 0;
     }
 
     private IEnumerator beats() {

@@ -1,16 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using FMODUnity;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public float tenseLevel = 0.3f;
-    public float hardLevel = 0.5f;
-
     private FMODUnity.StudioEventEmitter emitter;
     private Environment.World world;
+
+    private int fireLevel = 1;
 
     // Start is called before the first frame update
     void Start() {
@@ -21,15 +16,30 @@ public class MusicManager : MonoBehaviour
     // Called when the fire intensify value change
     public void fireIntensity() {
         float fire = world.m_worldIsOnFire;
-        int value = 1;
+        int value = fireLevel;
 
-        if(fire > hardLevel) {
-            value = 3;
-        } else if(fire > tenseLevel) {
-            value = 2;
+        if (fireLevel == 1) {
+            if (fire > 0.4f) {
+                value = 3;
+            } else if (fire > 0.3f) {
+                value = 2;
+            } 
+        } else if (fireLevel == 2) {
+            if (fire > 0.4f) {
+                value = 3;
+            } else if (fire < 0.1f) {
+                value = 1;
+            }
+        } else if (fireLevel == 3) {
+            if (fire < 0.2f) {
+                value = 2;
+            } else if(fire < 0.1f) {
+                value = 1;
+            }
         }
 
         emitter.SetParameter("Fire", value);
+        fireLevel = value;
     }
 
     // Start the music !!!
