@@ -51,7 +51,7 @@ public abstract class HumanFighter : Resource, IMortal {
     protected override IEnumerator showInCooldown() {
         fmod.SetParameter("Exit", 1f);
         _canDie = false;
-        yield return base.showInCooldown();
+        return base.showInCooldown();
     }
 
     protected void saveCivilians() {
