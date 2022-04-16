@@ -13,14 +13,16 @@ public abstract class HumanFighter : Resource, IMortal {
     protected FMODUnity.StudioEventEmitter fmod;
     protected int amountFireExposed;
     private bool hasLost;
+    private bool _canDie;
     private static readonly int Death = Animator.StringToHash("Death");
     [SerializeField] protected GameEvent deathEvent;
     public abstract int criticalAmountSurvivable();
-    
+
     protected override void Awake() {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
         fmod = GetComponent<FMODUnity.StudioEventEmitter>();
+        _canDie = false;
     }
 
     public override void tick() {
@@ -29,8 +31,14 @@ public abstract class HumanFighter : Resource, IMortal {
         newFireIntensity(Tile.Intensity);
     }
 
+    protected override IEnumerator showActive() {
+        _canDie = true;
+        return base.showActive();
+    }
+
     public void newFireIntensity(int intensity) {
         if (hasLost) return;
+        if (!_canDie) return;
         if (intensity == 0) return;
         amountFireExposed += intensity;
         if (amountFireExposed >= criticalAmountSurvivable()) {
@@ -42,6 +50,7 @@ public abstract class HumanFighter : Resource, IMortal {
 
     protected override IEnumerator showInCooldown() {
         fmod.SetParameter("Exit", 1f);
+        _canDie = false;
         yield return base.showInCooldown();
     }
 
