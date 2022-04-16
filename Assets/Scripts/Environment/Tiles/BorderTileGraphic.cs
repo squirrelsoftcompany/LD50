@@ -15,5 +15,10 @@ namespace Environment
 
             frontLineRepresentation?.SetActive(World.Inst.IsOnFireFrontline(m_position));
         }
+
+        public override void UpdateHumidity()
+        {
+            // do nothing
+        }
     }
 }

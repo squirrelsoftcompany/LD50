@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 899810957204207233}
   - component: {fileID: 3980681930157814646}
   - component: {fileID: 3863113762168202814}
+  - component: {fileID: 3398116346173281753}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -62,6 +63,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4968f53ee1c0e44c081b0a780c93bf4d, type: 2}
+  - {fileID: 2100000, guid: 4bc9edbe9d3e06545bcac1fe772deb50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3398116346173281753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841108948039134184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6d9df3b7d437541b4457e7f0547def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thresholdHumidity:
+  - 0
+  - 0.025
+  - 0.1
+  - 0.3
+  - 0.6

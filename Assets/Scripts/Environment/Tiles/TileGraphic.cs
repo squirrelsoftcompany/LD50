@@ -7,6 +7,7 @@ namespace Environment
     {
         public Vector2Int m_position;
         public FireGraphic m_fireGraphic;
+        protected HumidityGraphic m_humidityGraphic;
         
         [Header("Prefabs")]
         // The prefabs to instanciated
@@ -41,6 +42,12 @@ namespace Environment
         public virtual void UpdateFire()
         {
             m_fireGraphic.UpdateFire(TileData.Intensity);
+            UpdateHumidity();
+        }
+
+        public virtual void UpdateHumidity()
+        {
+            m_humidityGraphic?.UpdateHumidity(TileData.Intensity);
         }
 
         public virtual void InitTile()
@@ -53,6 +60,8 @@ namespace Environment
         public virtual void UpdateTile()
         {
             Destroy(m_graphicInstance);
+            m_graphicInstance = null;
+            m_humidityGraphic = null;
             switch
                 (TileData.m_type)
             {
@@ -72,6 +81,7 @@ namespace Environment
                     m_graphicInstance = Instantiate(m_lakePrefab, transform) as GameObject;
                     break;
             }
+            m_humidityGraphic = m_graphicInstance.GetComponentInChildren<HumidityGraphic>();
 
             UpdateFire();
         }

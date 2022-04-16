@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6761325175532061965}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &9097517595206177487
 MeshFilter:
@@ -178,6 +178,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1446956478627287839, guid: 0d48be57e01004e8587e5a86682d8f79, type: 3}
     - {fileID: 1062442958492939299, guid: 0d48be57e01004e8587e5a86682d8f79, type: 3}
+    - {fileID: -1099900535964019208, guid: 0d48be57e01004e8587e5a86682d8f79, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0d48be57e01004e8587e5a86682d8f79, type: 3}
 --- !u!114 &4122955735818082963 stripped
 MonoBehaviour:
@@ -227,5 +228,5 @@ MonoBehaviour:
     type: 3}
   m_lakePrefab: {fileID: 3794921068079707489, guid: d7f918b6dd30c574bac791a5a2fab8af,
     type: 3}
-  m_civilian: {fileID: 0}
+  m_civilianPrefab: {fileID: 0}
   frontLineRepresentation: {fileID: 1267337547975256672}
