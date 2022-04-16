@@ -10,11 +10,13 @@ public class GameManagerCool : MonoBehaviour {
     [SerializeField] private GameEvent tickTack;
     [SerializeField] private GameEvent showChoiceItem;
     [SerializeField] private GameEvent showNotification;
+    [SerializeField] private GameEvent firstCivilianAppeared;
     private float waitTime;
     [ReadOnly] [SerializeField] private long totalBeats;
     [Range(1, 200)] [SerializeField] private long winItemRate = 60;
     private float _formerTimeScale = 1f;
     private Inventory _inventory;
+    private int civilianPopped;
 
     public enum GameState {
         eMenuStart = 0,
@@ -50,6 +52,7 @@ public class GameManagerCool : MonoBehaviour {
         mGameState = GameState.eMenuStart;
         waitTime = 60f / bpm;
         totalBeats = 0;
+        civilianPopped = 0;
     }
 
     private IEnumerator beats() {
@@ -62,6 +65,19 @@ public class GameManagerCool : MonoBehaviour {
 
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public void civilianWasPopped() {
+        if (civilianPopped == 0) {
+            StartCoroutine(showNotifCivilian());
+        }
+        civilianPopped++;
+    }
+
+    private IEnumerator showNotifCivilian() {
+        yield return new WaitUntil(() => totalBeats >= winItemRate + 5);
+        // show a popup to let the player know they have to save the civilian
+        firstCivilianAppeared.Raise();
     }
 
     private void updateBeat() {

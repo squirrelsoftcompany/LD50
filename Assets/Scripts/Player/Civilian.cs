@@ -28,6 +28,7 @@ public class Civilian : MonoBehaviour, IMortal, ITick {
     private void Start() {
         var tileGraphic = GetComponentInParent<TileGraphic>();
         _tile = World.Inst[tileGraphic.m_position];
+        GameManagerCool.Inst.civilianWasPopped();
     }
 
     public void doDie() {
