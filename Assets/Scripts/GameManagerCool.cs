@@ -72,38 +72,36 @@ public class GameManagerCool : MonoBehaviour {
             showChoiceItem.Raise();
         }
 
-        //Trigger notification at the begining to explain the game
-        if (totalBeats == 2) //Show after 1 sec
-        {
-            showNotification.sentString =
-                "Oh no the forest is on fire!\n It's up to you to manage the deployment of the fire fighters !";
-            showNotification.sentBool = true;
-            showNotification.Raise();
-        }
-
-        if (totalBeats == 16) //Hide after 8 sec
-        {
-            showNotification.sentBool = false;
-            showNotification.Raise();
-        }
-
-        if (totalBeats == 18) {
-            // fill the inventory
-            _inventory.fillWithStarter();
-        }
-
-        if (totalBeats == 20) //Show after 10 sec
-        {
-            showNotification.sentString =
-                "Drag and drop the units and consumable that you have at the bottom of the screen on the map to counter the advance of fire.";
-            showNotification.sentBool = true;
-            showNotification.Raise();
-        }
-
-        if (totalBeats == 34) //Hide after 17 sec)
-        {
-            showNotification.sentBool = false;
-            showNotification.Raise();
+        switch (totalBeats) {
+            //Trigger notification at the beginning to explain the game
+            //Show after 1 sec
+            case 2:
+                showNotification.sentString =
+                    "Oh no the forest is on fire!\n It's up to you to manage the deployment of the fire fighters !";
+                showNotification.sentBool = true;
+                showNotification.Raise();
+                break;
+            //Hide after 8 sec
+            case 16:
+                showNotification.sentBool = false;
+                showNotification.Raise();
+                break;
+            case 18:
+                // fill the inventory
+                _inventory.fillWithStarter();
+                break;
+            //Show after 10 sec
+            case 20:
+                showNotification.sentString =
+                    "Drag and drop the units and consumable that you have at the bottom of the screen on the map to counter the advance of fire.";
+                showNotification.sentBool = true;
+                showNotification.Raise();
+                break;
+            //Hide after 17 sec)
+            case 34:
+                showNotification.sentBool = false;
+                showNotification.Raise();
+                break;
         }
 
         if (totalBeats == winItemRate - 1) //Show at the first shop display
@@ -112,9 +110,7 @@ public class GameManagerCool : MonoBehaviour {
                 "Here are some reinforcements. Be careful, you can only make one choice each time.";
             showNotification.sentBool = true;
             showNotification.Raise();
-        }
-
-        if (totalBeats == winItemRate + 1) //Hide just after shop closed
+        } else if (totalBeats == winItemRate + 1) //Hide just after shop closed
         {
             showNotification.sentBool = false;
             showNotification.Raise();
