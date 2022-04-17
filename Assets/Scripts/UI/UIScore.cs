@@ -17,6 +17,7 @@ public class UIScore : MonoBehaviour
 
     public void UpdateScoreText(int p_score)
     {
-        m_text.text = string.Format(m_formatText, p_score);
+        if (m_text)
+            m_text.text = string.Format(m_formatText, p_score);
     }
 }
