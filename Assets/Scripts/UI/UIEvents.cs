@@ -71,6 +71,11 @@ public class UIEvents : MonoBehaviour
         mStart.Raise();
     }
 
+    public void showMenu()
+    {
+        mMenuUI.SetActive(true);
+    }
+
     public void onMenuQuit()
     {
         emitter.SetParameter("Valid", 1);
