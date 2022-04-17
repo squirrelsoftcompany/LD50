@@ -16,8 +16,6 @@ public class UIItemsShop : MonoBehaviour {
     [SerializeField] private int y = 300;
     [SerializeField] private GameEvent showChoices;
     
-    private float _formerTimeScale = 1f;
-
     // Start is called before the first frame update
     private void Start() {
         _canvas = GetComponent<Canvas>();
@@ -26,7 +24,6 @@ public class UIItemsShop : MonoBehaviour {
 
     public void showShop(bool show) {
         if (show) {
-            _formerTimeScale = Time.timeScale;
             Time.timeScale = 0;
             // take 2 or 3 choices
             List<ShopChoice> choices = _shop.fetchChoices();
@@ -41,7 +38,7 @@ public class UIItemsShop : MonoBehaviour {
             }
         }
         else {
-            Time.timeScale = _formerTimeScale;
+            Time.timeScale = GameManagerCool.Inst.NormalTimeScale;
         }
 
         _canvas.enabled = show;

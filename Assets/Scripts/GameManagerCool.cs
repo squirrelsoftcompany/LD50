@@ -13,8 +13,8 @@ public class GameManagerCool : MonoBehaviour {
     [SerializeField] private GameEvent firstCivilianAppeared;
     private float waitTime;
     [ReadOnly] [SerializeField] private long totalBeats;
+    private float _normalTimeScale = 1f;
     [Range(1, 200)] [SerializeField] private long winItemRate = 60;
-    private float _formerTimeScale = 1f;
     private Inventory _inventory;
     private int civilianPopped;
 
@@ -34,6 +34,8 @@ public class GameManagerCool : MonoBehaviour {
         get => _inst;
     }
 
+    public float NormalTimeScale => _normalTimeScale;
+
     private void Awake() {
 #if UNITY_EDITOR
         if (showNotification == null || showChoiceItem == null || tickTack == null) {
@@ -48,7 +50,7 @@ public class GameManagerCool : MonoBehaviour {
         if (_inst == null) _inst = this;
         mUIEvents = FindObjectOfType<UIEvents>();
         waitTime = 60f / bpm;
-
+        _normalTimeScale = Time.timeScale;
         StartOver();
     }
 
@@ -127,7 +129,7 @@ public class GameManagerCool : MonoBehaviour {
 
     public void Play() {
         mGameState = GameState.eIngame;
-        Time.timeScale = _formerTimeScale;
+        Time.timeScale = NormalTimeScale;
         StartCoroutine(beats());
     }
 
@@ -137,7 +139,6 @@ public class GameManagerCool : MonoBehaviour {
 
     public void StartOver() {
         mGameState = GameState.eMenuStart;
-        _formerTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         totalBeats = 0;
         civilianPopped = 0;
