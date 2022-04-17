@@ -182,7 +182,7 @@ namespace Environment
 
         public void IgniteWorld(Vector2Int p_fireDeparture)
         {
-            this[p_fireDeparture - new Vector2Int(m_physicalBeginning, 0)].Intensity = 3;
+            this[p_fireDeparture + new Vector2Int(m_physicalBeginning, 0)].Intensity = 3;
             m_intensificationDone.Raise();
         }
 
