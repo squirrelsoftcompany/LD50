@@ -46,24 +46,16 @@ public class GameManagerCool : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
         if (_inst == null) _inst = this;
-        _formerTimeScale = Time.timeScale;
-        Time.timeScale = 0f;
         mUIEvents = FindObjectOfType<UIEvents>();
-        mGameState = GameState.eMenuStart;
         waitTime = 60f / bpm;
-        totalBeats = 0;
-        civilianPopped = 0;
+
+        StartOver();
     }
 
     private IEnumerator beats() {
-        var currentTime = Time.time;
         while (true) {
-            if (Time.time >= currentTime + waitTime) {
-                updateBeat();
-                currentTime += waitTime;
-            }
-
-            yield return new WaitForFixedUpdate();
+            updateBeat();
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
@@ -144,16 +136,16 @@ public class GameManagerCool : MonoBehaviour {
     }
 
     public void StartOver() {
-        Debug.Log("TODO restart everything!");
-        // todo restart fire
-        // todo show menu
-        // todo restart generation tiles
+        mGameState = GameState.eMenuStart;
+        _formerTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+        totalBeats = 0;
+        civilianPopped = 0;
+        StopAllCoroutines();
     }
 
     public void GameOver() {
         mGameState = GameState.eGameOver;
-        _formerTimeScale = Time.timeScale;
-        Time.timeScale = 0f;
-        StopCoroutine(beats());
+        StartOver();
     }
 }
