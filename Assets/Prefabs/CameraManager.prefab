@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventAndResponses:
-  - name: 
+  - name: LaunchIntroduction
     gameEvent: {fileID: 11400000, guid: ad245fafca48c1941a28028ebf42243c, type: 2}
     response:
       m_PersistentCalls:
@@ -348,6 +348,38 @@ MonoBehaviour:
         - m_Target: {fileID: 8275657884250934089}
           m_TargetAssemblyTypeName: CameraMananger, Assembly-CSharp
           m_MethodName: onLaunchIntroduction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: StartOver
+    gameEvent: {fileID: 11400000, guid: ec96dd2ffd4a70c4797b00ce8be438f5, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8275657884250934089}
+          m_TargetAssemblyTypeName: CameraMananger, Assembly-CSharp
+          m_MethodName: onComebackToMenu
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -652,7 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
