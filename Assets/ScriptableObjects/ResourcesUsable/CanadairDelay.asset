@@ -24,3 +24,7 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  rangeCivilians: 0
+  isStarter: 0
+  preSpawn: {fileID: 6003030327547944530, guid: 24c5f7f23f990d345a948c440617af5b,
+    type: 3}

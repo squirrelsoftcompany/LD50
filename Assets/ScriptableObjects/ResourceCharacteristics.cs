@@ -20,5 +20,6 @@ public class ResourceCharacteristics : ScriptableObject {
     public LayerMask ignoreLayer;
     public int rangeCivilians = 1;
     public bool isStarter = false;
+    public GameObject preSpawn;
 }
 }

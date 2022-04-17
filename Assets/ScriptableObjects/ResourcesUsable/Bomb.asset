@@ -26,3 +26,4 @@ MonoBehaviour:
     m_Bits: 8
   rangeCivilians: 1
   isStarter: 1
+  preSpawn: {fileID: 842556189712000714, guid: dd07adff653568140a47866c125349f6, type: 3}
