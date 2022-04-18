@@ -194,7 +194,7 @@ public class ChunkGenerator : MonoBehaviour
     }
 
     // Update is called once per frame
-	void Update() {
+	void FixedUpdate() {
 		// Update the translation
 		globalTranslate -= scrollingSpeed * Time.deltaTime;
 		
@@ -221,7 +221,7 @@ public class ChunkGenerator : MonoBehaviour
 			World.Inst.m_physicalBeginning = startIndex;
 		} else {
 			// Translate all tiles
-            rootObject.transform.Translate(new Vector3(-scrollingSpeed * Time.deltaTime, 0, 0));
+            rootObject.transform.Translate(new Vector3(-scrollingSpeed * Time.fixedDeltaTime, 0, 0));
         }
 	}
 }

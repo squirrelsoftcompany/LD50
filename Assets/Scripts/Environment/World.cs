@@ -185,12 +185,6 @@ namespace Environment
             this[p_fireDeparture + new Vector2Int(m_physicalBeginning, 0)].Intensity = 3;
             m_intensificationDone.Raise();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
         #endregion
 
         #region Fire !!!

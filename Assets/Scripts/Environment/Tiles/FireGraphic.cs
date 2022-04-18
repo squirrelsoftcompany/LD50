@@ -6,18 +6,6 @@ public class FireGraphic : MonoBehaviour
 {
     public GameObject m_firePivot;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateFire(int p_intensity)
     {
         if (p_intensity <= 0)

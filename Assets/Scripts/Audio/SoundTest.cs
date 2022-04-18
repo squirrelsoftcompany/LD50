@@ -10,6 +10,4 @@ public class SoundTest : MonoBehaviour {
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("Exit", fire);
     }
-    void Update() {
-    }
 }

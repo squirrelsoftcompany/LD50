@@ -47,12 +47,6 @@ public class UIEvents : MonoBehaviour
        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void onStart()
     {
         emitter.SetParameter("Valid", 1);
