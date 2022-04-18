@@ -55,7 +55,8 @@ MonoBehaviour:
   verticalChunkCount: 3
   horizontalChunkCount: 8
   chunkSize: 10
-  borderChunkSize: 35
+  leftBorderChunkSize: 10
+  rightBorderChunkSize: 36
   chunkList:
   - {fileID: 11400000, guid: c7d5965152575b648af31aa4b9b44295, type: 2}
   - {fileID: 11400000, guid: 4913bb0180d15074e8350471f1947dd3, type: 2}

@@ -20,7 +20,8 @@ public class ChunkGenerator : MonoBehaviour
     // The chunk size (square)
     public int chunkSize = 10;
     // Border (vertical) size
-    public int borderChunkSize = 30;
+    public int leftBorderChunkSize = 30;
+    public int rightBorderChunkSize = 30;
     // The list of chunk
     public List<ChunkTile> chunkList = new List<ChunkTile>();
 
@@ -85,6 +86,7 @@ public class ChunkGenerator : MonoBehaviour
     {
         int xEnd = xStart + chunkSize;
         int zStart = 0;
+        int borderChunkSize = p_isLeft ? leftBorderChunkSize : rightBorderChunkSize;
         int zEnd = borderChunkSize;
 
         for (int x = xStart; x < xEnd; ++x)
@@ -140,7 +142,7 @@ public class ChunkGenerator : MonoBehaviour
         }
         // Instantiate all the left border
         for (int x = 0; x < horizontalCount; ++x) {
-            for (int z = 0; z < borderChunkSize; ++z) {
+            for (int z = 0; z < leftBorderChunkSize; ++z) {
                 GameObject instance = Instantiate(borderTilePrefab, rootObject.transform);
                 TileGraphic tileGraphic = instance.GetComponent<TileGraphic>();
 
@@ -155,7 +157,7 @@ public class ChunkGenerator : MonoBehaviour
         }
         // Instantiate all the right border
         for (int x = 0; x < horizontalCount; ++x) {
-            for (int z = 0; z < borderChunkSize; ++z) {
+            for (int z = 0; z < rightBorderChunkSize; ++z) {
                 GameObject instance = Instantiate(borderTilePrefab, rootObject.transform);
                 TileGraphic tileGraphic = instance.GetComponent<TileGraphic>();
 
