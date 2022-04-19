@@ -31,4 +31,14 @@ public class VolumeManager: MonoBehaviour {
         musiqueVolume = Mathf.Pow(10.0f, (musiqueBusVolume - (90f * (1 - masterBusVolume))) / 20f);
         musiqueBus.setVolume(musiqueVolume);
     }
+
+    public void Mute()
+    {
+        masterBusVolume = 0f;
+    }
+
+    public void Unmute()
+    {
+        masterBusVolume = .8f;
+    }
 }

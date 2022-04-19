@@ -281,8 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e2578b799d04b90b92a6ecd6b76fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tenseLevel: 0.3
-  hardLevel: 0.5
 --- !u!114 &3179943336753233219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +366,70 @@ MonoBehaviour:
         - m_Target: {fileID: 7820738541036952595}
           m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
           m_MethodName: goToMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: MusicMuted
+    gameEvent: {fileID: 11400000, guid: 946e8327ec4aaa34d9fb42003db6fa61, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 707962908233112749}
+          m_TargetAssemblyTypeName: VolumeManager, Assembly-CSharp
+          m_MethodName: Mute
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: MusicUnmuted
+    gameEvent: {fileID: 11400000, guid: 8fc5955ae11d0bd448d1a5375376bb03, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 707962908233112749}
+          m_TargetAssemblyTypeName: VolumeManager, Assembly-CSharp
+          m_MethodName: Unmute
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
