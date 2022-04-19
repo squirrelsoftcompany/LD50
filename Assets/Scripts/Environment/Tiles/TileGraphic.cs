@@ -83,6 +83,8 @@ namespace Environment
             }
             m_humidityGraphic = m_graphicInstance.GetComponentInChildren<HumidityGraphic>();
 
+            m_graphicInstance.transform.Rotate(Vector3.up, Random.Range(0,4) * 90.0f);
+
             UpdateFire();
         }
 
