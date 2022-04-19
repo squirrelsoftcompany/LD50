@@ -127,6 +127,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _flatBorders: 1
+    - _lake_plain: 1
     - _wateriness: 10
     - _watertable: 0.5
     m_Colors:
