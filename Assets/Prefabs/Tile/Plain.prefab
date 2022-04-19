@@ -47,10 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thresholdHumidity:
   - 0
-  - 0.025
   - 0.1
+  - 0.2
   - 0.3
-  - 0.6
+  - 0.4
 --- !u!1001 &743198073810738083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 586907bc5f8a9364d9f592fda6da8bec,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 586907bc5f8a9364d9f592fda6da8bec,
         type: 3}

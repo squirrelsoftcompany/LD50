@@ -63,7 +63,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4968f53ee1c0e44c081b0a780c93bf4d, type: 2}
-  - {fileID: 2100000, guid: 4bc9edbe9d3e06545bcac1fe772deb50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thresholdHumidity:
   - 0
-  - 0.025
   - 0.1
+  - 0.2
   - 0.3
-  - 0.6
+  - 0.4
