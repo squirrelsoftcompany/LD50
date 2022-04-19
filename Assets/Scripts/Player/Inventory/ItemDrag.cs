@@ -15,6 +15,7 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     public ResourceCharacteristics Characteristics { get; set; }
 
     public event EventHandler<SpawnEventArg> onSpawn;
+    public event EventHandler<SpawnEventArg> onBeginDrag;
     [SerializeField] [ReadOnly] private GameObject preSpawn;
 
     public void OnBeginDrag(PointerEventData eventData) {
@@ -26,6 +27,8 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         var resourcePreview = preSpawn.AddComponent<ResourcePreview>();
         resourcePreview.Characteristics = Characteristics;
         preSpawn.SetActive(true);
+
+        onBeginDrag?.Invoke(this, new SpawnEventArg(tile, Characteristics));
     }
 
     public void OnDrag(PointerEventData eventData) {

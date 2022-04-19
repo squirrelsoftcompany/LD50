@@ -15,6 +15,7 @@ public class UIInventory : MonoBehaviour {
     [SerializeField] private int startX = -200;
     [SerializeField] private int intervalX = 100;
     [SerializeField] private int y = 50;
+    [SerializeField] private GameObject m_noDnDZone = null;
 
     private void Awake() {
         _inventory = FindObjectOfType<Inventory>();
@@ -39,6 +40,7 @@ public class UIInventory : MonoBehaviour {
             itemDrag.gameObject.GetComponent<Image>().sprite = slot.Characteristics.sprite;
             itemDrag.Characteristics = slot.Characteristics;
             itemDrag.onSpawn += onSpawn;
+            itemDrag.onBeginDrag += onBeginDrag;
         }
 
         //Disable slot if no item available
@@ -64,6 +66,11 @@ public class UIInventory : MonoBehaviour {
 
     private void onSpawn(object sender, ItemDrag.SpawnEventArg e) {
         _inventory.callToMap(e.characteristics, e.tile);
+        m_noDnDZone.SetActive(false);
+    }
+
+    private void onBeginDrag(object sender, ItemDrag.SpawnEventArg e) {
+        m_noDnDZone.SetActive(true);
     }
 
     private void showNewItem(object sender, InventorySlotEventArgs inventorySlotEventArgs) {
