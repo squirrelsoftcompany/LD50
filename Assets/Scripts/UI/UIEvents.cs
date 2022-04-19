@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameEventSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIEvents : MonoBehaviour
@@ -87,10 +88,12 @@ public class UIEvents : MonoBehaviour
         emitter.SetParameter("Valid", 1);
         if(GameManagerCool.Inst.mGameState == GameManagerCool.GameState.eIngame)
         {
-            mInGameUI.SetActive(false);
+            /*mInGameUI.SetActive(false);
             mMenuUI.SetActive(true);
             onStartOver.Raise();
-            GameManagerCool.Inst.Menu();
+            GameManagerCool.Inst.Menu();*/
+
+            ReloadLevel();
         }
         else if (GameManagerCool.Inst.mGameState == GameManagerCool.GameState.eMenuStart)
         {
@@ -110,9 +113,17 @@ public class UIEvents : MonoBehaviour
 
     public void onGameOverOK()
     {
-        mGameOverUI.GetComponentInChildren<Animator>().SetTrigger("Depop");
+        /*mGameOverUI.GetComponentInChildren<Animator>().SetTrigger("Depop");
         //Change game state to menu
-        onStartOver.Raise();
+        onStartOver.Raise();*/
+
+        ReloadLevel();
+    }
+
+    public void ReloadLevel()
+    {
+        // TEST
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void onQuitNo()
