@@ -643,7 +643,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The fire finally burned everything. Try again!
+  m_Text: You let a civilian die ! Try again !
 --- !u!1 &7141029214474081649
 GameObject:
   m_ObjectHideFlags: 0
