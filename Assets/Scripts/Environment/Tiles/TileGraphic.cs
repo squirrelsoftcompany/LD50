@@ -59,11 +59,17 @@ namespace Environment
 
         public virtual void UpdateTile()
         {
+            InstantiateTile(TileData.m_type);
+            UpdateFire();
+        }
+
+        protected virtual void InstantiateTile(Tile.TileType tileType)
+        {
             Destroy(m_graphicInstance);
             m_graphicInstance = null;
             m_humidityGraphic = null;
             switch
-                (TileData.m_type)
+                (tileType)
             {
                 case Tile.TileType.eForest:
                     m_graphicInstance = Instantiate(m_forestPrefab, transform) as GameObject;
@@ -84,8 +90,6 @@ namespace Environment
             m_humidityGraphic = m_graphicInstance.GetComponentInChildren<HumidityGraphic>();
 
             m_graphicInstance.transform.Rotate(Vector3.up, Random.Range(0,4) * 90.0f);
-
-            UpdateFire();
         }
 
         protected virtual void InitCivilian()

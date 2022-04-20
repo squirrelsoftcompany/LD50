@@ -16,6 +16,11 @@ namespace Environment
             frontLineRepresentation?.SetActive(World.Inst.IsOnFireFrontline(m_position));
         }
 
+        protected override void InstantiateTile(Tile.TileType tileType)
+        {
+            base.InstantiateTile(tileType == Tile.TileType.eRoad ? Tile.TileType.ePlain : tileType);
+        }
+
         public override void UpdateHumidity()
         {
             // do nothing
