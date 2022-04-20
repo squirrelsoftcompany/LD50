@@ -48,9 +48,11 @@ public class GenerateEditor : MonoBehaviour {
 			}
 		}
 
+#if UNITY_EDITOR
 		// Set the name using the current date
-		//String date = ("" + System.DateTime.Now).Replace('/', '-').Replace(' ', '_').Replace(':', '-');
-		//AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + date + ".asset");
-		//AssetDatabase.SaveAssets();
+		String date = ("" + System.DateTime.Now).Replace('/', '-').Replace(' ', '_').Replace(':', '-');
+		AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Chunks/" + date + ".asset");
+		AssetDatabase.SaveAssets();
+#endif // UNITY_EDITOR
 	}
 }
